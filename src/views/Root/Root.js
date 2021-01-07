@@ -6,6 +6,8 @@ import Nutrition from 'views/Nutrition/Nutrition';
 import Training from 'views/Training/Training';
 import styles from 'views/Root/Root.module.scss';
 import Header from 'components/molecules/Header/Header';
+import Footer from 'components/atoms/Footer/Footer';
+import NavPane from 'components/organisms/NavPane/NavPane';
 
 class Root extends React.Component {
   state = {
@@ -24,13 +26,15 @@ class Root extends React.Component {
     return (
       <div className={styles.wrapper}>
         <GlobalStyle />
-        <Header />
         <BrowserRouter>
+          <Header />
+          <NavPane />
           <Switch>
             <Route path="/blog" component={Blog} />
             <Route path="/nutrition" component={Nutrition} />
             <Route path="/training" component={Training} />
           </Switch>
+          <Footer />
         </BrowserRouter>
       </div>
     );

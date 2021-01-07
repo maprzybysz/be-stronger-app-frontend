@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "globals": { "document": true },
   "rules": {
+    "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
     "react/state-in-constructor": 0,
     "react/no-unused-state": 0,
