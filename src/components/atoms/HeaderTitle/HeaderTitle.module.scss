@@ -1,0 +1,11 @@
+@import '../../../theme/mainTheme.scss';
+.title {
+  position: fixed;
+  width: 100%;
+  top: 60px;
+  text-align: center;
+  font-size: 34px;
+  font-weight: $medium;
+  color: $red;
+  text-transform: uppercase;
+}

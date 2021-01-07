@@ -1,8 +1,11 @@
 {
   "extends": ["airbnb", "prettier", "prettier/react"],
+  "parser": "babel-eslint",
   "globals": { "document": true },
   "rules": {
-    "import/noresolved": 0,
+    "import/no-unresolved": 0,
+    "react/state-in-constructor": 0,
+    "react/no-unused-state": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
   },
   "settings": {
