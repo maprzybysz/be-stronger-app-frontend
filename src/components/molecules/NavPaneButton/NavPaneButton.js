@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 import styles from 'components/molecules/NavPaneButton/NavPaneButton.module.scss';
 
 const NavPaneButton = ({ children, iconName, linkPath, onClick }) => (
-  <li className={styles.link}>
-    <NavLink to={linkPath} onClick={onClick}>
-      <FontAwesomeIcon icon={iconName} />
+  <li>
+    <NavLink to={linkPath} onClick={onClick} className={styles.link}>
+      <FontAwesomeIcon icon={iconName} className={styles.icon} />
       {children}
     </NavLink>
   </li>

@@ -1,4 +1,38 @@
 .wrapper {
   width: 320px;
-  height: 100vh;
+}
+@media (min-width: 360px) {
+  .wrapper {
+    width: 360px;
+  }
+}
+@media (min-width: 375px) {
+  .wrapper {
+    width: 375px;
+  }
+}
+@media (min-width: 414px) {
+  .wrapper {
+    width: 414px;
+  }
+}
+@media (min-width: 768px) {
+  .wrapper {
+    width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .wrapper {
+    width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .wrapper {
+    width: 1280px;
+  }
+}
+@media (min-width: 1440px) {
+  .wrapper {
+    width: 1440px;
+  }
 }
