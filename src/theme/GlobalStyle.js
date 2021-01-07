@@ -13,7 +13,7 @@ html{
     height: -webkit-fill-available;
 }
 body{
-     min-height: 100vh;
+     
      
     background-image: url(${background});
     font-family: 'Montserrat', sans-serif;

@@ -8,6 +8,7 @@ import styles from 'views/Root/Root.module.scss';
 import Header from 'components/molecules/Header/Header';
 import Footer from 'components/atoms/Footer/Footer';
 import NavPane from 'components/organisms/NavPane/NavPane';
+import Div100vh from 'react-div-100vh';
 
 class Root extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class Root extends React.Component {
 
   render() {
     return (
-      <div className={styles.wrapper}>
+      <Div100vh className={styles.wrapper}>
         <GlobalStyle />
         <BrowserRouter>
           <Header />
@@ -36,7 +37,7 @@ class Root extends React.Component {
           </Switch>
           <Footer />
         </BrowserRouter>
-      </div>
+      </Div100vh>
     );
   }
 }
