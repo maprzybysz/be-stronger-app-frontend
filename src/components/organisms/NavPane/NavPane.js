@@ -1,5 +1,5 @@
 import React from 'react';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell, faSignInAlt, faUtensils, faBook } from '@fortawesome/free-solid-svg-icons';
 import NavPaneButton from 'components/molecules/NavPaneButton/NavPaneButton';
 import styles from 'components/organisms/NavPane/NavPane.module.scss';
 
@@ -9,13 +9,13 @@ const NavPane = () => (
       <NavPaneButton iconName={faSignInAlt} linkPath="/">
         Login
       </NavPaneButton>
-      <NavPaneButton iconName={faSignInAlt} linkPath="/nutrition">
+      <NavPaneButton iconName={faUtensils} linkPath="/nutrition">
         Odżywianie
       </NavPaneButton>
-      <NavPaneButton iconName={faSignInAlt} linkPath="/training">
+      <NavPaneButton iconName={faDumbbell} linkPath="/training">
         Trening
       </NavPaneButton>
-      <NavPaneButton iconName={faSignInAlt} linkPath="/blog">
+      <NavPaneButton iconName={faBook} linkPath="/blog">
         Blog
       </NavPaneButton>
     </ul>
