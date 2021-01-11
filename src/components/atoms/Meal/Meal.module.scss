@@ -1,0 +1,16 @@
+@import '../../../theme/mainTheme.scss';
+.wrapper {
+  width: 100%;
+  display: inline-block;
+}
+.value {
+  display: inline-block;
+  color: $cyan;
+  margin-left: 10px;
+  font-size: 16px;
+}
+.name {
+  font-size: 32px;
+  margin-left: 10px;
+  color: $cyan-light;
+}

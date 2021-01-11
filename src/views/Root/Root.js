@@ -29,8 +29,9 @@ class Root extends React.Component {
         <GlobalStyle />
         <BrowserRouter>
           <Header />
-          <NavPane />
+
           <Switch>
+            <Route exact path="/" component={NavPane} />
             <Route path="/blog" component={Blog} />
             <Route path="/nutrition" component={Nutrition} />
             <Route path="/training" component={Training} />
