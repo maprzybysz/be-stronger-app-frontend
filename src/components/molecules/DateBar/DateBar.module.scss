@@ -13,4 +13,8 @@
 .arrow {
   color: white;
   font-size: 36px;
+  transition: 0.5;
+  &:hover {
+    color: $red;
+  }
 }
