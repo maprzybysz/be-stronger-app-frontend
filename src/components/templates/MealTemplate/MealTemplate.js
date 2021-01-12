@@ -1,18 +1,15 @@
 import React from 'react';
 import DateBar from 'components/molecules/DateBar/DateBar';
 import MealPane from 'components/molecules/MealPane/MealPane';
-import styles from 'components/organisms/NutritionPane/NutritionPane.module.scss';
+import styles from 'components/templates/MealTemplate/MealTemplate.module.scss';
 import NutritionBar from 'components/molecules/NutritionBar/NutritionBar';
-import NutritionBottomNav from 'components/molecules/NutritionBottomNav/NutritionBottomNav';
 
-const NutritionPane = () => (
+const MealTemplate = () => (
   <div className={styles.wrapper}>
-    <DateBar />
-
     <MealPane />
+    <DateBar />
     <NutritionBar />
-    <NutritionBottomNav />
   </div>
 );
 
-export default NutritionPane;
+export default MealTemplate;

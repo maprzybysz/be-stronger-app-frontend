@@ -32,9 +32,9 @@ class Root extends React.Component {
 
           <Switch>
             <Route exact path="/" component={NavPane} />
-            <Route path="/blog" component={Blog} />
-            <Route path="/nutrition" component={Nutrition} />
-            <Route path="/training" component={Training} />
+            <Route exac path="/blog" component={Blog} />
+            <Route exac path="/nutrition" component={Nutrition} />
+            <Route exac path="/training" component={Training} />
           </Switch>
           <Footer />
         </BrowserRouter>

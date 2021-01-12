@@ -3,6 +3,8 @@
   "parser": "babel-eslint",
   "globals": { "document": true },
   "rules": {
+    "react/no-this-in-sfc": 1,
+    "react/destructuring-assignment": 1,
     "import/prefer-default-export": 0,
     "react/prop-types": 1,
     "import/no-extraneous-dependencies": 0,
