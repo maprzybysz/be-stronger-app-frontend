@@ -9,6 +9,8 @@ import Header from 'components/molecules/Header/Header';
 import Footer from 'components/atoms/Footer/Footer';
 import NavPane from 'components/organisms/NavPane/NavPane';
 import Div100vh from 'react-div-100vh';
+import AppContext from 'context';
+import LoginModal from 'components/organisms/LoginModal/LoginModal';
 
 class Root extends React.Component {
   state = {
@@ -23,20 +25,34 @@ class Root extends React.Component {
     this.setState({ isModalLoginOpen: false });
   };
 
+  handleLogin = (e, test) => {
+    e.preventDefault();
+    console.log(test);
+  };
+
   render() {
+    const { isModalLoginOpen } = this.state;
+    const contextElements = {
+      ...this.state,
+      handleOpenLoginModal: this.handleOpenLoginModal,
+      handleCloseLoginModal: this.handleCloseLoginModal,
+      handleLogin: this.handleLogin,
+    };
     return (
       <Div100vh className={styles.wrapper}>
         <GlobalStyle />
         <BrowserRouter>
-          <Header />
-
-          <Switch>
-            <Route exact path="/" component={NavPane} />
-            <Route exac path="/blog" component={Blog} />
-            <Route exac path="/nutrition" component={Nutrition} />
-            <Route exac path="/training" component={Training} />
-          </Switch>
-          <Footer />
+          <AppContext.Provider value={contextElements}>
+            <Header />
+            {isModalLoginOpen ? <LoginModal /> : null}
+            <Switch>
+              <Route exact path="/" component={NavPane} />
+              <Route exac path="/blog" component={Blog} />
+              <Route exac path="/nutrition" component={Nutrition} />
+              <Route exac path="/training" component={Training} />
+            </Switch>
+            <Footer />
+          </AppContext.Provider>
         </BrowserRouter>
       </Div100vh>
     );
