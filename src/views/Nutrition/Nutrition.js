@@ -1,28 +1,23 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import styles from 'views/Nutrition/Nutrition.module.scss';
-import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
-import RecipesTemplate from 'components/templates/RecipesTemplate/RecipesTemplate';
-import NutritionTopNav from 'components/molecules/NutritionTopNav/NutritionTopNav';
+// import React from 'react';
+// import { BrowserRouter, Switch, Route } from 'react-router-dom';
+// import styles from 'views/Nutrition/Nutrition.module.scss';
+// import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
+// import RecipesTemplate from 'components/templates/RecipesTemplate/RecipesTemplate';
 
-class Nutrition extends React.Component {
-  state = {
-    date: new Date(),
-  };
+// class Nutrition extends React.Component {
+//   state = {
+//     date: new Date(),
+//   };
 
-  render() {
-    return (
-      <BrowserRouter>
-        <div className={styles.wrapper}>
-          <NutritionTopNav />
-          <Switch>
-            <Route exact path="/nutrition" component={MealTemplate} />
-            <Route exact path="/nutrition/recipes" component={RecipesTemplate} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    );
-  }
-}
+//   render() {
+//     return (
 
-export default Nutrition;
+//         <div className={styles.wrapper}>
+
+//         </div>
+
+//     );
+//   }
+// }
+
+// export default Nutrition;
