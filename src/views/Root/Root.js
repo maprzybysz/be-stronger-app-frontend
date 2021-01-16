@@ -14,8 +14,9 @@ import NutritionTopNav from 'components/molecules/NutritionTopNav/NutritionTopNa
 import Div100vh from 'react-div-100vh';
 import AppContext from 'context';
 import RecipesTemplate from 'components/templates/RecipesTemplate/RecipesTemplate';
-import LoginModal from 'components/organisms/LoginModal/LoginModal';
+import LoginPane from 'components/organisms/LoginPane/LoginPane';
 import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
+import RegistrationPane from 'components/organisms/RegistrationPane/RegistrationPane';
 
 class Root extends React.Component {
   state = {
@@ -30,13 +31,8 @@ class Root extends React.Component {
     this.setState({ isModalLoginOpen: false });
   };
 
-  handleLogin = (e, test) => {
-    e.preventDefault();
-    console.log(test);
-  };
-
   render() {
-    const { isModalLoginOpen } = this.state;
+    // const { isModalLoginOpen } = this.state;
     const contextElements = {
       ...this.state,
       handleOpenLoginModal: this.handleOpenLoginModal,
@@ -50,10 +46,12 @@ class Root extends React.Component {
           <BrowserRouter>
             <AppContext.Provider value={contextElements}>
               <Header />
-              {isModalLoginOpen ? <LoginModal /> : null}
+              {/* {isModalLoginOpen ? <LoginModal /> : null} */}
               <Route path="/nutrition/" component={NutritionTopNav} />
               <Switch>
                 <Route exact path="/" component={NavPane} />
+                <Route path="/login" component={LoginPane} />
+                <Route path="/sign-up" component={RegistrationPane} />
                 <Route path="/blog" component={Blog} />
                 <Route exact path="/nutrition" component={MealTemplate} />
                 <Route path="/nutrition/recipes" component={RecipesTemplate} />

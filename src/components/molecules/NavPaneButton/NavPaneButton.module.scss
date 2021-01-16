@@ -18,6 +18,8 @@
     color: $red;
     font-size: 36px;
     & .icon {
+      transition: 0.5s;
+
       margin-right: 15px;
     }
   }
