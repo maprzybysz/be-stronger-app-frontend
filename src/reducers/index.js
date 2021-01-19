@@ -1,12 +1,11 @@
 const initialState = {
-  calories: 110,
-  protein: 10,
-  carbohydrate: 20,
-  fat: 30,
+  date: new Date(),
 };
 
 const rootReducer = (state = initialState, action) => {
-  // console.log(action.payload);
+  // console.log(state.date);
+  // console.log(new Date(new Date(state.date).setDate(state.date.getDate() - 2)));
+  // console.log(state.date);
 
   switch (action.type) {
     case 'ADD_FOOD':
@@ -15,6 +14,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         calories: state.calories + +100,
       };
+    case 'PREVIOUS_DAY':
+      return {
+        ...state,
+        date: new Date(new Date(state.date).setDate(state.date.getDate() - 1)),
+      };
+    case 'NEXT_DAY':
+      return {
+        ...state,
+        date: new Date(new Date(state.date).setDate(state.date.getDate() + 1)),
+      };
+
     default:
       return state;
   }

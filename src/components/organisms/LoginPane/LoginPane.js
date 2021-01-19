@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
 import styles from 'components/organisms/LoginPane/LoginPane.module.scss';
+import { connect } from 'react-redux';
+import { authenticate } from 'actions';
 
-const LoginPane = () => (
+const LoginPane = ({ authenticate }) => (
   <div className={styles.wrapper}>
     <Link to="/" className={styles.closePaneLink}>
       X
@@ -14,13 +15,7 @@ const LoginPane = () => (
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={({ username, password }) => {
-        axios
-          .post('http://localhost:8080/login', {
-            username,
-            password,
-          })
-          .then((response) => console.log(response.data.token))
-          .catch((err) => console.log(err));
+        authenticate(username, password);
       }}
     >
       {() => (
@@ -38,4 +33,8 @@ const LoginPane = () => (
   </div>
 );
 
-export default LoginPane;
+const mapDispatchToProps = (dispatch) => ({
+  authenticate: (username, password) => dispatch(authenticate(username, password)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginPane);

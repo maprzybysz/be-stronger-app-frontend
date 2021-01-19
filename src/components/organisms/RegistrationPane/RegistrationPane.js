@@ -14,7 +14,7 @@ const SignUpSchema = Yup.object().shape({
     .required('Musisz podać hasło!')
     .matches(
       /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      'Hasło musi zawierać min. 8 znaków, 1 dużą literę, 1 liczbę oraz 1 specjalny znak',
+      'Hasło musi zawierać min. 8 znaków, 1 dużą literę, 1 liczbę oraz 1 znak specjalny',
     ),
   confirmPassword: Yup.string()
     .required('Proszę potwierdź hasło!')
@@ -22,18 +22,27 @@ const SignUpSchema = Yup.object().shape({
   email: Yup.string()
     .email('Adres e-mail jest niepoprawny!')
     .required('Adres e-mail jest wymagany!'),
+  rulesAccepted: Yup.bool().oneOf([true], 'Jeśli chcesz dołączyć, musisz zaakceptować regulamin!'),
 });
 const RegistrationPane = () => (
   <div className={styles.wrapper}>
     <Formik
-      initialValues={{ username: '', password: '', confirmPassword: '', email: '' }}
+      initialValues={{
+        username: '',
+        password: '',
+        confirmPassword: '',
+        email: '',
+        rulesAccepted: false,
+      }}
       validationSchema={SignUpSchema}
-      onSubmit={({ username, password, email }) => {
+      onSubmit={({ username, password, email, rulesAccepted }) => {
+        console.log(`${username}, ${password}, ${email}, ${rulesAccepted}`);
         axios
           .post('http://localhost:8080/sign-up', {
             username,
             password,
             email,
+            rulesAccepted,
           })
           .then(() => console.log('zarejestrowano'))
           .catch((err) => console.log(err));
@@ -65,6 +74,15 @@ const RegistrationPane = () => (
           {errors.email && touched.email ? (
             <div className={styles.error}>{errors.email}</div>
           ) : null}
+          <label className={styles.rules}>
+            <Field type="checkbox" name="rulesAccepted" className={styles.checkbox} />
+            Akceptuję
+            <Link to="/sign-up/rules">regulamin</Link>
+          </label>
+          {errors.rulesAccepted && touched.rulesAccepted ? (
+            <div className={styles.error}>{errors.rulesAccepted}</div>
+          ) : null}
+
           <button type="submit" className={styles.registrationButton}>
             Rejestracja
           </button>

@@ -1,12 +1,12 @@
 import React from 'react';
-import HeaderLogo from 'components/atoms/HeaderLogo/HeaderLogo';
-import HeaderTitle from 'components/atoms/HeaderTitle/HeaderTitle';
+import header from 'assets/img/header.png';
+
 import styles from 'components/molecules/Header/Header.module.scss';
 
 const Header = () => (
   <div className={styles.wrapper}>
-    <HeaderLogo />
-    <HeaderTitle />
+    <img src={header} className={styles.logo} alt="logo be stronger" />;
+    <h1 className={styles.title}> BE STRONGER</h1>;
   </div>
 );
 

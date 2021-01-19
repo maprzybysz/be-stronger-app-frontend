@@ -19,20 +19,7 @@ import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
 import RegistrationPane from 'components/organisms/RegistrationPane/RegistrationPane';
 
 class Root extends React.Component {
-  state = {
-    isModalLoginOpen: false,
-  };
-
-  handleOpenLoginModal = () => {
-    this.setState({ isModalLoginOpen: true });
-  };
-
-  handleCloseLoginModal = () => {
-    this.setState({ isModalLoginOpen: false });
-  };
-
   render() {
-    // const { isModalLoginOpen } = this.state;
     const contextElements = {
       ...this.state,
       handleOpenLoginModal: this.handleOpenLoginModal,
@@ -46,12 +33,13 @@ class Root extends React.Component {
           <BrowserRouter>
             <AppContext.Provider value={contextElements}>
               <Header />
-              {/* {isModalLoginOpen ? <LoginModal /> : null} */}
+
               <Route path="/nutrition/" component={NutritionTopNav} />
               <Switch>
                 <Route exact path="/" component={NavPane} />
                 <Route path="/login" component={LoginPane} />
                 <Route path="/sign-up" component={RegistrationPane} />
+                <Route path="/blog" component={Blog} />
                 <Route path="/blog" component={Blog} />
                 <Route exact path="/nutrition" component={MealTemplate} />
                 <Route path="/nutrition/recipes" component={RecipesTemplate} />

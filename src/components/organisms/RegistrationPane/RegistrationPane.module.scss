@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 70%;
+  height: 65%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -40%);
@@ -22,10 +22,10 @@
 }
 
 .input {
-  margin: 10px auto;
+  margin: 5px auto;
   display: block;
   width: 75%;
-  height: 40px;
+  height: 30px;
   border: none;
 }
 .input:first-of-type {
@@ -33,7 +33,7 @@
 }
 .error {
   color: red;
-  text-align: justify;
+  text-align: center;
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
@@ -71,4 +71,21 @@
   border: none;
   transform: translate(-50%, 50%);
   text-transform: uppercase;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+  }
+}
+.rules {
+  width: 80%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // font-size: 12px;
+  // display: inline-block;
+}
+.checkbox {
+  height: 10px;
+  width: 10px;
 }
