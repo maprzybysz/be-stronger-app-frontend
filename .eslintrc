@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "globals": { "document": true, "window": true },
   "rules": {
+    "react/no-array-index-key": 0,
     "jsx-a11y/no-static-element-interactions": 1,
     "jsx-a11y/click-events-have-key-events": 1,
     "no-shadow": 0,

@@ -1,12 +1,12 @@
 const initialState = {
   date: new Date(),
+  products: [{ name: 'pizza', fat: 111 }, { name: 'kebab' }],
+  username: '',
+  usertoken: '',
+  error: '',
 };
 
 const rootReducer = (state = initialState, action) => {
-  // console.log(state.date);
-  // console.log(new Date(new Date(state.date).setDate(state.date.getDate() - 2)));
-  // console.log(state.date);
-
   switch (action.type) {
     case 'ADD_FOOD':
       console.log(action.payload.food.calories);
@@ -24,6 +24,25 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         date: new Date(new Date(state.date).setDate(state.date.getDate() + 1)),
       };
+    case 'AUTHENTICATE_SUCCES': {
+      return {
+        ...state,
+        usertoken: action.payload.data.token,
+        username: action.payload.data.username,
+      };
+    }
+    case 'AUTHENTICATE_FAILURE': {
+      return {
+        ...state,
+        error: action.error.toString().substring(7, action.error.toString().length),
+      };
+    }
+    case 'REGISTRATION_FAILURE': {
+      return {
+        ...state,
+        error: action.error.toString().substring(7, action.error.toString().length),
+      };
+    }
 
     default:
       return state;

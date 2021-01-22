@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from 'components/atoms/Product/Product.module.scss';
+import styles from 'components/atoms/Meal/Meal.module.scss';
 
-const Product = ({ name, grammage, goodness, protein, carbohydrates, fat }) => (
+const Meal = ({ name, grammage, goodness, protein, carbohydrates, fat }) => (
   <div className={styles.wrapper}>
-    `${name}, ${grammage}, ${goodness}, ${protein}, ${carbohydrates}, ${fat}`
+    {name}, {grammage}g, kcal: {goodness}, B: {protein}, W: {carbohydrates}, T:{fat}
   </div>
 );
 
-Product.propTypes = {
+Meal.propTypes = {
   name: PropTypes.string,
   grammage: PropTypes.number,
   goodness: PropTypes.number,
@@ -17,7 +17,7 @@ Product.propTypes = {
   fat: PropTypes.number,
 };
 
-Product.defaultProps = {
+Meal.defaultProps = {
   name: 'produkt nieznany',
   grammage: 0,
   goodness: 0,
@@ -26,4 +26,4 @@ Product.defaultProps = {
   fat: 0,
 };
 
-export default Product;
+export default Meal;

@@ -2,9 +2,19 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import styles from 'components/molecules/MealTime/MealTime.module.scss';
-import Product from 'components/atoms/Product/Product';
+import MealList from 'components/atoms/MealList/MealList';
 
-const MealTime = ({ name, calories, protein, carbohydrate, fat, onClick, visible, openFn }) => (
+const MealTime = ({
+  name,
+  calories,
+  protein,
+  carbohydrate,
+  fat,
+  onClick,
+  visible,
+  openFn,
+  products,
+}) => (
   <>
     <div className={styles.wrapperMeal}>
       <div className={styles.wrapperData} onClick={openFn}>
@@ -20,17 +30,7 @@ const MealTime = ({ name, calories, protein, carbohydrate, fat, onClick, visible
         </button>
       </div>
     </div>
-    <div>
-      {visible ? (
-        <ul className={styles.mealsWrapper}>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-        </ul>
-      ) : null}
-    </div>
+    <div>{visible ? <MealList products={products} /> : null}</div>
   </>
 );
 

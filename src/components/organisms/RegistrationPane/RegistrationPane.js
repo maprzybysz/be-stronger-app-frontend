@@ -1,8 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import { registration } from 'actions';
 import styles from 'components/organisms/RegistrationPane/RegistrationPane.module.scss';
 
 const SignUpSchema = Yup.object().shape({
@@ -24,7 +25,7 @@ const SignUpSchema = Yup.object().shape({
     .required('Adres e-mail jest wymagany!'),
   rulesAccepted: Yup.bool().oneOf([true], 'Jeśli chcesz dołączyć, musisz zaakceptować regulamin!'),
 });
-const RegistrationPane = () => (
+const RegistrationPane = ({ registration }) => (
   <div className={styles.wrapper}>
     <Formik
       initialValues={{
@@ -36,20 +37,11 @@ const RegistrationPane = () => (
       }}
       validationSchema={SignUpSchema}
       onSubmit={({ username, password, email, rulesAccepted }) => {
-        console.log(`${username}, ${password}, ${email}, ${rulesAccepted}`);
-        axios
-          .post('http://localhost:8080/sign-up', {
-            username,
-            password,
-            email,
-            rulesAccepted,
-          })
-          .then(() => console.log('zarejestrowano'))
-          .catch((err) => console.log(err));
+        registration(username, password, email, rulesAccepted);
       }}
     >
       {({ errors, touched }) => (
-        <Form className={styles.registrationPane}>
+        <Form className={styles.registrationForm}>
           <Link to="/" className={styles.closePaneLink}>
             X
           </Link>
@@ -77,7 +69,9 @@ const RegistrationPane = () => (
           <label className={styles.rules}>
             <Field type="checkbox" name="rulesAccepted" className={styles.checkbox} />
             Akceptuję
-            <Link to="/sign-up/rules">regulamin</Link>
+            <Link to="/sign-up/rules" className={styles.link}>
+              regulamin
+            </Link>
           </label>
           {errors.rulesAccepted && touched.rulesAccepted ? (
             <div className={styles.error}>{errors.rulesAccepted}</div>
@@ -92,4 +86,9 @@ const RegistrationPane = () => (
   </div>
 );
 
-export default RegistrationPane;
+const mapDispatchToProps = (dispatch) => ({
+  registration: (username, password, email, rulesAccepted) =>
+    dispatch(registration(username, password, email, rulesAccepted)),
+});
+
+export default connect(null, mapDispatchToProps)(RegistrationPane);

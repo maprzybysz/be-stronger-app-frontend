@@ -19,11 +19,27 @@ export const authenticate = (username, password) => (dispatch) => {
       password,
     })
     .then((payload) => {
-      console.log(payload.data.username);
       dispatch({ type: 'AUTHENTICATE_SUCCES', payload });
     })
-    .catch((err) => {
-      console.log(err);
-      dispatch({ type: 'AUTHENTICATE_FAILURE' });
+    .catch((error) => {
+      dispatch({ type: 'AUTHENTICATE_FAILURE', error });
+    });
+};
+
+export const registration = (username, password, email, rulesAccepted) => (dispatch) => {
+  dispatch({ type: 'REGISTRATION_REQUEST' });
+
+  return axios
+    .post('http://localhost:8080/sign-up', {
+      username,
+      password,
+      email,
+      rulesAccepted,
+    })
+    .then((payload) => {
+      dispatch({ type: 'REGISTRATION_SUCCES', payload });
+    })
+    .catch((error) => {
+      dispatch({ type: 'REGISTRATION_FAILURE', error });
     });
 };
