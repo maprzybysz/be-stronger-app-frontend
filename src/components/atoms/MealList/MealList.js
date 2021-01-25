@@ -4,17 +4,18 @@ import styles from 'components/atoms/MealList/MealList.module.scss';
 
 const MealList = ({ products }) => (
   <>
-    {products.length ? (
+    {console.log(products)}
+    {products.length !== 0 ? (
       <ul className={styles.wrapper}>
-        {products.map((item, index) => (
+        {products.map((item) => (
           <Meal
-            key={index}
-            name={item.name}
-            grammage={item.grammage}
-            goodness={item.goodness}
-            protein={item.protein}
-            carbohydrates={item.carbohydrates}
-            fat={item.fat}
+            key={item.id}
+            name={item.mealName}
+            grammage={item.totalGrammage}
+            goodness={item.totalGoodness}
+            protein={item.totalProtein}
+            carbohydrates={item.totalCarbohydrates}
+            fat={item.totalFat}
           />
         ))}
       </ul>

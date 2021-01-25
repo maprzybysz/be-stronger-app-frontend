@@ -4,7 +4,8 @@ import styles from 'components/atoms/Meal/Meal.module.scss';
 
 const Meal = ({ name, grammage, goodness, protein, carbohydrates, fat }) => (
   <div className={styles.wrapper}>
-    {name}, {grammage}g, kcal: {goodness}, B: {protein}, W: {carbohydrates}, T:{fat}
+    <h1 className={styles.name}>{name} </h1>
+    {grammage}g, kcal: {goodness}, B: {protein}, W: {carbohydrates}, T:{fat}
   </div>
 );
 

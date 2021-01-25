@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from 'components/atoms/Day/Day.module.scss';
 
-const Day = ({ dayMonth, month, day }) => (
-  <div className={styles.wrapper}>
+const Day = ({ dayMonth, month, day, onClick }) => (
+  <div className={styles.wrapper} onClick={onClick}>
     <h1 className={styles.topDate}>
       {dayMonth} {month}
     </h1>

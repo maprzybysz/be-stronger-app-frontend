@@ -5,11 +5,16 @@ import MealTime from 'components/molecules/MealTime/MealTime';
 
 import styles from 'components/organisms/MealTimePane/MealTimePane.module.scss';
 
-const MealTimePane = ({ products }) => {
+const MealTimePane = ({ meals }) => {
   const [breakfastVisible, setBreakfastVisible] = useState(false);
   const [dinnerVisible, setDinnerVisible] = useState(false);
   const [supperVisible, setSupperVisible] = useState(false);
   const [snacksVisible, setSnacksVisible] = useState(false);
+
+  const breakfast = meals ? meals.filter((item) => item.mealTime === 'śniadanie') : [];
+  const dinner = meals ? meals.filter((item) => item.mealTime === 'obiad') : [];
+  const supper = meals ? meals.filter((item) => item.mealTime === 'kolacja') : [];
+  const snacks = meals ? meals.filter((item) => item.mealTime === 'przekąski') : [];
 
   const breakfastVisibleFn = () => {
     setBreakfastVisible(!breakfastVisible);
@@ -23,23 +28,30 @@ const MealTimePane = ({ products }) => {
   const snacksVisibleFn = () => {
     setSnacksVisible(!snacksVisible);
   };
+
   return (
     <div className={styles.wrapper}>
       <MealTime
         name="Śnadanie"
         visible={breakfastVisible}
         openFn={breakfastVisibleFn}
-        products={products}
+        products={breakfast}
       />
-      <MealTime name="Obiad" visible={dinnerVisible} openFn={dinnerVisibleFn} products />
-      <MealTime name="Kolacja" visible={supperVisible} openFn={supperVisibleFn} products />
-      <MealTime name="Przekąski" visible={snacksVisible} openFn={snacksVisibleFn} products />
+      <MealTime name="Obiad" visible={dinnerVisible} openFn={dinnerVisibleFn} products={dinner} />
+      <MealTime name="Kolacja" visible={supperVisible} openFn={supperVisibleFn} products={supper} />
+      <MealTime
+        name="Przekąski"
+        visible={snacksVisible}
+        openFn={snacksVisibleFn}
+        products={snacks}
+      />
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   const props = state;
+
   return props;
 };
 

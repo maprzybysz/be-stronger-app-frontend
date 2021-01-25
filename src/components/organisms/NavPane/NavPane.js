@@ -1,15 +1,14 @@
 import React from 'react';
-import { faDumbbell, faSignInAlt, faUtensils, faBook } from '@fortawesome/free-solid-svg-icons';
-
+import { connect } from 'react-redux';
+import { faDumbbell, faUser, faUtensils, faBook } from '@fortawesome/free-solid-svg-icons';
 import NavPaneButton from 'components/molecules/NavPaneButton/NavPaneButton';
-
 import styles from 'components/organisms/NavPane/NavPane.module.scss';
 
-const NavPane = () => (
+const NavPane = ({ username }) => (
   <nav className={styles.wrapper}>
     <ul>
-      <NavPaneButton iconName={faSignInAlt} linkPath="/login">
-        Logowanie
+      <NavPaneButton iconName={faUser} linkPath="/userdetails">
+        {username}
       </NavPaneButton>
       <NavPaneButton iconName={faUtensils} linkPath="/nutrition">
         Odżywianie
@@ -24,4 +23,9 @@ const NavPane = () => (
   </nav>
 );
 
-export default NavPane;
+const mapStateToProps = (state) => {
+  const props = state;
+  return props;
+};
+
+export default connect(mapStateToProps, null)(NavPane);

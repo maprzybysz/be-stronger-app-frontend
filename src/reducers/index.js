@@ -4,6 +4,7 @@ const initialState = {
   username: '',
   usertoken: '',
   error: '',
+  meals: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -43,7 +44,18 @@ const rootReducer = (state = initialState, action) => {
         error: action.error.toString().substring(7, action.error.toString().length),
       };
     }
-
+    case 'UPDATE_MEALS_SUCCESS': {
+      return {
+        ...state,
+        meals: action.payload.data,
+      };
+    }
+    case 'UPDATE_MEALS_FAILURE': {
+      return {
+        ...state,
+        meals: '',
+      };
+    }
     default:
       return state;
   }

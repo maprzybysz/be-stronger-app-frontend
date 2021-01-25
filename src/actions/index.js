@@ -43,3 +43,60 @@ export const registration = (username, password, email, rulesAccepted) => (dispa
       dispatch({ type: 'REGISTRATION_FAILURE', error });
     });
 };
+export const updateMeals = (username, date) => (dispatch) => {
+  dispatch({ type: 'UPDATE_MEALS' });
+  const url = `http://localhost:8080/meal/getEatenMealByMealDate/${username}/${date}`;
+  return axios
+    .get(url)
+    .then((payload) => {
+      dispatch({ type: 'UPDATE_MEALS_SUCCESS', payload });
+    })
+    .catch((error) => {
+      dispatch({ type: 'UPDATE_MEALS_FAILURE', error });
+    });
+};
+
+export const addEatenMeal = (
+  mealName,
+  mealTime,
+  mealDate,
+  totalGrammage,
+  totalGoodness,
+  totalProtein,
+  totalCarbohydrates,
+  totalFat,
+  username,
+) => (dispatch) => {
+  dispatch({ type: 'SAVE_EATEN' });
+  return axios
+    .post('http://localhost:8080/meal/saveEatenMeal', {
+      mealName,
+      mealTime,
+      mealDate,
+      totalGrammage,
+      totalGoodness,
+      totalProtein,
+      totalCarbohydrates,
+      totalFat,
+      username,
+    })
+    .then((payload) => {
+      dispatch({ type: 'SAVE_EATEN_SUCCES', payload });
+    })
+    .catch((error) => {
+      dispatch({ type: 'SAVE_EATEN_FAILURE', error });
+    });
+};
+
+export const searchMeal = (mealName) => (dispatch) => {
+  dispatch({ type: 'SEARCH_MEAL' });
+  const url = `http://localhost:8080/meal/searchMeals/${mealName}`;
+  return axios
+    .get(url)
+    .then((payload) => {
+      dispatch({ type: 'SEARCH_MEAL_SUCCESS', payload });
+    })
+    .catch((error) => {
+      dispatch({ type: 'SEARCH_MEAL_FAILURE', error });
+    });
+};

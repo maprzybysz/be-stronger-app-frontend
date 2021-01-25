@@ -17,7 +17,13 @@ import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
 import RegistrationPane from 'components/organisms/RegistrationPane/RegistrationPane';
 
 class Root extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    console.log('test');
+  }
+
+  componentDidUpdate() {
+    console.log('test');
+  }
 
   render() {
     return (
@@ -25,18 +31,44 @@ class Root extends React.Component {
         <Div100vh className={styles.wrapper}>
           <GlobalStyle />
           <BrowserRouter>
-            false ? <Redirect to="login" />;
             <Header />
             <Route path="/nutrition/" component={NutritionTopNav} />
             <Switch>
-              <Route exact path="/" component={NavPane} />
+              <Route
+                exact
+                path="/"
+                render={() =>
+                  store.getState().username === '' ? <Redirect to="/login" /> : <NavPane />
+                }
+              />
               <Route path="/login" component={LoginPane} />
               <Route path="/sign-up" component={RegistrationPane} />
-              <Route path="/blog" component={Blog} />
-              <Route path="/blog" component={Blog} />
-              <Route exact path="/nutrition" component={MealTemplate} />
-              <Route path="/nutrition/recipes" component={RecipesTemplate} />
-              <Route path="/training" component={Training} />
+              <Route
+                path="/blog"
+                render={() =>
+                  store.getState().username === '' ? <Redirect to="/login" /> : <Blog />
+                }
+              />
+
+              <Route
+                exact
+                path="/nutrition"
+                render={() =>
+                  store.getState().username === '' ? <Redirect to="/login" /> : <MealTemplate />
+                }
+              />
+              <Route
+                path="/nutrition/recipes"
+                render={() =>
+                  store.getState().username === '' ? <Redirect to="/login" /> : <RecipesTemplate />
+                }
+              />
+              <Route
+                path="/training"
+                render={() =>
+                  store.getState().username === '' ? <Redirect to="/login" /> : <Training />
+                }
+              />
             </Switch>
             <Footer />
           </BrowserRouter>
