@@ -1,14 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {getUsername} from 'service/cookieService'
 import { faDumbbell, faUser, faUtensils, faBook } from '@fortawesome/free-solid-svg-icons';
 import NavPaneButton from 'components/molecules/NavPaneButton/NavPaneButton';
 import styles from 'components/organisms/NavPane/NavPane.module.scss';
 
-const NavPane = ({ username }) => (
+const NavPane = () => (
   <nav className={styles.wrapper}>
     <ul>
       <NavPaneButton iconName={faUser} linkPath="/userdetails">
-        {username}
+        {getUsername()}
       </NavPaneButton>
       <NavPaneButton iconName={faUtensils} linkPath="/nutrition">
         Odżywianie
@@ -23,9 +23,8 @@ const NavPane = ({ username }) => (
   </nav>
 );
 
-const mapStateToProps = (state) => {
-  const props = state;
-  return props;
-};
 
-export default connect(mapStateToProps, null)(NavPane);
+
+
+
+export default NavPane;

@@ -4,9 +4,11 @@ import MealTimePane from 'components/organisms/MealTimePane/MealTimePane';
 import styles from 'components/templates/MealTemplate/MealTemplate.module.scss';
 import NutritionBar from 'components/molecules/NutritionBar/NutritionBar';
 
+
 const MealTemplate = () => (
   <div className={styles.wrapper}>
-    <MealTimePane />
+  
+    <MealTimePane/>
     <DateBar />
     <NutritionBar />
   </div>

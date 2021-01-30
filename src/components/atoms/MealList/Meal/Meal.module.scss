@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+}
+.meal {
+  display: inline-block;
+  width: 85%;
+  color: white;
+  margin: 1px;
+  font-size: 12px;
+}
+.name {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.button {
+  width: 15%;
+  display: inline-block;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+}

@@ -1,20 +1,21 @@
+import { serverError, credentialsError } from 'assets/globalError';
+import {setUsername, setUserToken} from 'service/cookieService';
+import history from 'history/history';
+
+
 const initialState = {
   date: new Date(),
-  products: [{ name: 'pizza', fat: 111 }, { name: 'kebab' }],
-  username: '',
-  usertoken: '',
   error: '',
-  meals: '',
+  meals: {
+    breakfast: [],
+    dinner: [],
+    supper: [],
+    snacks: [],
+  },
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_FOOD':
-      console.log(action.payload.food.calories);
-      return {
-        ...state,
-        calories: state.calories + +100,
-      };
     case 'PREVIOUS_DAY':
       return {
         ...state,
@@ -26,16 +27,30 @@ const rootReducer = (state = initialState, action) => {
         date: new Date(new Date(state.date).setDate(state.date.getDate() + 1)),
       };
     case 'AUTHENTICATE_SUCCES': {
+      setUserToken(action.payload.data.token)
+      setUsername(action.payload.data.username)
+      history.push('/');
       return {
-        ...state,
-        usertoken: action.payload.data.token,
-        username: action.payload.data.username,
-      };
+        ...state
+      }
+      
+      
     }
     case 'AUTHENTICATE_FAILURE': {
+      let errorPl = '';
+      switch (action.error.toString().substring(7, action.error.toString().length)) {
+        case 'Network Error':
+          errorPl = serverError;
+          break;
+        case 'Request failed with status code 401':
+          errorPl = credentialsError;
+          break;
+        default:
+          break;
+      }
       return {
         ...state,
-        error: action.error.toString().substring(7, action.error.toString().length),
+        error: errorPl,
       };
     }
     case 'REGISTRATION_FAILURE': {
@@ -45,16 +60,41 @@ const rootReducer = (state = initialState, action) => {
       };
     }
     case 'UPDATE_MEALS_SUCCESS': {
+      const meals = action.payload.data;
       return {
         ...state,
-        meals: action.payload.data,
+        meals: {
+          breakfast: meals.filter((item) => item.mealTime === 'śniadanie'),
+          dinner: meals.filter((item) => item.mealTime === 'obiad'),
+          supper: meals.filter((item) => item.mealTime === 'kolacja'),
+          snacks: meals.filter((item) => item.mealTime === 'przekąski'),
+        },
       };
     }
     case 'UPDATE_MEALS_FAILURE': {
       return {
         ...state,
-        meals: '',
+        meals: {
+          breakfast: [],
+          dinner: [],
+          supper: [],
+          snacks: [],
+        },
       };
+    }
+    case 'DELETE_MEAL_SUCCESS': {
+      const newArray = {
+        breakfast: state.meals.breakfast.filter(meal => meal.id !== action.id),
+        dinner: state.meals.dinner.filter(meal => meal.id !== action.id),
+        supper: state.meals.supper.filter(meal => meal.id !== action.id),
+        snacks: state.meals.snacks.filter(meal => meal.id !== action.id),
+      }
+      
+      return {
+        ...state,
+        meals: newArray
+
+      }
     }
     default:
       return state;

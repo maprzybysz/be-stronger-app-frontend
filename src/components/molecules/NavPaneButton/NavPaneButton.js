@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDumbbell, faUser, faUtensils, faBook } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import styles from 'components/molecules/NavPaneButton/NavPaneButton.module.scss';
 
@@ -15,7 +16,7 @@ const NavPaneButton = ({ children, iconName, linkPath, onClick }) => (
 
 NavPaneButton.propTypes = {
   children: PropTypes.string,
-  iconName: PropTypes.instanceOf(FontAwesomeIcon).isRequired,
+  iconName: PropTypes.oneOf([faDumbbell, faUser, faUtensils, faBook]).isRequired,
   linkPath: PropTypes.string,
   onClick: PropTypes.func,
 };

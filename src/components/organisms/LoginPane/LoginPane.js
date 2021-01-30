@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styles from 'components/organisms/LoginPane/LoginPane.module.scss';
@@ -11,7 +12,7 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required('Musisz podać hasło!'),
 });
 
-const LoginPane = ({ authenticate }) => (
+const LoginPane = ({ authenticate, error }) => (
   <div className={styles.wrapper}>
     <Formik
       initialValues={{ username: '', password: '' }}
@@ -37,6 +38,7 @@ const LoginPane = ({ authenticate }) => (
           <button type="submit" className={styles.loginButton}>
             Zaloguj
           </button>
+          {error !== null ? <div className={styles.error}>{error}</div> : null}
           <Link to="/passwordreset">Nie pamiętasz hasła?</Link>
           <Link to="/sign-up">Rejestracja</Link>
         </Form>
@@ -45,8 +47,19 @@ const LoginPane = ({ authenticate }) => (
   </div>
 );
 
+LoginPane.propTypes = {
+  authenticate: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+LoginPane.defaultProps = {
+  error: '',
+};
 const mapDispatchToProps = (dispatch) => ({
   authenticate: (username, password) => dispatch(authenticate(username, password)),
 });
+const mapStateToProps = (state) => {
+  const props = state;
+  return props;
+};
 
-export default connect(null, mapDispatchToProps)(LoginPane);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPane);

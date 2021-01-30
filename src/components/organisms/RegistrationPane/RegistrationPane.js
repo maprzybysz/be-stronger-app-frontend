@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { registration } from 'actions';
 import styles from 'components/organisms/RegistrationPane/RegistrationPane.module.scss';
@@ -85,6 +86,10 @@ const RegistrationPane = ({ registration }) => (
     </Formik>
   </div>
 );
+
+RegistrationPane.propTypes = {
+  registration: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   registration: (username, password, email, rulesAccepted) =>

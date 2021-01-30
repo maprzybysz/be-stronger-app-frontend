@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from 'components/atoms/DailyValue/DailyValue.module.scss';
 
 const DailyValue = ({ name, value, maxValue }) => (
@@ -10,4 +11,9 @@ const DailyValue = ({ name, value, maxValue }) => (
   </div>
 );
 
+DailyValue.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  maxValue: PropTypes.number.isRequired,
+};
 export default DailyValue;

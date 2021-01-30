@@ -1,11 +1,9 @@
 import axios from 'axios';
+import { getUsername, getUserToken } from 'service/cookieService';
 
-export const addFood = (food) => ({
-  type: 'ADD_FOOD',
-  payload: {
-    food,
-  },
-});
+
+const username = getUsername();
+  const usertoken = getUserToken();
 
 export const previousDay = () => ({ type: 'PREVIOUS_DAY' });
 export const nextDay = () => ({ type: 'NEXT_DAY' });
@@ -43,11 +41,16 @@ export const registration = (username, password, email, rulesAccepted) => (dispa
       dispatch({ type: 'REGISTRATION_FAILURE', error });
     });
 };
-export const updateMeals = (username, date) => (dispatch) => {
+
+export const updateMeals = (date) => (dispatch) => {
   dispatch({ type: 'UPDATE_MEALS' });
-  const url = `http://localhost:8080/meal/getEatenMealByMealDate/${username}/${date}`;
+  const url = `http://localhost:8080/meal/getEatenMealsByMealDate/${username}/${date}`;
   return axios
-    .get(url)
+    .get(url, {
+      headers: {
+        'Authorization': `Bearer ${usertoken}`,
+      },
+    })
     .then((payload) => {
       dispatch({ type: 'UPDATE_MEALS_SUCCESS', payload });
     })
@@ -65,7 +68,7 @@ export const addEatenMeal = (
   totalProtein,
   totalCarbohydrates,
   totalFat,
-  username,
+  
 ) => (dispatch) => {
   dispatch({ type: 'SAVE_EATEN' });
   return axios
@@ -98,5 +101,21 @@ export const searchMeal = (mealName) => (dispatch) => {
     })
     .catch((error) => {
       dispatch({ type: 'SEARCH_MEAL_FAILURE', error });
+    });
+};
+
+export const deleteMeal = (id) => (dispatch) => {
+  dispatch({ type: 'DELETE_MEAL' });
+  return axios
+    .delete(`http://localhost:8080/meal/deleteEatenMealById/${id}`,{
+       headers: {
+        'Authorization': `Bearer ${usertoken}`,
+      },
+    } )
+    .then(() => {
+      dispatch({ type: 'DELETE_MEAL_SUCCESS', id });
+    })
+    .catch((error) => {
+      dispatch({ type: 'DELETE_MEAL_FAILURE', error });
     });
 };

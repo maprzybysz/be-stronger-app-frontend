@@ -1,14 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { mealsSummary } from 'service/mealService';
 import styles from 'components/molecules/NutritionBar/NutritionBar.module.scss';
 import DailyValue from 'components/atoms/DailyValue/DailyValue';
 
-const NutritionBar = () => (
-  <div className={styles.wrapper}>
-    <DailyValue name="Kalorie" value={199} maxValue={1000} className={styles.value} />
-    <DailyValue name="Białka" value={199} maxValue={1000} className={styles.value} />
-    <DailyValue name="Tł." value={199} maxValue={1000} className={styles.value} />
-    <DailyValue name="Węgl." value={199} maxValue={1000} className={styles.value} />
-  </div>
-);
+const NutritionBar = ({ meals }) => {
+  const { totalGoodness, totalProtein, totalCarbohydrates, totalFat } = mealsSummary(
+    [].concat(meals.breakfast, meals.dinner, meals.supper, meals.snacks),
+  );
+  return (
+    <div className={styles.wrapper}>
+      <DailyValue name="Kalorie" value={totalGoodness} maxValue={1000} className={styles.value} />
+      <DailyValue name="Białka" value={totalProtein} maxValue={1000} className={styles.value} />
+      <DailyValue name="Tł." value={totalFat} maxValue={1000} className={styles.value} />
+      <DailyValue
+        name="Węgl."
+        value={totalCarbohydrates}
+        maxValue={1000}
+        className={styles.value}
+      />
+    </div>
+  );
+};
 
-export default NutritionBar;
+NutritionBar.propTypes = {
+  meals: PropTypes.shape([]).isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const props = state;
+  return props;
+};
+
+export default connect(mapStateToProps, null)(NutritionBar);
