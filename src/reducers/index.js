@@ -12,6 +12,7 @@ const initialState = {
     supper: [],
     snacks: [],
   },
+  findMeals: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -64,15 +65,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         meals: {
-          breakfast: meals.filter((item) => item.mealTime === 'śniadanie'),
-          dinner: meals.filter((item) => item.mealTime === 'obiad'),
-          supper: meals.filter((item) => item.mealTime === 'kolacja'),
-          snacks: meals.filter((item) => item.mealTime === 'przekąski'),
+          breakfast: meals.filter((item) => item.mealTime === 'ŚNIADANIE'),
+          dinner: meals.filter((item) => item.mealTime === 'OBIAD'),
+          supper: meals.filter((item) => item.mealTime === 'KOLACJA'),
+          snacks: meals.filter((item) => item.mealTime === 'PRZEKĄSKA'),
         },
       };
     }
     case 'UPDATE_MEALS_FAILURE': {
-      return {
+       return {
+        
         ...state,
         meals: {
           breakfast: [],
@@ -89,11 +91,16 @@ const rootReducer = (state = initialState, action) => {
         supper: state.meals.supper.filter(meal => meal.id !== action.id),
         snacks: state.meals.snacks.filter(meal => meal.id !== action.id),
       }
-      
       return {
         ...state,
         meals: newArray
 
+      }
+    }
+    case 'SEARCH_MEAL_SUCCESS':{
+      return {
+        ...state,
+        findMeals: action.payload.data
       }
     }
     default:

@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import GlobalStyle from 'theme/GlobalStyle';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -7,6 +7,7 @@ import store from 'store';
 import Blog from 'views/Blog/Blog';
 import Training from 'views/Training/Training';
 import styles from 'views/Root/Root.module.scss';
+
 import Header from 'components/molecules/Header/Header';
 import Footer from 'components/atoms/Footer/Footer';
 import NavPane from 'components/organisms/NavPane/NavPane';
@@ -18,6 +19,7 @@ import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
 import RegistrationPane from 'components/organisms/RegistrationPane/RegistrationPane';
 import history from 'history/history'
 import MealAddModal from 'components/organisms/MealAddPane/MealAddPane';
+
 
 
 const Root = () => (
@@ -72,5 +74,6 @@ const Root = () => (
     </Div100vh>
   </Provider>
 );
+          
 
 export default Root;
