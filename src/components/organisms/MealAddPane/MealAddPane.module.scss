@@ -1,9 +1,23 @@
+@import '../../../theme/mainTheme.scss';
 .wrapper{
     width: 100%;
     height: 67.5%;
+    
 }
 .title{
-    color: white;
+    margin-top: 5px;
+    color: $cyan-light;
     text-transform: uppercase;
     text-align: center;
+}
+.input{
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    border: none;
+    border-radius: 50px;
+   padding-left: 10px;
+    
+    
 }

@@ -20,8 +20,8 @@ function DateBar({ previousDay, nextDay, date, updateMeals}) {
     <div className={styles.wrapper}>
       <button type="button" onClick={previousDay} className={styles.arrow}>
         {'<'}
-      </button>
-
+      </button> 
+    
       <Day
         dayMonth={previousDate.getDate()}
         month={monthName[previousDate.getMonth()]}
@@ -39,6 +39,8 @@ function DateBar({ previousDay, nextDay, date, updateMeals}) {
         day={dayName[nextDate.getDay()]}
         onClick={nextDay}
       />
+    
+    
       <button type="button" onClick={nextDay} className={styles.arrow}>
         {'>'}
       </button>

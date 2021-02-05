@@ -1,8 +1,9 @@
+@import '../../../theme/mainTheme.scss';
 .wrapper {
   height: 100%;
   width: 25%;
   display: inline-block;
-
+  font-weight: $bold;
   color: white;
 }
 .name {
