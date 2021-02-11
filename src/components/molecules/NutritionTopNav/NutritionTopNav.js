@@ -18,7 +18,7 @@ const NutritionTopNav = () => (
     <NavLink exact to="/nutrition" className={styles.link} activeClassName={styles.linkActive}>
       <FontAwesomeIcon icon={faUtensils} />
     </NavLink>
-    <NavLink to="/nutrition/recipes" className={styles.link} activeClassName={styles.linkActive}>
+    <NavLink to="/nutrition/mealsbook" className={styles.link} activeClassName={styles.linkActive}>
       <FontAwesomeIcon icon={faBook} />
     </NavLink>
     <NavLink

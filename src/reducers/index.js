@@ -103,6 +103,12 @@ const rootReducer = (state = initialState, action) => {
         findMeals: action.payload.data
       }
     }
+    case 'SAVE_EATENMEAL_SUCCES':{
+      
+      return {
+        ...state
+      }
+    }
     default:
       return state;
   }

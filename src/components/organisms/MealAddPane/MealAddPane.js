@@ -39,9 +39,12 @@ class MealAddModal extends React.Component {
         
         return (
              <div className={styles.wrapper}>
-             <h1 className={styles.title}>{mealTime}</h1>
+             <div className={styles.searchWrapper}>
+            <h1 className={styles.title}>{mealTime}</h1>
             <input type='text' value={mealName} onChange={this.handleChange} placeholder='Wpisz nazwę...' className={styles.input}/>
-             <FindMealList meals={findMeals} mealTime={mealTime} mealDate={mealDate}/>
+             </div>
+            
+            <div className={styles.listWrapper}> <FindMealList meals={findMeals} mealTime={mealTime} mealDate={mealDate}/></div>
              </div>
             
         );

@@ -13,12 +13,13 @@ import Footer from 'components/atoms/Footer/Footer';
 import NavPane from 'components/organisms/NavPane/NavPane';
 import NutritionTopNav from 'components/molecules/NutritionTopNav/NutritionTopNav';
 import Div100vh from 'react-div-100vh';
-import RecipesTemplate from 'components/templates/RecipesTemplate/RecipesTemplate';
+import MealsBook from 'components/templates/MealsBook/MealsBook';
 import LoginPane from 'components/organisms/LoginPane/LoginPane';
 import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
 import RegistrationPane from 'components/organisms/RegistrationPane/RegistrationPane';
 import history from 'history/history'
 import MealAddModal from 'components/organisms/MealAddPane/MealAddPane';
+import MealDetails from 'components/atoms/MealDetails/MealDetails';
 
 
 
@@ -57,12 +58,18 @@ const Root = () => (
             }
           />
           <Route
-            path="/nutrition/recipes"
+           exact path="/nutrition/mealsbook"
             render={() =>
-             getUsername()==null  ? <Redirect to="/login" /> : <RecipesTemplate />
+             getUsername()==null  ? <Redirect to="/login" /> : <MealsBook/>
             }
           />
-          <Route
+            <Route
+            path="/nutrition/mealsbook/:mealname"
+            render={(props) =>
+             getUsername()==null  ? <Redirect to="/login" /> : <MealDetails {...props}/>
+            }
+          />
+        <Route
             path="/training"
             render={() =>
              getUsername()==null  ? <Redirect to="/login" /> : <Training />

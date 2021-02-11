@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from 'history/history';
 import { deleteUsername, deleteUserToken, getUsername, getUserToken } from 'service/cookieService';
 import { serverURL} from 'assets/globalVariables';
 
@@ -93,12 +94,12 @@ export const addEatenMeal = (
       },
     })
     .then((payload) => {
-     
-      dispatch({ type: 'SAVE_EATEN_SUCCES', payload });
+     history.push('/nutrition');
+      dispatch({ type: 'SAVE_EATENMEAL_SUCCES', payload });
     })
     .catch((error) => {
        
-      dispatch({ type: 'SAVE_EATEN_FAILURE', error });
+      dispatch({ type: 'SAVE_EATENMEAL_FAILURE', error });
     });
 };
 
@@ -136,3 +137,4 @@ export const deleteMeal = (id) => (dispatch) => {
       dispatch({ type: 'DELETE_MEAL_FAILURE', error });
     });
 };
+

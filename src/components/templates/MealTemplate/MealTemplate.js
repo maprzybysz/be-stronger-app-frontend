@@ -7,7 +7,6 @@ import NutritionBar from 'components/molecules/NutritionBar/NutritionBar';
 
 const MealTemplate = () => (
   <div className={styles.wrapper}>
-  
     <MealTimePane/>
     <DateBar />
     <NutritionBar />
