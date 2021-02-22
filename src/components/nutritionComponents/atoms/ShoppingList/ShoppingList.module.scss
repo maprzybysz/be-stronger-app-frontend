@@ -1,0 +1,28 @@
+.wrapper{
+  padding: 10px;
+  height: 100%;
+  overflow: scroll;
+}
+.input{
+  width: 80%;
+  border: none;
+  background: none;
+  border-bottom: 1px solid white;
+  color: white;
+}
+.listItem {
+  width: 100%;
+  color: white;
+  margin: 5px 50px 5px 5px
+}
+.button{
+  margin-left: 5px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  :hover{
+    color: red;
+    animation: spin 5s linear 2s infinite alternate;
+  }
+}

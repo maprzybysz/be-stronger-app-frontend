@@ -1,7 +1,6 @@
 import { serverError, credentialsError } from 'assets/globalError';
-import {setUsername, setUserToken} from 'service/cookieService';
+import {setUserToken} from 'service/cookieService';
 import history from 'history/history';
-
 
 const initialState = {
   date: new Date(),
@@ -13,6 +12,9 @@ const initialState = {
     snacks: [],
   },
   findMeals: [],
+  shoppingList: [],
+  userWeights: [],
+  userDetails: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,31 +31,35 @@ const rootReducer = (state = initialState, action) => {
       };
     case 'AUTHENTICATE_SUCCES': {
       setUserToken(action.payload.data.token)
-      setUsername(action.payload.data.username)
       history.push('/');
       return {
         ...state
       }
-      
-      
     }
     case 'AUTHENTICATE_FAILURE': {
       let errorPl = '';
-      switch (action.error.toString().substring(7, action.error.toString().length)) {
-        case 'Network Error':
-          errorPl = serverError;
-          break;
-        case 'Request failed with status code 401':
-          errorPl = credentialsError;
-          break;
-        default:
-          break;
+      if(action.error.toString().substring(7, action.error.toString().length)==='Request failed with status code 401'){
+         errorPl = credentialsError;
+      }else if(action.error.toString().substring(7, action.error.toString().length)==='Network Error'){
+        errorPl = serverError;
       }
       return {
         ...state,
-        error: errorPl,
-      };
+        error: errorPl
+      }
     }
+    case 'Network Error': {
+      return {
+        ...state,
+        error: serverError
+      }
+    }
+    case 'Request failed with status code 401': {
+      return {
+          ...state,
+      }
+    }
+
     case 'REGISTRATION_FAILURE': {
       return {
         ...state,
@@ -74,8 +80,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case 'UPDATE_MEALS_FAILURE': {
        return {
-        
-        ...state,
+         ...state,
         meals: {
           breakfast: [],
           dinner: [],
@@ -98,20 +103,74 @@ const rootReducer = (state = initialState, action) => {
       }
     }
     case 'SEARCH_MEAL_SUCCESS':{
+
       return {
         ...state,
         findMeals: action.payload.data
       }
     }
+    case 'SEARCH_MEAL_FAILURE':{
+      return {
+        ...state,
+      }
+    }
     case 'SAVE_EATENMEAL_SUCCES':{
-      
       return {
         ...state
+      }
+    }
+    case 'GET_SHOPPINGLIST_SUCCESS':{
+      return {
+        ...state,
+        shoppingList: action.payload.data,
+
+      }
+    }
+    case 'DELETE_SHOPPING_LIST_ELEMENT_SUCCESS': {
+      const newShoppingList = state.shoppingList.filter(item => item.id !== action.id);
+      return {
+        ...state,
+        shoppingList: newShoppingList
+
+      }
+    }
+    case 'ADD_SHOPPING_LIST_ELEMENT_SUCCES': {
+      return {
+        ...state,
+      }
+    }
+    case 'ADD_WEIGHT_SUCCESS': {
+      return {
+        ...state,
+      }
+    }
+    case 'GET_WEIGHTS_SUCCESS': {
+      return {
+        ...state,
+        userWeights: action.payload.data
+      }
+    }
+    case 'GET_WEIGHTS_FAILURE': {
+      return {
+        ...state,
+      }
+    }
+    case 'GET_WEIGHT_SUCCESS': {
+      return {
+        ...state,
+        userWeight: action.payload.data
+      }
+    }
+    case 'GET_DETAILS_SUCCESS': {
+      return {
+        ...state,
+        userDetails: action.payload.data
       }
     }
     default:
       return state;
   }
+
 };
 
 export default rootReducer;

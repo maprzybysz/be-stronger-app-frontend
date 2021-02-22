@@ -7,20 +7,21 @@ import store from 'store';
 import Blog from 'views/Blog/Blog';
 import Training from 'views/Training/Training';
 import styles from 'views/Root/Root.module.scss';
-
-import Header from 'components/molecules/Header/Header';
-import Footer from 'components/atoms/Footer/Footer';
-import NavPane from 'components/organisms/NavPane/NavPane';
-import NutritionTopNav from 'components/molecules/NutritionTopNav/NutritionTopNav';
+import ShoppingPane from 'components/templates/ShoppingTemplate/ShoppingTemplate';
+import Header from 'components/rootComponents/atoms/Header/Header';
+import Footer from 'components/rootComponents/atoms/Footer/Footer';
+import NavPane from 'components/rootComponents/organisms/NavPane/NavPane';
+import NutritionTopNav from 'components/nutritionComponents/molecules/NutritionTopNav/NutritionTopNav';
 import Div100vh from 'react-div-100vh';
 import MealsBook from 'components/templates/MealsBook/MealsBook';
-import LoginPane from 'components/organisms/LoginPane/LoginPane';
-import MealTemplate from 'components/templates/MealTemplate/MealTemplate';
-import RegistrationPane from 'components/organisms/RegistrationPane/RegistrationPane';
+import LoginPane from 'components/rootComponents/organisms/LoginPane/LoginPane';
+import MealEatenTemplate from 'components/templates/MealEatenTemplate/MealEatenTemplate';
+import RegistrationPane from 'components/rootComponents/organisms/RegistrationPane/RegistrationPane';
 import history from 'history/history'
-import MealAddModal from 'components/organisms/MealAddPane/MealAddPane';
-import MealDetails from 'components/atoms/MealDetails/MealDetails';
-
+import MealAddModal from 'components/nutritionComponents/organisms/MealAddPane/MealAddPane';
+import MealDetails from 'components/nutritionComponents/atoms/MealDetails/MealDetails';
+import UserDetailsTemplate from 'components/templates/UserDetailsTemplate/UserDetailsTemplate';
+import UserDetailsTopNav  from 'components/userComponents/molecules/UserDetailsTopNav/UserDetailsTopNav';
 
 
 const Root = () => (
@@ -30,6 +31,7 @@ const Root = () => (
       <Router history = {history} >
         <Header />
         <Route path="/nutrition/" component={NutritionTopNav} />
+        <Route path="/userdetails/" component={UserDetailsTopNav} />
         <Switch>
           <Route path="/login" component={LoginPane} />
           <Route path="/sign-up" component={RegistrationPane} />
@@ -46,9 +48,16 @@ const Root = () => (
           />
           <Route
             exact
+            path="/userdetails"
+            render={() =>
+              getUsername()==null ? <Redirect to="/login" /> : <UserDetailsTemplate />
+            }
+          />
+          <Route
+            exact
             path="/nutrition"
             render={() =>
-             getUsername()==null ? <Redirect to="/login" /> : <MealTemplate />
+             getUsername()==null ? <Redirect to="/login" /> : <MealEatenTemplate />
             }
           />
            <Route
@@ -67,6 +76,12 @@ const Root = () => (
             path="/nutrition/mealsbook/:mealname"
             render={(props) =>
              getUsername()==null  ? <Redirect to="/login" /> : <MealDetails {...props}/>
+            }
+          />
+            <Route
+            path="/nutrition/shoppinglist"
+            render={() =>
+             getUsername()==null  ? <Redirect to="/login" /> : <ShoppingPane />
             }
           />
         <Route

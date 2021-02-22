@@ -1,0 +1,48 @@
+.wrapper{ 
+    height: 67.5%;
+    width: 100%;
+}
+.top{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content{
+    height: 75%;
+    overflow: scroll;
+}
+
+.name{
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    width: calc(100% - 150px);
+}
+.grammage{
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.contentItem{
+    color: white;
+    margin-left: 10px;
+}
+.button{
+    position: fixed;
+    bottom: 20px;
+    left: 5px;
+    border-radius: 50px;
+}
+.about{
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+
+}

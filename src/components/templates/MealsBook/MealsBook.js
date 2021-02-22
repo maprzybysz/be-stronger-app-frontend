@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {searchMeals} from 'actions';
-import MealBookList from 'components/atoms/MealBookList/MealBookList';
+import PropTypes from 'prop-types';
+import MealBookList from 'components/nutritionComponents/atoms/MealBookList/MealBookList';
 import styles from 'components/templates/MealsBook/MealsBook.module.scss';
 
 
@@ -36,7 +37,15 @@ class MealsBook extends React.Component {
    
 }
 
-
+MealsBook.propTypes = {
+    searchMeals: PropTypes.func.isRequired,
+    findMeals: PropTypes.arrayOf(
+    PropTypes.shape({
+        
+    
+    }),
+  ).isRequired,
+}
 
 
 

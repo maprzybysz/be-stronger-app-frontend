@@ -1,12 +1,12 @@
 import cookie from 'js-cookie';
-
+/* eslint-disable camelcase */
+import jwt_decode from 'jwt-decode';
+import history from 'history/history';
 
 export const setUserToken = (token)=>{
     cookie.set("usertoken", token, {expires: 1})
 }
-export const setUsername = (username)=>{
-    cookie.set("username", username, {expires: 1})
-}
+
 
 export const getUserToken = ()=>{
  const usertoken = cookie.get("usertoken")
@@ -14,15 +14,18 @@ export const getUserToken = ()=>{
 }
 
 export const getUsername = ()=>{
-    const username = cookie.get("username")
-    return username;
-}
-
-
+    const token = cookie.get("usertoken")
+    try{
+        const decoded = jwt_decode(token);
+        return decoded.sub;
+    }catch(error){
+        history.push('/login');
+        return null;;
+    }
+       
+    }
+        
 export const deleteUserToken = () => {
-    console.log(getUsername());
+    
     cookie.remove("usertoken");
-}
-export const deleteUsername = () => {
-    cookie.remove("username");
 }

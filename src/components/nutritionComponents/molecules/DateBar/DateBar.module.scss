@@ -1,0 +1,24 @@
+@import '../../../../theme/mainTheme';
+
+.wrapper {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  // justify-content: space-around;
+   border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+ 
+}
+.arrow {
+ 
+  width: 10%;
+  color: white;
+  font-size: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    color: $red;
+  }
+}
