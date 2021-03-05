@@ -7,13 +7,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import styles from 'components/nutritionComponents/atoms/ShoppingList/ShoppingList.module.scss';
 import ShoppingListElement from './ShoppingListElement/ShoppingListElement';
 
-const ShoppingList = ({products, addShoppingListElement, getShoppingList}) => {
+const ShoppingList = ({products, addShoppingListElement}) => {
 
   const [value, setValue] = useState('');
 
   function helpFunction(){
     addShoppingListElement(value)
-    getShoppingList();
+    setValue('');
   }
 
   return (
@@ -31,7 +31,8 @@ const ShoppingList = ({products, addShoppingListElement, getShoppingList}) => {
 }
 
 ShoppingList.propTypes = {
-    products: PropTypes.instanceOf(PropTypes.array).isRequired
+  products: PropTypes.instanceOf(PropTypes.array).isRequired,
+  addShoppingListElement: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { previousDay, nextDay, updateMeals } from 'actions';
+import { previousDay, nextDay, updateMeals, getUserTMR } from 'actions';
 import { monthName, dayName, dateToString } from 'assets/dateName';
 import Day from 'components/nutritionComponents/atoms/Day/Day';
 import styles from 'components/nutritionComponents/molecules/DateBar/DateBar.module.scss';
 
-function DateBar({ previousDay, nextDay, date, updateMeals}) {
+function DateBar({ previousDay, nextDay, date, updateMeals, getUserTMR}) {
   const previousDate = new Date(new Date(date).setDate(date.getDate() - 1));
   const nextDate = new Date(new Date(date).setDate(date.getDate() + 1));
 
  
   useEffect(() => {
     updateMeals(dateToString(date));
+    getUserTMR(dateToString(date));
   });
 
 
@@ -55,6 +56,7 @@ DateBar.propTypes = {
   nextDay: PropTypes.func.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   updateMeals: PropTypes.func.isRequired,
+  getUserTMR: PropTypes.func.isRequired,
   };
 const mapStateToProps = ({ date }) => ({
   date,
@@ -65,6 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
   previousDay: () => dispatch(previousDay()),
   nextDay: () => dispatch(nextDay()),
   updateMeals: (date) => dispatch(updateMeals( date )),
+  getUserTMR: (date)=> dispatch(getUserTMR(date))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateBar);

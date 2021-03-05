@@ -18,13 +18,13 @@ const FindMealList = ({ meals, mealTime, mealDate }) => (
             carbohydrates={item.carbohydrates}
             protein={item.protein}
             fat={item.fat}
-            mealTime={mealTime} 
+            mealTime={mealTime}
             mealDate={mealDate}
          />
         ))}
       </ul>
-    ) : null 
-      
+    ) : null
+
     }
   </>
 );
@@ -45,4 +45,6 @@ FindMealList.propTypes = {
 FindMealList.defaultProps = {
   meals: {},
 };
+
+
 export default FindMealList;

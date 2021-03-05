@@ -4,8 +4,8 @@ import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {getUsername} from 'service/cookieService'
 import store from 'store';
-import Blog from 'views/Blog/Blog';
-import Training from 'views/Training/Training';
+import BlogTemplate from 'components/templates/BlogTemplate/BlogTemplate';
+import TrainingTemplate from 'components/templates/TrainingTemplate/TrainingTemplate';
 import styles from 'views/Root/Root.module.scss';
 import ShoppingPane from 'components/templates/ShoppingTemplate/ShoppingTemplate';
 import Header from 'components/rootComponents/atoms/Header/Header';
@@ -22,6 +22,11 @@ import MealAddModal from 'components/nutritionComponents/organisms/MealAddPane/M
 import MealDetails from 'components/nutritionComponents/atoms/MealDetails/MealDetails';
 import UserDetailsTemplate from 'components/templates/UserDetailsTemplate/UserDetailsTemplate';
 import UserDetailsTopNav  from 'components/userComponents/molecules/UserDetailsTopNav/UserDetailsTopNav';
+import BlogTopNav from 'components/blogComponents/molecules/BlogTopNav/BlogTopNav';
+import TrainingTopNav from 'components/trainingComponents/molecules/TrainingTopNav/TrainingTopNav';
+import ArticlesList from 'components/blogComponents/atoms/ArticlesList/ArticlesList';
+import Article from 'components/blogComponents/atoms/Article/Article';
+
 
 
 const Root = () => (
@@ -32,14 +37,12 @@ const Root = () => (
         <Header />
         <Route path="/nutrition/" component={NutritionTopNav} />
         <Route path="/userdetails/" component={UserDetailsTopNav} />
+        <Route path="/blog/" component={BlogTopNav} />
+        <Route path="/training/" component={TrainingTopNav} />
         <Switch>
           <Route path="/login" component={LoginPane} />
           <Route path="/sign-up" component={RegistrationPane} />
           <Route
-            path="/blog"
-            render={() => getUsername()==null  ? <Redirect to="/login" /> : <Blog />}
-          />
-             <Route
             exact
             path="/"
             render={() =>
@@ -87,9 +90,26 @@ const Root = () => (
         <Route
             path="/training"
             render={() =>
-             getUsername()==null  ? <Redirect to="/login" /> : <Training />
+             getUsername()==null  ? <Redirect to="/login" /> : <TrainingTemplate />
             }
           />
+          <Route
+           exact path="/blog"
+            render={() => getUsername()==null  ? <Redirect to="/login" /> : <BlogTemplate />}
+          />
+          <Route
+            exact path="/blog/:categories"
+            render={(props) =>
+              getUsername()==null  ? <Redirect to="/login" /> : <ArticlesList {...props}/>
+            }
+          />
+          <Route
+            path="/blog/article/:id"
+            render={(props) =>
+              getUsername()==null  ? <Redirect to="/login" /> : <Article {...props}/>
+            }
+          />
+
         </Switch>
         <Footer />
       </Router>

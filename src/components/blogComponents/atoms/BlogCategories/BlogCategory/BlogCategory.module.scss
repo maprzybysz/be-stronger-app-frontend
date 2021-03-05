@@ -1,0 +1,29 @@
+.item{
+  display: flex;
+  width: 50%;
+  height: 50vw;
+  color: white;
+  float: left;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: 155%;
+  background-repeat: no-repeat;
+  font-size: 22px;
+}
+.item:nth-of-type(2n){
+  border-left: 1px solid white;
+}
+.item:nth-of-type(2n+1){
+  border-right: 1px solid white;
+}
+.item:nth-of-type(1n){
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+.item:nth-of-type(1), .item:nth-of-type(2){
+  border-top: none;
+}
+.item:nth-of-type(5), .item:nth-of-type(6){
+  border-bottom: none;
+}

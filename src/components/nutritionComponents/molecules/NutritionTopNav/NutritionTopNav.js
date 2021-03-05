@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
   faUtensils,
-  faBook,
+  faBreadSlice,
   faShoppingBasket,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +19,7 @@ const NutritionTopNav = () => (
       <FontAwesomeIcon icon={faUtensils} />
     </NavLink>
     <NavLink to="/nutrition/mealsbook" className={styles.link} activeClassName={styles.linkActive}>
-      <FontAwesomeIcon icon={faBook} />
+      <FontAwesomeIcon icon={faBreadSlice} />
     </NavLink>
     <NavLink
       to="/nutrition/shoppinglist"

@@ -142,11 +142,11 @@ export const getShoppingList = () => (dispatch) => {
       },
     } )
     .then((payload) => {
-      dispatch({ type: 'GET_SHOPPINGLIST_SUCCESS', payload });
+      dispatch({ type: 'GET_SHOPPING_LIST_SUCCESS', payload });
     })
     .catch((error) => {
       errorVerify(error, dispatch);
-      dispatch({ type: 'GET_SHOPPINGLIST_FAILURE', error });
+      dispatch({ type: 'GET_SHOPPING_LIST_FAILURE', error });
     });
 }
 export const addShoppingListElement = (productName) => (dispatch) => {
@@ -156,8 +156,8 @@ export const addShoppingListElement = (productName) => (dispatch) => {
         'Authorization': `Bearer ${getUserToken()}`,
       },
     } )
-    .then((payload) => {
-      dispatch({ type: 'ADD_SHOPPING_LIST_ELEMENT_SUCCES', payload });
+    .then(() => {
+      dispatch({ type: 'ADD_SHOPPING_LIST_ELEMENT_SUCCES', productName });
     })
     .catch((error) => {
       errorVerify(error, dispatch);
@@ -230,16 +230,114 @@ export const getUserWeight = () => (dispatch) => {
 
 export const getUserDetails = () => (dispatch) => {
   return axios
-    .get(`${serverURL}/user/getUserDetails/${getUsername()}`,{
+    .get(`${serverURL}/user/getUserDetails/${getUsername()}`, {
       headers: {
         'Authorization': `Bearer ${getUserToken()}`,
       },
-    } )
+    })
     .then((payload) => {
       dispatch({ type: 'GET_DETAILS_SUCCESS', payload });
     })
     .catch((error) => {
       errorVerify(error, dispatch);
-      dispatch({ type: 'DETAILS_FAILURE', error });
+      dispatch({ type: 'GET_DETAILS_FAILURE', error });
+    });
+}
+
+  export const updateUserActivity = (activity) => (dispatch) => {
+    return axios
+      .post(`${serverURL}/user/updateActivity/${getUsername()}/${activity}`, {
+
+      },{
+        headers: {
+          'Authorization': `Bearer ${getUserToken()}`,
+        },
+      })
+      .then((payload) => {
+        dispatch({ type: 'UPDATE_ACTIVITY_SUCCESS', payload });
+      })
+      .catch((error) => {
+        errorVerify(error, dispatch);
+        dispatch({ type: 'UPDATE_ACTIVITY_FAILURE', error });
+      });
+  }
+export const updateUserHeight = (height) => (dispatch) => {
+  return axios
+    .post(`${serverURL}/user/updateHeight/${getUsername()}/${height}`, {
+
+    },{
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: 'UPDATE_HEIGHT_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'UPDATE_HEIGHT_FAILURE', error });
+    });
+}
+
+export const updateUserGoal= (goal) => (dispatch) => {
+  return axios
+    .post(`${serverURL}/user/updateGoal/${getUsername()}/${goal}`, {
+
+    },{
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: 'UPDATE_GOAL_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'UPDATE_GOAL_FAILURE', error });
+    });
+}
+export const getUserTMR = (date) => (dispatch) => {
+  return axios
+    .get(`${serverURL}/user/getUserTMR/${getUsername()}/${date}`, {
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: 'GET_TMR_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'GET_TMR_FAILURE', error });
+    });
+}
+export const getArticlesByCategory = (category) => (dispatch) => {
+  return axios
+    .get(`${serverURL}/blog/${category}`, {
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: 'GET_ARTICLES_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'GET_ARTICLES_FAILURE', error });
+    });
+}
+export const getArticleById = (id) => (dispatch) => {
+  return axios
+    .get(`${serverURL}/blog/article/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: 'GET_ARTICLE_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'GET_ARTICLE_FAILURE', error });
     });
 }

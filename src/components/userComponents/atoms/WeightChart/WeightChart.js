@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 
@@ -16,5 +17,14 @@ const WeightChart = ({userWeights}) => (
   </LineChart>
   </ResponsiveContainer>
 );
+
+WeightChart.propTypes = {
+  userWeights: PropTypes.arrayOf(
+    PropTypes.shape({
+
+
+    }),
+  ).isRequired,
+}
 
 export default WeightChart;

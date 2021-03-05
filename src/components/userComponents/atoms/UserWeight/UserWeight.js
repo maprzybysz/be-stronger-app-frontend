@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import DatePicker from "react-datepicker";
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWeight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleLeft, faWeight } from '@fortawesome/free-solid-svg-icons';
 import pl from 'date-fns/locale/pl';
 import "react-datepicker/dist/react-datepicker.css";
 import styles from 'components/userComponents/atoms/UserWeight/UserWeight.module.scss';
@@ -23,7 +24,6 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
   const[weight, setWeight] = useState(userWeight);
 
 
-
   function helpFn(){
     addWeight(weight, date);
     getUserWeights();
@@ -33,6 +33,7 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
     <>
     <div className={styles.wrapper} onClick={()=>setVisible(!visible)}>
       Obecna waga: {userWeight}kg
+      <FontAwesomeIcon icon={!visible ? faAngleDown : faAngleLeft} className={styles.arrow}/>
     </div>
     {visible ? <div className={styles.addPane}>
       <div className={styles.weightChart}><WeightChart userWeights={userWeights}/></div>
@@ -42,13 +43,24 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
           <input className={styles.input} value={weight} placeholder='Nowa waga' onChange={e => setWeight(e.target.value)}/>
         </div>
         <button type='button' className={styles.button} onClick={()=>helpFn()}><FontAwesomeIcon icon={faWeight}/></button>
+
       </div>
+
+
     </div> : null}
+
     </>
     )
 
 };
 
+UserWeight.propTypes = {
+  addWeight: PropTypes.func.isRequired,
+  getUserWeights: PropTypes.func.isRequired,
+  userWeights: PropTypes.number.isRequired,
+  userWeight: PropTypes.number.isRequired,
+  getUserDetails: PropTypes.func.isRequired,
+}
 const mapDispatchToProps = (dispatch) => ({
   addWeight: (weight, date) => dispatch(addWeight(weight, date)),
   getUserWeights: ()=> dispatch(getUserWeights()),

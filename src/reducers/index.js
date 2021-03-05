@@ -14,7 +14,10 @@ const initialState = {
   findMeals: [],
   shoppingList: [],
   userWeights: [],
-  userDetails: {}
+  userDetails: {},
+  userTMR: {},
+  articles: [],
+  article: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -119,11 +122,10 @@ const rootReducer = (state = initialState, action) => {
         ...state
       }
     }
-    case 'GET_SHOPPINGLIST_SUCCESS':{
+    case 'GET_SHOPPING_LIST_SUCCESS':{
       return {
         ...state,
         shoppingList: action.payload.data,
-
       }
     }
     case 'DELETE_SHOPPING_LIST_ELEMENT_SUCCESS': {
@@ -131,12 +133,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         shoppingList: newShoppingList
-
       }
     }
     case 'ADD_SHOPPING_LIST_ELEMENT_SUCCES': {
+      const newShoppingList = [...state.shoppingList, {name: action.productName}];
       return {
         ...state,
+        shoppingList: newShoppingList
       }
     }
     case 'ADD_WEIGHT_SUCCESS': {
@@ -167,6 +170,30 @@ const rootReducer = (state = initialState, action) => {
         userDetails: action.payload.data
       }
     }
+    case 'UPDATE_ACTIVITY_SUCCESS':{
+      return {
+        ...state,
+      }
+    }
+    case 'GET_TMR_SUCCESS':{
+      return {
+        ...state,
+        userTMR: action.payload.data
+      }
+    }
+    case 'GET_ARTICLES_SUCCESS': {
+      return {
+        ...state,
+        articles: action.payload.data
+      }
+    }
+    case 'GET_ARTICLE_SUCCESS': {
+      return {
+        ...state,
+        article: action.payload.data
+      }
+    }
+
     default:
       return state;
   }

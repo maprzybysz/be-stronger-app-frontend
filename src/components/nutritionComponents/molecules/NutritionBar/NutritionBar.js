@@ -5,19 +5,19 @@ import { mealsSummary } from 'service/mealService';
 import styles from 'components/nutritionComponents/molecules/NutritionBar/NutritionBar.module.scss';
 import DailyValue from 'components/nutritionComponents/atoms/DailyValue/DailyValue';
 
-const NutritionBar = ({ meals }) => {
+const NutritionBar = ({ meals, userTMR }) => {
   const { totalGoodness, totalProtein, totalCarbohydrates, totalFat } = mealsSummary(
     [].concat(meals.breakfast, meals.dinner, meals.supper, meals.snacks),
   );
   return (
     <div className={styles.wrapper}>
-      <DailyValue name="Kalorie" value={totalGoodness} maxValue={1000} className={styles.value} />
-      <DailyValue name="Białka" value={totalProtein} maxValue={1000} className={styles.value} />
-      <DailyValue name="Tł." value={totalFat} maxValue={1000} className={styles.value} />
+      <DailyValue name="Kalorie" value={totalGoodness} maxValue={Math.round(userTMR.tmr)} className={styles.value} />
+      <DailyValue name="Białko" value={totalProtein} maxValue={Math.round(userTMR.protein)} className={styles.value} />
+      <DailyValue name="Tł." value={totalFat} maxValue={Math.round(userTMR.fat)} className={styles.value} />
       <DailyValue
         name="Węgl."
         value={totalCarbohydrates}
-        maxValue={1000}
+        maxValue={Math.round(userTMR.carbohydrates)}
         className={styles.value}
       />
     </div>
@@ -25,7 +25,18 @@ const NutritionBar = ({ meals }) => {
 };
 
 NutritionBar.propTypes = {
-  meals: PropTypes.shape([]).isRequired,
+  meals: PropTypes.arrayOf(
+    PropTypes.shape({
+
+
+    }),
+  ).isRequired,
+  userTMR: PropTypes.arrayOf(
+    PropTypes.shape({
+
+
+    }),
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => {
