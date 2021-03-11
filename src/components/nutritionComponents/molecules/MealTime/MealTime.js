@@ -20,7 +20,7 @@ const MealTime = ({ name,  visible, openFn, meals, path }) => {
           <h2 className={styles.value}>T:{totalFat}g</h2>
         </div>
         <div className={styles.wrapperButton}>
-          <button type="button" className={styles.button} onClick={()=>history.push(`/nutrition/addMeal/:${path}`)}>
+          <button type="button" className={styles.button} onClick={()=>history.push(`/nutrition/addMeal/${path}`)}>
             <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>

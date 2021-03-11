@@ -6,13 +6,16 @@ import * as Yup from 'yup';
 import styles from 'components/rootComponents/organisms/LoginPane/LoginPane.module.scss';
 import { connect } from 'react-redux';
 import { authenticate } from 'actions';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { translateMessageError } from '../../../../assets/globalError';
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Musisz podać nazwę użytkownika!'),
   password: Yup.string().required('Musisz podać hasło!'),
 });
 
-const LoginPane = ({ authenticate, error }) => (
+const LoginPane = ({ authenticate, errorLogin }) =>(
   <div className={styles.wrapper}>
     <Formik
       initialValues={{ username: '', password: '' }}
@@ -25,7 +28,7 @@ const LoginPane = ({ authenticate, error }) => (
         <Form className={styles.loginForm}>
           <h1 className={styles.loginTitle}>Logowanie</h1>
           <Link to="/" className={styles.closePaneLink}>
-            X
+            <FontAwesomeIcon icon={faTimes}/>
           </Link>
           <Field type="text" placeholder="login" name="username" className={styles.input} />
           {errors.username && touched.username ? (
@@ -38,9 +41,9 @@ const LoginPane = ({ authenticate, error }) => (
           <button type="submit" className={styles.loginButton}>
             Zaloguj
           </button>
-          {error !== null ? <div className={styles.error}>{error}</div> : null}
-          <Link to="/passwordreset">Nie pamiętasz hasła?</Link>
-          <Link to="/sign-up">Rejestracja</Link>
+          {errorLogin !==null ? <p className={styles.error}>{translateMessageError(errorLogin)}</p> : null}
+          <Link to="/sendrecovery" className={styles.link}>Nie pamiętasz hasła?</Link>
+          <Link to="/sign-up"className={styles.link}>Rejestracja</Link>
         </Form>
       )}
     </Formik>
@@ -49,17 +52,16 @@ const LoginPane = ({ authenticate, error }) => (
 
 LoginPane.propTypes = {
   authenticate: PropTypes.func.isRequired,
-  error: PropTypes.string,
+  errorLogin: PropTypes.string,
 };
 LoginPane.defaultProps = {
-  error: '',
+  errorLogin: '',
 };
 const mapDispatchToProps = (dispatch) => ({
   authenticate: (username, password) => dispatch(authenticate(username, password)),
 });
-const mapStateToProps = (state) => {
-  const props = state;
-  return props;
-};
+const mapStateToProps = ({ errorLogin }) => ({
+  errorLogin
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPane);

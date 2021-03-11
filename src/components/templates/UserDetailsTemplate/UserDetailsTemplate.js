@@ -17,10 +17,12 @@ class UserDetailsTemplate extends React.Component {
     const {getUserDetails} = this.props;
     getUserDetails();
 
+
   }
 
   render() {
     const {userDetails} = this.props;
+    console.log(userDetails);
     return (
       <div className={styles.wrapper}>
         <UserWeight userWeight={userDetails.weight}/>

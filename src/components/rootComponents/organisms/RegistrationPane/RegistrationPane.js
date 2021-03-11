@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef} from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { registration } from 'actions';
 import styles from 'components/rootComponents/organisms/RegistrationPane/RegistrationPane.module.scss';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DatePicker from 'react-datepicker';
+import pl from 'date-fns/locale/pl';
+import {translateMessageError} from 'assets/globalError';
+
 
 const SignUpSchema = Yup.object().shape({
   username: Yup.string()
@@ -25,8 +31,21 @@ const SignUpSchema = Yup.object().shape({
     .email('Adres e-mail jest niepoprawny!')
     .required('Adres e-mail jest wymagany!'),
   rulesAccepted: Yup.bool().oneOf([true], 'Jeśli chcesz dołączyć, musisz zaakceptować regulamin!'),
+  weight: Yup.number().integer().min(1, 'waga musi być większa od 0').required('Musisz podać swoją wagę!'),
+  height: Yup.number().integer().min(1, 'wzorst musi być większy od 0').required('Musisz podać swój wzrost!')
+
 });
-const RegistrationPane = ({ registration }) => (
+const RegistrationPane = ({ registration, messageRegistration, errorRegistration }) => {
+
+  const ExampleCustomInput = forwardRef(
+    ({ value, onClick }, ref) => (
+      // eslint-disable-next-line react/button-has-type
+      <button className={styles.datePickerInput}  onClick={onClick} ref={ref}>
+        {value}
+      </button>
+    ),
+  );
+  return(
   <div className={styles.wrapper}>
     <Formik
       initialValues={{
@@ -35,16 +54,22 @@ const RegistrationPane = ({ registration }) => (
         confirmPassword: '',
         email: '',
         rulesAccepted: false,
+        birthday: new Date(),
+        activity: 'UMIARKOWANA',
+        goal: 'REDUKCJA',
+        weight: '',
+        height: '',
+        sex: 'Kobieta'
       }}
       validationSchema={SignUpSchema}
-      onSubmit={({ username, password, email, rulesAccepted }) => {
-        registration(username, password, email, rulesAccepted);
+      onSubmit={({ username, password, email, rulesAccepted, birthday, activity, goal, height, weight, sex }) => {
+        registration(username, password, email, rulesAccepted, birthday, activity, goal, height, weight, sex);
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, setFieldValue, values  }) => (
         <Form className={styles.registrationForm}>
           <Link to="/" className={styles.closePaneLink}>
-            X
+            <FontAwesomeIcon icon={faTimes}/>
           </Link>
           <Field type="text" placeholder="login" name="username" className={styles.input} />
           {errors.username && touched.username ? (
@@ -67,6 +92,55 @@ const RegistrationPane = ({ registration }) => (
           {errors.email && touched.email ? (
             <div className={styles.error}>{errors.email}</div>
           ) : null}
+          <div className={styles.fieldWrapper}>
+            <p>Data urodzenia</p>
+            <DatePicker
+              selected={values.birthday}
+              name="birthday"
+              locale={pl}
+              customInput={<ExampleCustomInput />}
+              popperPlacement="bottom"
+              maxDate={new Date()}
+              onChange={date => setFieldValue('birthday', date)}
+            />
+          </div>
+          <div className={styles.fieldWrapper}>
+          <p className={styles.label}>Aktywność</p>
+            <Field name="activity" as="select" placeholder='test'>
+            <option value="ZNIKOMA" className={styles.option}>ZNIKOMA</option>
+            <option value="MAŁA" className={styles.option}>MAŁA</option>
+            <option value="UMIARKOWANA" className={styles.option}>UMIARKOWANA</option>
+            <option value="DUŻA" className={styles.option}>DUŻA</option>
+            </Field>
+          </div>
+          <div className={styles.fieldWrapper}>
+            <p className={styles.label}>Cel</p>
+            <Field name="goal" as="select" placeholder='test'>
+              <option value="REDUKCJA" className={styles.option}>REDUKCJA</option>
+              <option value="UTRZYMANIE" className={styles.option}>UTRZYMANIE</option>
+              <option value="MASA" className={styles.option}>MASA</option>
+            </Field>
+          </div>
+          <div className={styles.detailsWrapper}>
+            <Field type="number" placeholder="Twoja waga" name='weight' className={styles.inputDetails} />
+            <Field type="number" placeholder="Twój wzrost" name='height' className={styles.inputDetails} />
+          </div>
+          {errors.weight && touched.weight ? (
+            <div className={styles.error}>{errors.weight}</div>
+          ) : null}
+          {errors.height && touched.height ? (
+            <div className={styles.error}>{errors.height}</div>
+          ) : null}
+          <div className={styles.fieldWrapper}>
+            <label>
+              Kobieta
+              <Field type="radio" name="sex" value="Kobieta" className={styles.label}/>
+            </label>
+            <label>
+              Mężczyzna
+              <Field type="radio" name="sex" value="Mężczyzna" className={styles.label}/>
+            </label>
+          </div>
           <label className={styles.rules}>
             <Field type="checkbox" name="rulesAccepted" className={styles.checkbox} />
             Akceptuję
@@ -77,7 +151,8 @@ const RegistrationPane = ({ registration }) => (
           {errors.rulesAccepted && touched.rulesAccepted ? (
             <div className={styles.error}>{errors.rulesAccepted}</div>
           ) : null}
-
+          {messageRegistration !==null ? <p className={styles.label}>{messageRegistration}</p> : null}
+          {errorRegistration !==null ? <p className={styles.error}>{translateMessageError(errorRegistration)}</p> : null}
           <button type="submit" className={styles.registrationButton}>
             Rejestracja
           </button>
@@ -85,15 +160,18 @@ const RegistrationPane = ({ registration }) => (
       )}
     </Formik>
   </div>
-);
+)};
 
 RegistrationPane.propTypes = {
   registration: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  registration: (username, password, email, rulesAccepted) =>
-    dispatch(registration(username, password, email, rulesAccepted)),
+  registration: (username, password, email, rulesAccepted, birthday, userActivity ,userGoal, height, weight, sex) =>
+    dispatch(registration(username, password, email, rulesAccepted, birthday, userActivity ,userGoal, height, weight, sex)),
+});
+const mapStateToProps = ({messageRegistration, errorRegistration}) => ({
+  messageRegistration, errorRegistration
 });
 
-export default connect(null, mapDispatchToProps)(RegistrationPane);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPane);

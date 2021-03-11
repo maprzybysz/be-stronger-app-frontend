@@ -7,7 +7,7 @@ import styes from 'components/blogComponents/atoms/ArticlesList/ArticlesList.mod
 
 const ArticlesList = ({match, getArticlesByCategory, articles}) => {
 
-  const category = match.params.categories.slice(1, match.params.categories.length)
+  const category  = match.params.categories;
 
   useEffect(()=>{
     getArticlesByCategory(category)

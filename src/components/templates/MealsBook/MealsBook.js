@@ -16,9 +16,7 @@ const MealsBook = ({findMeals, searchMeals}) => {
       searchMeals(mealName);
     }
   }, [mealName])
-    
-
-        return (
+  return (
             <div className={styles.wrapper}>
             <div className={styles.searchWrapper}><h1 className={styles.title}>Baza posiłków</h1>
             <input value={mealName} onChange={(e)=>setMealName(e.target.value)} className={styles.input} placeholder='Wpisz nazwę produktu'/></div>
@@ -47,4 +45,4 @@ const mapDispatchToProps = (dispatch) => ({
 searchMeals: (mealName) => dispatch(searchMeals(mealName)),
 })
 
-export default connect(mapStateToProps ,mapDispatchToProps )(MealsBook);
+export default connect(mapStateToProps ,mapDispatchToProps)(MealsBook);

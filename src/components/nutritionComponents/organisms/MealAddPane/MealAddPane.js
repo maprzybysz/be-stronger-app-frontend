@@ -13,7 +13,7 @@ const MealAddPane = ({date, match, findMeals, searchMeals}) => {
   const [mealDate, setMealDate] = useState('');
 
   useEffect(()=>{
-    setMealTime(match.params.mealtime.slice(1, match.params.mealtime.length ).toUpperCase());
+    setMealTime(match.params.mealtime.toUpperCase());
     setMealDate(dateToString(date));
     if(mealName.length>=3){
       searchMeals(mealName);

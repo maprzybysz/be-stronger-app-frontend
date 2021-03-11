@@ -1,0 +1,35 @@
+.series {
+  display: flex;
+  justify-content: space-around;
+}
+.input{
+  width: 25px;
+  border-radius: 5px;
+  border: none;
+}
+.inputGroup{
+  width: calc(100% / 3);
+  text-align: center;
+}
+.buttonGroup{
+  @extend .inputGroup;
+}
+.id{
+  width: calc(100% / 3);
+  text-align: center;
+}
+.button{
+  width: 25px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+}
+.buttonCheck{
+  @extend .button;
+  color: green;
+}
+.buttonDelete{
+  @extend .button;
+  color: red;
+}

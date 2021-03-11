@@ -18,7 +18,7 @@
   position: fixed;
   margin: 0 auto 0 auto;
   border: 1px solid white;
-  border-radius: 25px 0 25px 25px;
+  border-radius: 15px 0 15px 15px;
   overflow: visible;
   background-color: rgba($color: #000000, $alpha: 0.9);
 }
@@ -76,4 +76,12 @@
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
+}
+.link{
+  padding-top: 5px;
+  color: #91c4d9;
+  text-decoration: none;
+  &:hover{
+    color: #6393a6;
+  }
 }

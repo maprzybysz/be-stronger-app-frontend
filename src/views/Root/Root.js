@@ -26,10 +26,13 @@ import BlogTopNav from 'components/blogComponents/molecules/BlogTopNav/BlogTopNa
 import TrainingTopNav from 'components/trainingComponents/molecules/TrainingTopNav/TrainingTopNav';
 import ArticlesList from 'components/blogComponents/atoms/ArticlesList/ArticlesList';
 import Article from 'components/blogComponents/atoms/Article/Article';
+import SendRecovery from 'components/rootComponents/organisms/SendRecovery/SendRecovery';
+import RestartPassword from 'components/rootComponents/organisms/RestartPassword/RestartPassword';
 
 
 
-const Root = () => (
+const Root = () => {
+  return(
   <Provider store={store}>
     <Div100vh className={styles.wrapper}>
       <GlobalStyle />
@@ -42,6 +45,8 @@ const Root = () => (
         <Switch>
           <Route path="/login" component={LoginPane} />
           <Route path="/sign-up" component={RegistrationPane} />
+          <Route path="/sendrecovery" component={SendRecovery} />
+          <Route path="/recoverypassword/:token" render={(props => <RestartPassword {...props}/>)}/>
           <Route
             exact
             path="/"
@@ -115,7 +120,7 @@ const Root = () => (
       </Router>
     </Div100vh>
   </Provider>
-);
+)};
           
 
 export default Root;

@@ -29,6 +29,12 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
     getUserWeights();
     getUserDetails();
   }
+  function onHandleInputChange(e){
+    const regexp =/^[0-9\b]+$/;
+    if(e.target.value === '' || regexp.test(e.target.value)){
+      setWeight(Number(e.target.value));
+    }
+  }
   return(
     <>
     <div className={styles.wrapper} onClick={()=>setVisible(!visible)}>
@@ -40,7 +46,7 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
       <div className={styles.addWeight}>
         <div className={styles.weightInput}>
           <DatePicker className={styles.input} selected={date} onChange={date => setDate(date)} locale={pl}/>
-          <input className={styles.input} value={weight} placeholder='Nowa waga' onChange={e => setWeight(e.target.value)}/>
+          <input className={styles.input} value={weight} placeholder='Nowa waga' onChange={e => onHandleInputChange(e)}/>
         </div>
         <button type='button' className={styles.button} onClick={()=>helpFn()}><FontAwesomeIcon icon={faWeight}/></button>
 

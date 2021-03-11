@@ -26,6 +26,6 @@ export const getUsername = ()=>{
     }
         
 export const deleteUserToken = () => {
-    
     cookie.remove("usertoken");
+    history.push('/login');
 }

@@ -1,30 +1,57 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import styles from 'components/trainingComponents/organisms/WorkoutModal/WorkoutModal.module.scss';
 import SearchTrainingModal from 'components/trainingComponents/organisms/SearchTrainingModal/SearchTrainingModal';
+import Training from 'components/trainingComponents/organisms/Training/Training';
+import {  saveTraining } from 'actions/index';
 
-const WorkoutModal = ({closeModal})=> {
+const WorkoutModal = ({closeModal, saveTraining, exercises})=> {
 
-  const [trainingName, setTrainingName] = useState('Trening');
+  const [trainingName, setTrainingName] = useState('Nowy trening');
   const [searchModalVisible, setSearchModalVisible] = useState(false);
-  useEffect(()=>{
-    const time = new Date();
-    if (time.getHours()>=5 && time.getHours()<=11){
-      setTrainingName('Poranny trening')
-    }else if(time.getHours()>=12 && time.getHours()<=18){
-      setTrainingName('Popołudniowy trening')
+  const [editName, setEditName] = useState(false);
+  const [error, setError] = useState(null);
+
+  function finishFn(){
+    if(exercises.length<=0){
+      setError('Przed zapisaniem treningu, musisz dodać ćwiczenia.')
     }else{
-      setTrainingName('Wieczorny trening')
+      setError(null);
+      saveTraining(trainingName, exercises)
+      closeModal();
     }
-  })
+
+  }
+  function addFn(){
+    setSearchModalVisible(true)
+    setError(null);
+  }
   return(
     <div className={styles.wrapper}>
       <button type='button' className={styles.cancelButton} onClick={closeModal}>Anuluj</button>
-      <h1 className={styles.trainingName}>{trainingName}</h1>
-      <button type='button' className={styles.addButton} onClick={()=>setSearchModalVisible(true)}>Dodaj ćwiczenie</button>
+      {!editName? <h1 className={styles.trainingName}>{trainingName}<button className={styles.nameButton} type='button' onClick={()=>setEditName(true)}><FontAwesomeIcon icon={faPencilAlt}/></button></h1> :
+        <>
+          <input value={trainingName} onChange={e=>setTrainingName(e.target.value)} className={styles.trainingInputName}/>
+          <button type='button' className={styles.nameButton} onClick={()=>setEditName(false)}><FontAwesomeIcon icon={faCheck}/></button>
+        </>
+      }
+      <Training/>
+      <button type='button' className={styles.addButton} onClick={()=>addFn()}>Dodaj ćwiczenie</button>
       {searchModalVisible ? <SearchTrainingModal closeModalFn={()=>setSearchModalVisible(false)}/> : null}
-      <button type='button' className={styles.finishButton} onClick={()=>console.log('finish')}>Zakończ trening</button>
+      <button type='button' className={styles.finishButton} onClick={()=>finishFn()}>Zakończ trening</button>
+      {error==null ? null : <p className={styles.error}>{error}</p> }
     </div>
   )
 }
 
-export default WorkoutModal;
+const mapDispatchToProps = (dispatch) => ({
+  saveTraining: (trainingName,training) => dispatch(saveTraining(trainingName,training)),
+
+})
+const mapStateToProps = ({exercises}) => ({
+  exercises
+})
+
+export default connect(mapStateToProps,  mapDispatchToProps)(WorkoutModal);

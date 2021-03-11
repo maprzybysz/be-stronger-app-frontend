@@ -15,7 +15,13 @@ const totalCarbohydrates = Math.floor(carbohydrates*(totalGrammage/100));
 const totalProtein = Math.floor(protein*(totalGrammage/100))
 const totalFat = Math.floor(fat*(totalGrammage/100))
 
-const re = /^[0-9._\b]+$/;
+  function onHandleInputChange(e){
+    const regexp =/^[0-9\b]+$/;
+    if(e.target.value === '' || regexp.test(e.target.value)){
+      setTotalGrammage(Number(e.target.value));
+    }
+  }
+
   return (
   <div className={styles.wrapper}>
     <div className={styles.meal} onClick={()=>setVisible(!visible)}>
@@ -25,11 +31,11 @@ const re = /^[0-9._\b]+$/;
    {visible ?
   <>
     <div className={styles.totalsWrapper}>
-    <input className={styles.totalGrammage} type='number' pattern="[0-9]*" value={totalGrammage} onChange={(e)=> setTotalGrammage(re.test(e.target.value) ? e.target.value : '')}/><span className={styles.gram}>gram</span>
+    <input className={styles.totalGrammage} value={totalGrammage} onChange={(e)=> onHandleInputChange(e)}/><span className={styles.gram}>gram</span>
     <p className={styles.totals}>{`${totalGoodness}kcal W:${totalCarbohydrates}g B:${totalProtein}g T:${totalFat}g` }</p>
     </div> 
     <button type="submit" className={styles.button} onClick={() =>
-    addEatenMeal(name, mealTime, mealDate, totalGrammage,totalGoodness,totalProtein,totalCarbohydrates,)}><FontAwesomeIcon icon={faPlusCircle}/></button>
+    addEatenMeal(name, mealTime, mealDate, totalGrammage,totalGoodness,totalProtein,totalCarbohydrates,totalFat)}><FontAwesomeIcon icon={faPlusCircle}/></button>
      </>
    
     : null}

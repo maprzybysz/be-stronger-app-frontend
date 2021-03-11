@@ -1,10 +1,10 @@
-import { serverError, credentialsError } from 'assets/globalError';
 import {setUserToken} from 'service/cookieService';
 import history from 'history/history';
 
+
+
 const initialState = {
   date: new Date(),
-  error: '',
   meals: {
     breakfast: [],
     dinner: [],
@@ -17,7 +17,13 @@ const initialState = {
   userDetails: {},
   userTMR: {},
   articles: [],
-  article: {}
+  article: {},
+  findExercises:[],
+  presentExercise: '',
+  exercises: [],
+  messageRegistration: null,
+  errorRegistration: null,
+  errorLogin: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,37 +42,38 @@ const rootReducer = (state = initialState, action) => {
       setUserToken(action.payload.data.token)
       history.push('/');
       return {
-        ...state
+        ...state,
+        errorLogin: null,
+        errorRegistration: null
       }
     }
     case 'AUTHENTICATE_FAILURE': {
-      let errorPl = '';
-      if(action.error.toString().substring(7, action.error.toString().length)==='Request failed with status code 401'){
-         errorPl = credentialsError;
-      }else if(action.error.toString().substring(7, action.error.toString().length)==='Network Error'){
-        errorPl = serverError;
-      }
       return {
         ...state,
-        error: errorPl
+        errorLogin: action.error.toString().substring(7, action.error.toString().length)
       }
     }
-    case 'Network Error': {
+    case 'REGISTRATION_SUCCES': {
       return {
         ...state,
-        error: serverError
-      }
-    }
-    case 'Request failed with status code 401': {
-      return {
-          ...state,
-      }
-    }
+        messageRegistration: 'Rejestracja pomyślna. Na Twój mail został wysłany link aktywacyjny',
+        errorRegistration: null,
+        errorLogin: null,
 
+      };
+    }
     case 'REGISTRATION_FAILURE': {
+      console.log(action.error.response)
+      let error = '';
+      try{
+        error = action.error.response.data
+      }catch (e){
+        error = action.error.toString().substring(7, action.error.toString().length)
+      }
       return {
         ...state,
-        error: action.error.toString().substring(7, action.error.toString().length),
+        errorRegistration: error,
+        errorLogin: null,
       };
     }
     case 'UPDATE_MEALS_SUCCESS': {
@@ -153,6 +160,12 @@ const rootReducer = (state = initialState, action) => {
         userWeights: action.payload.data
       }
     }
+    case 'UPDATE_HEIGHT_SUCCESS': {
+      return {
+        ...state,
+        userDetails: {...state.userDetails, height: action.height}
+      }
+    }
     case 'GET_WEIGHTS_FAILURE': {
       return {
         ...state,
@@ -191,6 +204,59 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         article: action.payload.data
+      }
+    }
+    case 'SEARCH_EXERCISES_SUCCESS':{
+      return {
+        ...state,
+        findExercises: action.payload.data
+      }
+    }
+    case 'NEXT_EXERCISE': {
+      const temp = [...state.exercises, {exerciseName: action.name,
+        series:[]}]
+      return {
+        ...state,
+        presentExercise: action.name,
+        exercises: temp
+      }
+    }
+    case 'ADD_SERIES':{
+      const temp = state.exercises.map((item, index)=>action.id===index ? {...item,
+      series:[...item.series, {weight: 'empty', repeatNumber: 'empty'}]} : item);
+      return {
+        ...state,
+        exercises: temp
+      }
+    }
+    case 'UPDATE_SERIES':{
+      const temp = state.exercises.map((item, index)=>action.payload.exerciseId === index ? {...item,
+        series: item.series.map((series, index)=>index===action.payload.seriesId ? {numberRepeat: action.payload.numberRepeat, weight: action.payload.weight} : series)
+      } : item)
+      return {
+        ...state,
+        exercises: temp
+      }
+    }
+    case 'DELETE_SERIES':{
+      const temp = state.exercises.map((item, index)=>action.payload.exerciseId===index ? {...item,
+        series: item.series.filter((series, index) => index !== action.payload.seriesId)} : item);
+      return {
+        ...state,
+        exercises: temp
+      }
+    }
+    case 'DELETE_EXERCISE':{
+      const temp = state.exercises.filter((item, index) => index !== action.exerciseId);
+      return {
+        ...state,
+        exercises: temp
+      }
+    }
+    case 'SAVE_TRAINING_SUCCESS':{
+      return {
+        ...state,
+        exercises: []
       }
     }
 

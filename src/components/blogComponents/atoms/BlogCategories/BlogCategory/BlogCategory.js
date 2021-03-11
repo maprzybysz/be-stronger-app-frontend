@@ -6,7 +6,7 @@ import styles from 'components/blogComponents/atoms/BlogCategories/BlogCategory/
 
 
 const BlogCategory = ({category, background, url}) => (
-  <li className={styles.item} style={{backgroundImage: `url(${background})`}} onClick={()=>history.push(`/blog/:${url}`)}>{category}</li>
+  <li className={styles.item} style={{backgroundImage: `url(${background})`}} onClick={()=>history.push(`/blog/${url}`)}>{category}</li>
 )
 
 BlogCategory.propTypes = {

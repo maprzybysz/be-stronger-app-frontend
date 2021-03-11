@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,27 +12,30 @@ const UserHeight = ({userHeight, updateUserHeight}) => {
   const [visible, setVisible] = useState(true);
   const [height, setHeight] = useState(userHeight);
 
-  useEffect(() => {
-    setHeight(userHeight);
-  }, [userHeight])
-
   const handleChange = () => {
-    if(userHeight!==height){
+    if(userHeight!==height && height>0){
       updateUserHeight(height);
     }
     setVisible(true);
    }
 
+  function onHandleInputChange(e){
+    const regexp =/^[0-9\b]+$/;
+    if(e.target.value === '' || regexp.test(e.target.value)){
+      setHeight(Number(e.target.value));
+    }
+  }
+
   return(
     <div className={styles.wrapper} onClick={visible ? ()=>setVisible(!visible) : null} >
       <p className={styles.activity} >Wzrost: {visible ?
         (
-          <p className={styles.activity}>{height}</p>
+          <p className={styles.activity}>{height===undefined ? userHeight : height}</p>
         ):
         (
           <p className={styles.activity}>
-            <input type='number' className={styles.input} value={height} onChange={(e)=>setHeight(e.target.value)}/>
-            <p onClick={handleChange} className={styles.add}>zmiana</p>
+            <input className={styles.input} value={height} onChange={e => onHandleInputChange(e)}/>
+            <p onClick={()=>handleChange()} className={styles.add}>zmiana</p>
           </p>
           )
       }
@@ -44,7 +47,7 @@ const UserHeight = ({userHeight, updateUserHeight}) => {
 
 UserHeight.propTypes = {
   userHeight: PropTypes.number.isRequired,
-  updateUserHeight: PropTypes.func.isRequired
+
 }
 
 const mapDispatchToProps = (dispatch) => ({

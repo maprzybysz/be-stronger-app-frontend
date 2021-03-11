@@ -6,7 +6,7 @@ import styles from 'components/blogComponents/atoms/Article/Article.module.scss'
 
 const Article = ({match, getArticleById, article}) => {
 
-  const id = match.params.id.slice(1, match.params.id.length)
+  const { id } = match.params;
 
   useEffect(()=>{
     getArticleById(id);
@@ -18,7 +18,6 @@ const Article = ({match, getArticleById, article}) => {
     <img src={article.url} alt='articleIMG' className={styles.img}/>
     <h1 className={styles.title}>{article.title}</h1>
     <div className={styles.content}>{article.content} {article.content}</div>
-
     </div>
 
   )

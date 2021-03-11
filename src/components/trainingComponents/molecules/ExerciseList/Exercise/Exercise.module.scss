@@ -1,0 +1,23 @@
+.wrapper{
+  padding: 5px;
+}
+.name{
+  width: 90%;
+  font-size: 28px;
+  padding: 0 0 5px 10px;
+  color: #91c4d9;
+  display: inline-block;
+}
+.button{
+  width: 10%;
+  height: 30px;
+  border: none;
+  background: none;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+}
+.nameWrapper{
+  display: flex;
+  align-items: center;
+}

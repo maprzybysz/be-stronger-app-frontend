@@ -43,3 +43,22 @@
   @extend .addButton;
   background-color: green;
 }
+.error{
+  color: red;
+  text-align: center;
+}
+.trainingInputName{
+  @extend .trainingName;
+  width: 75%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  margin-bottom: 5px;
+}
+.nameButton{
+  background: none;
+  color: white;
+  border: none;
+  margin-left: 4px;
+  cursor: pointer;
+}
