@@ -24,9 +24,9 @@ const UserActivity = ({userActivity, updateUserActivity})=> {
 
   return(
     <div className={styles.wrapper} onClick={visible ? ()=>setVisible(!visible) : null}>
-      <p className={styles.activity}>Aktywność: {visible ?
+      <div className={styles.activity}>Aktywność: {visible ?
       (
-        <p className={styles.activity}>{activity}</p>
+        <div className={styles.activity}>{activity}</div>
       ):
       (
         <select value={activity} onChange={handleChange}  className={styles.activity}>
@@ -37,8 +37,8 @@ const UserActivity = ({userActivity, updateUserActivity})=> {
         </select>
     )
     }
-      </p>
-      <FontAwesomeIcon icon={visible ? faAngleDown : faAngleLeft} className={styles.arrow}/>
+      </div>
+      <FontAwesomeIcon icon={visible ? faAngleDown : faAngleLeft} className={styles.arrow} onClick={()=>setVisible(!visible)}/>
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import history from 'history/history';
-import styles from 'components/nutritionComponents/atoms/MealBookList/MealBook/MealBook.module.scss';
+import styles from 'components/nutritionComponents/atoms/MealBookList/MealBookItem/MealBookItem.module.scss';
 import PropTypes from 'prop-types';
 
-const MealBook = ({name}) => {
+const MealBookItem = ({name}) => {
 
   const redirect = () => {
     history.push(`/nutrition/mealsbook/:${name}`)
@@ -13,10 +13,10 @@ const MealBook = ({name}) => {
     )
 }
  
-MealBook.propTypes = {
+MealBookItem.propTypes = {
   name: PropTypes.string.isRequired
 }
-export default MealBook; 
+export default MealBookItem;
 
    
         

@@ -17,7 +17,7 @@
   justify-content: space-around;
 }
 .value {
-  width: 25%;
+  min-width: 25%;
   display: inline-block;
   color: $cyan;
   font-size: 13px;

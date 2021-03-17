@@ -23,10 +23,10 @@ const Article = ({match, getArticleById, article}) => {
   )
 }
 
-Article.propTypes= {
-  match: PropTypes.shape({params: PropTypes.shape({id: PropTypes.string})}).isRequired,
+Article.propTypes = {
+  article: PropTypes.objectOf().isRequired,
   getArticleById: PropTypes.func.isRequired,
-
+  match: PropTypes.shape().isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -63,7 +63,11 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
 UserWeight.propTypes = {
   addWeight: PropTypes.func.isRequired,
   getUserWeights: PropTypes.func.isRequired,
-  userWeights: PropTypes.number.isRequired,
+  userWeights: PropTypes.arrayOf(
+    PropTypes.shape({
+
+    })
+  ).isRequired,
   userWeight: PropTypes.number.isRequired,
   getUserDetails: PropTypes.func.isRequired,
 }

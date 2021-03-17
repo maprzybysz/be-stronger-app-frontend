@@ -1,0 +1,91 @@
+.wrapper{
+  position: fixed;
+  top: 20%;
+  width: 100%;
+  height: 75%;
+  background-color: black;
+  border-top: 1px solid white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: scroll;
+}
+.cancelButton{
+  width: 55px;
+  height: 25px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.title{
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.error {
+  color: red;
+  text-align: center;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.input {
+  margin: 5px auto;
+  display: block;
+  width: 75%;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  -moz-appearance: textfield;
+  color: black;
+  &::placeholder{
+    opacity: 0.75;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+.detailsButton{
+  border: none;
+  background: none;
+  border-bottom: 1px solid white;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+.inputTextArea{
+  @extend .input;
+  min-height: 25px;
+  max-height: 100px;
+  overflow: scroll;
+  &::placeholder{
+    opacity: 0.75;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+.addButton{
+  width: 200px;
+  height: 25px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}

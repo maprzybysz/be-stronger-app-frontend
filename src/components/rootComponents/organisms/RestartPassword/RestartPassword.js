@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import styles from 'components/rootComponents/organisms/RestartPassword/RestartPassword.module.scss';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { restartPassword } from 'actions/index';
+import { translateMessageError } from 'assets/globalError';
+
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
@@ -20,7 +23,7 @@ const LoginSchema = Yup.object().shape({
     .oneOf([Yup.ref('password'), null], 'Hasła nie pasują do siebie!')
 });
 
-const RestartPassword = ({restartPassword, match})=>{
+const RestartPassword = ({restartPassword, match, restartPasswordMessage, errorRestartPassword})=>{
 
   const { token } = match.params;
 
@@ -30,7 +33,6 @@ const RestartPassword = ({restartPassword, match})=>{
       <FontAwesomeIcon icon={faTimes}/>
     </Link>
     <h1 className={styles.h1}>Restartowanie hasła</h1>
-    <p className={styles.description}>Wprowadź nowe hasło</p>
     <Formik
       initialValues={{ password: '', confirmPassword: ''}}
       validationSchema={LoginSchema}
@@ -39,7 +41,9 @@ const RestartPassword = ({restartPassword, match})=>{
       }}
     >
       {({ errors, touched }) => (
-        <Form className={styles.loginForm}>
+        <Form className={styles.restartForm}>
+          {restartPasswordMessage!==null ? <p className={styles.message}>{restartPasswordMessage}</p>: <>
+          <p className={styles.description}>Wprowadź nowe hasło</p>
           <Field type="password" placeholder="hasło" name="password" className={styles.input} />
           {errors.password && touched.password ? (
             <div className={styles.error}>{errors.password}</div>
@@ -53,17 +57,28 @@ const RestartPassword = ({restartPassword, match})=>{
           {errors.confirmPassword && touched.confirmPassword ? (
             <div className={styles.error}>{errors.confirmPassword}</div>
           ) : null}
-          <button type="submit" className={styles.loginButton}>
+          <button type="submit" className={styles.button}>
             Restartuj hasło
           </button>
+            {errorRestartPassword ? <p className={styles.error}>{translateMessageError(errorRestartPassword)}</p> : null}
+        </>}
         </Form>
       )}
     </Formik>
   </div>
 )};
 
+const mapStateToProps = ({restartPasswordMessage, errorRestartPassword}) => ({restartPasswordMessage, errorRestartPassword})
+
 const mapDispatchToProps = (dispatch) => ({
   restartPassword: (token, password, confirmPassword) => dispatch(restartPassword(token, password, confirmPassword)),
 });
 
-export default connect(null, mapDispatchToProps)(RestartPassword);
+RestartPassword.propTypes = {
+  errorRestartPassword: PropTypes.string.isRequired,
+  match: PropTypes.shape({params: PropTypes.shape({token: PropTypes.string})}).isRequired,
+  restartPassword: PropTypes.func.isRequired,
+  restartPasswordMessage: PropTypes.string.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestartPassword);

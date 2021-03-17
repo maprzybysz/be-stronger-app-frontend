@@ -8,13 +8,16 @@
   border-bottom: 1px solid #91c4d9;
   padding: 5px;
   font-weight: 500;
+  position: relative;
+
 }
 .activity {
   display: inline;
 }
 .arrow{
-  position: absolute;
+  position:absolute;
   right: 10px;
   color: #0d0d0d;
   font-size: 28px;
+
 }

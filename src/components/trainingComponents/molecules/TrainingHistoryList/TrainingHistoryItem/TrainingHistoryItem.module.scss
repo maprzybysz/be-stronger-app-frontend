@@ -1,0 +1,34 @@
+.wrapper{
+  width: 80%;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid white;
+  border-radius: 15px;
+  position: relative;
+
+}
+.name{
+  color: white;
+  font-size: 20px;
+}
+.time{
+  color: gray;
+  font-size: 12px;
+}
+.exercises{
+  color: white;
+  font-size: 16px;
+}
+
+.button{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #d9042b;
+  cursor: pointer;
+}

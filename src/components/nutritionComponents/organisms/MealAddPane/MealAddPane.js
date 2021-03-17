@@ -5,34 +5,40 @@ import {searchMeals} from 'actions'
 import { dateToString } from 'assets/dateName';
 import PropTypes from 'prop-types';
 import FindMealList from 'components/nutritionComponents/atoms/FindMealList/FindMealList';
+import CreateMealButton from 'components/nutritionComponents/atoms/CreateMealButton/CreateMealButton';
+import CreateMealModal from 'components/nutritionComponents/organisms/CreateMealModal/CreateMealModal';
 
 const MealAddPane = ({date, match, findMeals, searchMeals}) => {
 
   const [mealName, setMealName] = useState('');
   const [mealTime, setMealTime] = useState('');
   const [mealDate, setMealDate] = useState('');
+  const [createModalVisible, setCreateModalVisible] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     setMealTime(match.params.mealtime.toUpperCase());
     setMealDate(dateToString(date));
-    if(mealName.length>=3){
+    if (mealName.length >= 3) {
       searchMeals(mealName);
     }
-    }, [mealName])
+  }, [mealName])
 
 
-        
-    return (
-             <div className={styles.wrapper}>
-             <div className={styles.searchWrapper}>
+  return (
+    <>
+      <div className={styles.wrapper}>
+          <div className={styles.searchWrapper}>
             <h1 className={styles.title}>{mealTime}</h1>
-            <input type='text' value={mealName} onChange={(e)=>setMealName(e.target.value)} placeholder='Wpisz nazwę...' className={styles.input}/>
-             </div>
-               <div className={styles.listWrapper}> <FindMealList meals={findMeals} mealTime={mealTime} mealDate={mealDate}/></div>
-             </div>
-            
-        );
-
+            <input type='text' value={mealName} onChange={(e) => setMealName(e.target.value)}
+                   placeholder='Wpisz nazwę...' className={styles.input} />
+          </div>
+          <div className={styles.listWrapper}><FindMealList meals={findMeals} mealTime={mealTime} mealDate={mealDate} />
+          </div>
+          <CreateMealButton openModalFn={() => setCreateModalVisible(true)} />
+        </div>
+      {createModalVisible ? <CreateMealModal closeModalFn={()=>setCreateModalVisible(false)}/> : null }
+    </>
+  );
 }
 
 MealAddPane.propTypes = {

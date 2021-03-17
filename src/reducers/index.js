@@ -1,4 +1,5 @@
 import {setUserToken} from 'service/cookieService';
+import {v4 as uuidv4} from  'uuid';
 import history from 'history/history';
 
 
@@ -14,16 +15,22 @@ const initialState = {
   findMeals: [],
   shoppingList: [],
   userWeights: [],
-  userDetails: {},
+  userDetails: null,
   userTMR: {},
   articles: [],
   article: {},
   findExercises:[],
   presentExercise: '',
   exercises: [],
+  trainingHistory: [],
   messageRegistration: null,
   errorRegistration: null,
-  errorLogin: null
+  errorLogin: null,
+  recoveryMessage: null,
+  errorRecovery: null,
+  deleteMessage: null,
+  errorRestartPassword: null,
+  restartPasswordMessage: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -43,8 +50,14 @@ const rootReducer = (state = initialState, action) => {
       history.push('/');
       return {
         ...state,
+        messageRegistration: null,
+        errorRegistration: null,
         errorLogin: null,
-        errorRegistration: null
+        recoveryMessage: null,
+        errorRecovery: null,
+        deleteMessage: null,
+        errorRestartPassword: null,
+        restartPasswordMessage: null
       }
     }
     case 'AUTHENTICATE_FAILURE': {
@@ -53,17 +66,34 @@ const rootReducer = (state = initialState, action) => {
         errorLogin: action.error.toString().substring(7, action.error.toString().length)
       }
     }
+    case 'REGISTRATION':{
+      return {
+        ...state,
+        messageRegistration: null,
+        errorRegistration: null,
+        errorLogin: null,
+        recoveryMessage: null,
+        errorRecovery: null,
+        deleteMessage: null,
+        errorRestartPassword: null,
+        restartPasswordMessage: null
+      }
+    }
     case 'REGISTRATION_SUCCES': {
       return {
         ...state,
         messageRegistration: 'Rejestracja pomyślna. Na Twój mail został wysłany link aktywacyjny',
         errorRegistration: null,
         errorLogin: null,
+        recoveryMessage: null,
+        errorRecovery: null,
+        deleteMessage: null,
+        errorRestartPassword: null,
+        restartPasswordMessage: null
 
       };
     }
     case 'REGISTRATION_FAILURE': {
-      console.log(action.error.response)
       let error = '';
       try{
         error = action.error.response.data
@@ -113,20 +143,9 @@ const rootReducer = (state = initialState, action) => {
       }
     }
     case 'SEARCH_MEAL_SUCCESS':{
-
       return {
         ...state,
         findMeals: action.payload.data
-      }
-    }
-    case 'SEARCH_MEAL_FAILURE':{
-      return {
-        ...state,
-      }
-    }
-    case 'SAVE_EATENMEAL_SUCCES':{
-      return {
-        ...state
       }
     }
     case 'GET_SHOPPING_LIST_SUCCESS':{
@@ -143,17 +162,13 @@ const rootReducer = (state = initialState, action) => {
       }
     }
     case 'ADD_SHOPPING_LIST_ELEMENT_SUCCES': {
-      const newShoppingList = [...state.shoppingList, {name: action.productName}];
+      const newShoppingList = [...state.shoppingList, {listElement: action.productName, id: Math.random()}];
       return {
         ...state,
         shoppingList: newShoppingList
       }
     }
-    case 'ADD_WEIGHT_SUCCESS': {
-      return {
-        ...state,
-      }
-    }
+
     case 'GET_WEIGHTS_SUCCESS': {
       return {
         ...state,
@@ -166,11 +181,7 @@ const rootReducer = (state = initialState, action) => {
         userDetails: {...state.userDetails, height: action.height}
       }
     }
-    case 'GET_WEIGHTS_FAILURE': {
-      return {
-        ...state,
-      }
-    }
+
     case 'GET_WEIGHT_SUCCESS': {
       return {
         ...state,
@@ -181,11 +192,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userDetails: action.payload.data
-      }
-    }
-    case 'UPDATE_ACTIVITY_SUCCESS':{
-      return {
-        ...state,
       }
     }
     case 'GET_TMR_SUCCESS':{
@@ -223,7 +229,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case 'ADD_SERIES':{
       const temp = state.exercises.map((item, index)=>action.id===index ? {...item,
-      series:[...item.series, {weight: 'empty', repeatNumber: 'empty'}]} : item);
+      series:[...item.series, {weight: 'empty', repeatNumber: 'empty', key: uuidv4()}]} : item);
       return {
         ...state,
         exercises: temp
@@ -231,7 +237,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case 'UPDATE_SERIES':{
       const temp = state.exercises.map((item, index)=>action.payload.exerciseId === index ? {...item,
-        series: item.series.map((series, index)=>index===action.payload.seriesId ? {numberRepeat: action.payload.numberRepeat, weight: action.payload.weight} : series)
+        series: item.series.map((series, index)=>index===action.payload.seriesId ? {...series, repeatNumber: action.payload.repeatNumber, weight: action.payload.weight} : series)
       } : item)
       return {
         ...state,
@@ -253,13 +259,89 @@ const rootReducer = (state = initialState, action) => {
         exercises: temp
       }
     }
+    case 'DELETE_TRAINING':{
+      return {
+        ...state,
+        exercises: []
+      }
+    }
+    case 'GET_TRAINING_HISTORY_SUCCESS':{
+      return {
+        ...state,
+        trainingHistory: action.payload.data
+      }
+    }
     case 'SAVE_TRAINING_SUCCESS':{
       return {
         ...state,
         exercises: []
       }
     }
+    case 'DELETE_TRAINING_SUCCESS':{
+      return {
+        ...state,
+        trainingHistory: state.trainingHistory.filter((item)=>item.id !==action.id)
+      }
+    }
+    case 'SEND_RECOVERY_SUCCESS':{
+      return {
+        ...state,
+        recoveryMessage: 'Link został wysłany na twój adres',
+        messageRegistration: null,
+        errorRegistration: null,
+        errorLogin: null,
+        errorRecovery: null,
+        deleteMessage: null,
+        errorRestartPassword: null,
+      }
+    }
+    case 'SEND_RECOVERY_FAILURE':{
+      let error = '';
+      try{
+        error = action.error.response.data
+      }catch (e){
+        error = action.error.toString().substring(7, action.error.toString().length)
+      }
+      return {
+        ...state,
+        recoveryMessage: null,
+        errorRecovery: error
+      }
+    }
+    case 'RESTART_PASSWORD_SUCCESS':{
+      return {
+        ...state,
+        restartPasswordMessage: 'Hasło zostało zmienione, możesz się zalogować',
+        messageRegistration: null,
+        errorRegistration: null,
+        errorLogin: null,
+        recoveryMessage: null,
+        errorRecovery: null,
+        deleteMessage: null,
+        errorRestartPassword: null,
+      }
+    }
+    case 'RESTART_PASSWORD_FAILURE':{
+      let error = '';
+      try{
+        error = action.error.response.data
+      }catch (e){
+        error = action.error.toString().substring(7, action.error.toString().length)
+      }
+      return {
+          ...state,
+          errorRestartPassword: error,
+        restartPasswordMessage: null
 
+
+      }
+    }
+    case 'SEND_DELETE_TOKEN_SUCCESS':{
+      return {
+        ...state,
+        deleteMessage: 'Na twój adres mail został wysłany link do usunięcia konta'
+      }
+    }
     default:
       return state;
   }

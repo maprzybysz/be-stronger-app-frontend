@@ -28,27 +28,28 @@ const UserHeight = ({userHeight, updateUserHeight}) => {
 
   return(
     <div className={styles.wrapper} onClick={visible ? ()=>setVisible(!visible) : null} >
-      <p className={styles.activity} >Wzrost: {visible ?
+      <div className={styles.activity} >Wzrost: {visible ?
         (
-          <p className={styles.activity}>{height===undefined ? userHeight : height}</p>
+          <div className={styles.activity}>{height===undefined ? userHeight : height}</div>
         ):
         (
-          <p className={styles.activity}>
+          <div className={styles.activity}>
             <input className={styles.input} value={height} onChange={e => onHandleInputChange(e)}/>
             <p onClick={()=>handleChange()} className={styles.add}>zmiana</p>
-          </p>
+          </div>
           )
       }
-      </p>
-      <FontAwesomeIcon icon={visible ? faAngleDown : faAngleLeft} className={styles.arrow}/>
+      </div>
+      <FontAwesomeIcon icon={visible ? faAngleDown : faAngleLeft} className={styles.arrow} onClick={()=>setVisible(!visible)}/>
     </div>
   )
 }
 
 UserHeight.propTypes = {
   userHeight: PropTypes.number.isRequired,
-
+  updateUserHeight: PropTypes.func.isRequired
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
   updateUserHeight: (height)=> dispatch(updateUserHeight(height))

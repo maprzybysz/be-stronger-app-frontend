@@ -1,15 +1,15 @@
 import React from 'react';
-import MealBook from 'components/nutritionComponents/atoms/MealBookList/MealBook/MealBook';
+import MealBookItem from 'components/nutritionComponents/atoms/MealBookList/MealBookItem/MealBookItem';
 import styles from 'components/nutritionComponents/atoms/MealBookList/MealBookList.module.scss';
 import PropTypes from 'prop-types';
 
+
 const MealBookList = ({meals}) => (
-    
-     <> 
+  <>
     {meals.length !== 0 ? (
       <ul className={styles.wrapper}>
         {meals.map((item) => (
-          <MealBook
+          <MealBookItem
             key={item.id}
             id={item.id}
             name={item.name}
@@ -17,10 +17,10 @@ const MealBookList = ({meals}) => (
         ))}
       </ul>
     ) : null 
-      
-
     }
+
     </>
+
    
 );
 

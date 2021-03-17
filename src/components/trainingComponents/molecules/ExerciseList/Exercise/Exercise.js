@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +17,14 @@ const Exercise = ({name, series, id, deleteExercise})=>(
 
   </li>
 )
+Exercise.propTypes = {
+  deleteExercise: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  series: PropTypes.arrayOf().isRequired
+}
 const mapDispatchToProps = (dispatch) => ({
   deleteExercise: (exerciseId) => dispatch(deleteExercise(exerciseId)),
 })
+
 export default connect(null, mapDispatchToProps)(Exercise);

@@ -25,9 +25,9 @@ const UserGoal = ({userGoal, updateUserGoal})=> {
 
   return(
     <div className={styles.wrapper} onClick={visible ? ()=>setVisible(!visible) : null}>
-      <p className={styles.activity}>Cel: {visible ?
+      <div className={styles.activity}>Cel: {visible ?
       (
-        <p className={styles.activity}>{goal}</p>
+        <div className={styles.activity}>{goal}</div>
       ):
       (
         <select value={goal} onChange={handleChange} className={styles.activity}>
@@ -37,8 +37,8 @@ const UserGoal = ({userGoal, updateUserGoal})=> {
         </select>
       )
     }
-      </p>
-      <FontAwesomeIcon icon={visible ? faAngleDown : faAngleLeft} className={styles.arrow}/>
+      </div>
+      <FontAwesomeIcon icon={visible ? faAngleDown : faAngleLeft} className={styles.arrow} onClick={()=>setVisible(!visible)}/>
     </div>
   )
 }

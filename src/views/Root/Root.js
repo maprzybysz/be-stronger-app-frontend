@@ -1,7 +1,6 @@
-import React  from 'react';
-import GlobalStyle from 'theme/GlobalStyle';
+import React from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {  Provider } from 'react-redux';
 import {getUsername} from 'service/cookieService'
 import store from 'store';
 import BlogTemplate from 'components/templates/BlogTemplate/BlogTemplate';
@@ -28,14 +27,14 @@ import ArticlesList from 'components/blogComponents/atoms/ArticlesList/ArticlesL
 import Article from 'components/blogComponents/atoms/Article/Article';
 import SendRecovery from 'components/rootComponents/organisms/SendRecovery/SendRecovery';
 import RestartPassword from 'components/rootComponents/organisms/RestartPassword/RestartPassword';
+import TrainingHistory from 'components/templates/TrainingHistory/TrainingHistory';
 
 
 
-const Root = () => {
-  return(
+
+const Root = () => (
   <Provider store={store}>
     <Div100vh className={styles.wrapper}>
-      <GlobalStyle />
       <Router history = {history} >
         <Header />
         <Route path="/nutrition/" component={NutritionTopNav} />
@@ -93,9 +92,15 @@ const Root = () => {
             }
           />
         <Route
-            path="/training"
+          exact path="/training"
             render={() =>
              getUsername()==null  ? <Redirect to="/login" /> : <TrainingTemplate />
+            }
+          />
+          <Route
+            path="/training/history"
+            render={() =>
+              getUsername()==null  ? <Redirect to="/login" /> : <TrainingHistory />
             }
           />
           <Route
@@ -120,7 +125,6 @@ const Root = () => {
       </Router>
     </Div100vh>
   </Provider>
-)};
-          
+);
 
 export default Root;

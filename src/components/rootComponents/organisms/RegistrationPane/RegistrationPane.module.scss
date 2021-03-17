@@ -29,6 +29,12 @@
   border: none;
   border-radius: 10px;
   padding-left: 10px;
+  &::placeholder{
+    opacity: 0.75;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 600;
+  }
 }
 
 .input:first-of-type {
@@ -74,9 +80,7 @@
   transform: translate(-50%, 50%);
   text-transform: uppercase;
   cursor: pointer;
-  &:hover {
-    background-color: black;
-  }
+
 }
 .rules {
   width: 80%;
@@ -102,13 +106,7 @@
   color: white;
   padding: 3px;
 }
-.datePickerInput{
-  border-radius: 10px;
-  border: none;
-  display: block;
-  width: 75px;
-  margin-left: 5px;
-}
+
 .detailsWrapper{
   width: 80%;
   display: flex;
@@ -123,6 +121,13 @@
   border: none;
   -moz-appearance: textfield;
   margin-top: 5px;
+  &::placeholder{
+    opacity: 0.75;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+  }
 }
 .option{
   font-size: 10px;
@@ -130,5 +135,32 @@
 .label{
   margin-right: 5px;
   color: white;
-}
 
+}
+.loading{
+  font-size: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.datePickerInput{
+  border-radius: 10px;
+  border: none;
+  color: black;
+  background-color: white;
+  display: block;
+  width: 75px;
+  margin-left: 5px;
+}
+.select{
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+}
+.popper {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

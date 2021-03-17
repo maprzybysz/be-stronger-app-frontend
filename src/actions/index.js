@@ -22,11 +22,11 @@ export const chooseExercise = (name) => (dispatch) => {
 export const addSeries = (id)=> (dispatch)=>{
   return dispatch({type: "ADD_SERIES", id})
 }
-export const updateSeries = (seriesId, exerciseId, numberRepeat, weight)=>(dispatch)=>{
+export const updateSeries = (seriesId, exerciseId, repeatNumber, weight)=>(dispatch)=>{
   const payload={
     exerciseId,
     seriesId,
-    numberRepeat,
+    repeatNumber,
     weight
   }
   return dispatch({type: "UPDATE_SERIES", payload});
@@ -40,6 +40,9 @@ export const deleteSeries = (seriesId, exerciseId)=>(dispatch)=>{
 }
 export const deleteExercise = (exerciseId)=>(dispatch)=>{
   return dispatch({type: "DELETE_EXERCISE", exerciseId});
+}
+export const deleteUnsavedTraining = ()=>(dispatch)=>{
+  return dispatch({type: 'DELETE_TRAINING'})
 }
 export const authenticate = (username, password) => (dispatch) => {
   deleteUserToken();
@@ -55,8 +58,26 @@ export const authenticate = (username, password) => (dispatch) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE', error });
     });
 };
-
+export const saveTraining = (trainingName, exercises) => (dispatch) => {
+  return axios
+    .post(`${serverURL}/training/save/${getUsername()}`, {
+      trainingName,
+      exercises
+    },{
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then(() => {
+      dispatch({ type: 'SAVE_TRAINING_SUCCESS'});
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'SAVE_TRAINING_FAILURE', error });
+    });
+}
 export const registration = (username, password, email, rulesAccepted, birthday, userActivity ,userGoal, height, weight, sex) => (dispatch) => {
+  dispatch({ type: 'REGISTRATION'});
   axios
     .post(`${serverURL}/sign-up`, {
       username,
@@ -78,16 +99,27 @@ export const registration = (username, password, email, rulesAccepted, birthday,
     });
 };
 export const sendRecoveryToken = (username) => (dispatch) => {
-  console.log(username)
   return axios
     .get(`${serverURL}/send-recovery/${username}`, {
       })
     .then((payload) => {
-      dispatch({ type: 'SEND_TOKEN_SUCCESS', payload });
+      dispatch({ type: 'SEND_RECOVERY_SUCCESS', payload });
     })
     .catch((error) => {
       errorVerify(error, dispatch);
-      dispatch({ type: 'SEND_TOKEN_FAILURE', error });
+      dispatch({ type: 'SEND_RECOVERY_FAILURE', error });
+    });
+}
+export const sendDeleteToken = () => (dispatch) =>{
+  return axios
+    .get(`${serverURL}/send-delete-token/${getUsername()}`, {
+    })
+    .then((payload) => {
+      dispatch({ type: 'SEND_DELETE_TOKEN_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'SEND_DELETE_TOKEN_FAILURE', error });
     });
 }
 export const restartPassword = (token, password, confirmPassword) => (dispatch) => {
@@ -98,7 +130,7 @@ export const restartPassword = (token, password, confirmPassword) => (dispatch) 
       confirmPassword
     })
     .then((payload) => {
-      dispatch({ type: 'RESTART_PASSWORD_SUCCES', payload });
+      dispatch({ type: 'RESTART_PASSWORD_SUCCESS', payload });
     })
     .catch((error) => {
       dispatch({ type: 'RESTART_PASSWORD_FAILURE', error });
@@ -174,6 +206,23 @@ export const searchMeals = (mealName) => (dispatch) => {
       dispatch({ type: 'SEARCH_MEAL_FAILURE', error });
     });
 };
+export const addMeal = (name, grammage ,goodness, protein, carbohydrates, fat, description, imgUrl) => (dispatch) => {
+  return axios
+    .post(`${serverURL}/meal/addMeal`, {
+      name, grammage, goodness, protein, carbohydrates, fat, description, imgUrl, author: getUsername()
+    },{
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then(() => {
+      dispatch({ type: 'SAVE_MEAL_SUCCESS'});
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'SAVE_MEAL_FAILURE', error });
+    });
+}
 
 export const deleteMeal = (id) => (dispatch) => {
   return axios
@@ -411,21 +460,34 @@ export const searchExercises = (exerciseName) => (dispatch) => {
       dispatch({ type: 'SEARCH_EXERCISES_FAILURE', error });
     });
 };
-export const saveTraining = (trainingName, exercises) => (dispatch) => {
+
+export const getUserTrainings = () => (dispatch) => {
   return axios
-    .post(`${serverURL}/training/save/${getUsername()}`, {
-      trainingName,
-      exercises
-    },{
+    .get(`${serverURL}/training/trainings/${getUsername()}`, {
       headers: {
         'Authorization': `Bearer ${getUserToken()}`,
       },
     })
-    .then(() => {
-      dispatch({ type: 'SAVE_TRAINING_SUCCESS'});
+    .then((payload) => {
+      dispatch({ type: 'GET_TRAINING_HISTORY_SUCCESS', payload });
     })
     .catch((error) => {
       errorVerify(error, dispatch);
-      dispatch({ type: 'SAVE_TRAINING_FAILURE', error });
+      dispatch({ type: 'GET_TRAINING_HISTORY_FAILURE', error });
     });
 }
+export const deleteTraining = (id) => (dispatch) => {
+  return axios
+    .delete(`${serverURL}/training/delete/${id}`,{
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    } )
+    .then(() => {
+      dispatch({ type: 'DELETE_TRAINING_SUCCESS', id });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'DELETE_TRAINING_FAILURE', error });
+    });
+};

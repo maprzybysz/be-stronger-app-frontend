@@ -20,7 +20,7 @@ const MealDetails = ({match, findMeals}) => {
             <p className={styles.contentItem}>Białko: {findMeal.protein}g</p>
             <p className={styles.contentItem}>Węglowodany: {findMeal.carbohydrates}g</p>
             <p className={styles.contentItem}>Tłuszcze: {findMeal.fat}g</p>
-            <p className={styles.contentItem}>Opis: {findMeal.description}</p>
+        { findMeal.description ? <p className={styles.contentItem}>Opis: {findMeal.description}</p> : null}
     </div>
         <div className={styles.about}>Utworzono przez: {findMeal.author} {findMeal.createDate}</div>
     

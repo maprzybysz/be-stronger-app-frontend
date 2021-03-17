@@ -10,15 +10,16 @@
 }
 .button {
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   width: 90%;
   height: 30px;
   background-color: #91c4d9;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  color: white;
+  color: black;
   font-size: 20px;
+  font-weight: 400;
   &:hover{
     background-color: #6393a6;
   }

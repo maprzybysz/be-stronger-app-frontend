@@ -23,7 +23,7 @@ const ShoppingList = ({products, addShoppingListElement}) => {
       ))}
       <li className={styles.listItem}>{products.length + 1}.
         <input className={styles.input} type='text' placeholder='Dodaj produkt do listy zakupów' value={value} onChange={(e)=>setValue(e.target.value)}/>
-        <button type='button' onClick={() => helpFunction()} className={styles.button} ><FontAwesomeIcon icon={faPlus} /></button>
+        <button type='button' onClick={value.length>0 ? () => helpFunction() : null} className={styles.button} ><FontAwesomeIcon icon={faPlus} /></button>
       </li>
     </ul>
   )
@@ -31,7 +31,10 @@ const ShoppingList = ({products, addShoppingListElement}) => {
 }
 
 ShoppingList.propTypes = {
-  products: PropTypes.instanceOf(PropTypes.array).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    listElement: PropTypes.string
+  })).isRequired,
   addShoppingListElement: PropTypes.func.isRequired
 }
 

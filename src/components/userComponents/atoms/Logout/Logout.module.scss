@@ -1,0 +1,27 @@
+.wrapper{
+  width: 100%;
+  min-height: 10%;
+  background-color: rgba(#3b6d8c, 0.45);
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 1px solid #91c4d9;
+  padding: 5px;
+  font-weight: 500;
+  position: relative
+}
+.buttonWrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+.button{
+  background-color: red;
+  color: white;
+  width: 100px;
+  border: 2px solid white;
+  border-radius: 5px
+}
+
