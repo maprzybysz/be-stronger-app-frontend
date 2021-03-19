@@ -16,14 +16,14 @@ const TrainingTopNav = () => (
       <FontAwesomeIcon icon={faArrowLeft} />
     </Link>
     <NavLink
-       to="/training"
+      exact to="/training"
       className={styles.link}
       activeClassName={styles.linkActive}
     >
       <FontAwesomeIcon icon={faDumbbell} />
     </NavLink>
 
-    <NavLink  to="/training/history" className={styles.link} activeClassName={styles.linkActive}>
+    <NavLink to="/training/history" className={styles.link} activeClassName={styles.linkActive}>
       <FontAwesomeIcon icon={faHistory} />
     </NavLink>
     <NavLink exact to="/userdetails" className={styles.link} activeClassName={styles.linkActive}>

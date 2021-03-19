@@ -21,7 +21,20 @@ const TrainingHistory = ({getUserTrainings, trainingHistory}) => {
 
 TrainingHistory.propTypes = {
   getUserTrainings: PropTypes.func.isRequired,
-  trainingHistory: PropTypes.arrayOf().isRequired
+  trainingHistory: PropTypes.arrayOf(PropTypes.shape({
+    endTime: PropTypes.string,
+    exercises: PropTypes.arrayOf(
+      PropTypes.shape({
+        exerciseName: PropTypes.string,
+        series: PropTypes.arrayOf(PropTypes.shape({
+          weight: PropTypes.number,
+          repeatNumber: PropTypes.number,
+          key: PropTypes.string
+        }))
+      })),
+    id: PropTypes.number,
+    trainingName: PropTypes.string
+  })).isRequired
 }
 
 const mapStateToProps = ({trainingHistory}) => ({

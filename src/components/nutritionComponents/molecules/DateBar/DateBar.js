@@ -15,15 +15,11 @@ function DateBar({ previousDay, nextDay, date, updateMeals, getUserTMR}) {
     updateMeals(dateToString(date));
     getUserTMR(dateToString(date));
   });
-
-
-
   return (
     <div className={styles.wrapper}>
       <button type="button" onClick={previousDay} className={styles.arrow}>
         {'<'}
       </button> 
-    
       <Day
         dayMonth={previousDate.getDate()}
         month={monthName[previousDate.getMonth()]}
@@ -42,7 +38,6 @@ function DateBar({ previousDay, nextDay, date, updateMeals, getUserTMR}) {
         onClick={nextDay}
       />
 
-    
     
       <button type="button" onClick={nextDay} className={styles.arrow}>
         {'>'}

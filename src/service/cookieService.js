@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import history from 'history/history';
 
 export const setUserToken = (token)=>{
-    cookie.set("usertoken", token, {expires: 1})
+    cookie.set("usertoken", token, {expires: 1, SameSite: 'Lax'},  )
 }
 
 
@@ -22,8 +22,7 @@ export const getUsername = ()=>{
         history.push('/login');
         return null;;
     }
-       
-    }
+}
         
 export const deleteUserToken = () => {
     cookie.remove("usertoken");

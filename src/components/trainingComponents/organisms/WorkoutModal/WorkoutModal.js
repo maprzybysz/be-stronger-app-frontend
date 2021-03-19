@@ -7,6 +7,8 @@ import styles from 'components/trainingComponents/organisms/WorkoutModal/Workout
 import SearchTrainingModal from 'components/trainingComponents/organisms/SearchTrainingModal/SearchTrainingModal';
 import Training from 'components/trainingComponents/organisms/Training/Training';
 import { saveTraining, deleteUnsavedTraining } from 'actions/index';
+import WarningModal from '../../../rootComponents/atoms/WarningModal/WarningModal';
+
 
 const WorkoutModal = ({ closeModal, deleteUnsavedTraining, saveTraining, exercises }) => {
 
@@ -68,10 +70,11 @@ const WorkoutModal = ({ closeModal, deleteUnsavedTraining, saveTraining, exercis
         </>
       }
       <Training />
+
       <button type='button' className={styles.addButton} onClick={() => addFn()}>Dodaj ćwiczenie</button>
       {searchModalVisible ? <SearchTrainingModal closeModalFn={() => setSearchModalVisible(false)} /> : null}
       <button type='button' className={styles.finishButton} onClick={() => finishFn()}>Zakończ trening</button>
-      {error == null ? null : <p className={styles.error}>{error}</p>}
+      {error == null ? null : <WarningModal closeFn={()=>setError(null)} message={error}/>}
     </div>
   );
 };
@@ -79,7 +82,16 @@ const WorkoutModal = ({ closeModal, deleteUnsavedTraining, saveTraining, exercis
 WorkoutModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   deleteUnsavedTraining: PropTypes.func.isRequired,
-  exercises: PropTypes.arrayOf().isRequired,
+  exercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      exerciseName: PropTypes.string,
+      series: PropTypes.arrayOf(PropTypes.shape({
+        weight: PropTypes.number,
+        repeatNumber: PropTypes.number,
+        key: PropTypes.string
+      }))
+    })
+  ).isRequired,
   saveTraining: PropTypes.func.isRequired
 }
 

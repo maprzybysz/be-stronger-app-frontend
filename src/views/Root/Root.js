@@ -33,10 +33,11 @@ import TrainingHistory from 'components/templates/TrainingHistory/TrainingHistor
 
 
 const Root = () => (
+  <Router history = {history} >
   <Provider store={store}>
     <Div100vh className={styles.wrapper}>
-      <Router history = {history} >
-        <Header />
+
+      <Header />
         <Route path="/nutrition/" component={NutritionTopNav} />
         <Route path="/userdetails/" component={UserDetailsTopNav} />
         <Route path="/blog/" component={BlogTopNav} />
@@ -122,9 +123,10 @@ const Root = () => (
 
         </Switch>
         <Footer />
-      </Router>
+
     </Div100vh>
   </Provider>
+  </Router>
 );
 
 export default Root;

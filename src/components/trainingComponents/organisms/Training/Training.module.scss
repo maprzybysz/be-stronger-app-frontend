@@ -10,3 +10,23 @@
   text-align: center;
   font-size: 16px;
 }
+@media (min-width: 360px) {
+  .info{
+    font-size: 20px;
+  }
+}
+@media (min-height: 736px) {
+  .wrapper{
+    max-height: 75%;
+  }
+}
+@media (min-height: 812px) {
+  .wrapper{
+    max-height: 77%;
+  }
+}
+@media (min-width: 720px) {
+  .info{
+    font-size: 32px;
+  }
+}

@@ -24,4 +24,13 @@
     background-color: #6393a6;
   }
 }
-
+@media (min-width: 720px) {
+  .title{
+    font-size: 42px;
+  }
+  .button {
+    height: 60px;
+    font-size: 32px;
+    font-weight: 600;
+  }
+}

@@ -75,10 +75,14 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 RestartPassword.propTypes = {
-  errorRestartPassword: PropTypes.string.isRequired,
+  errorRestartPassword: PropTypes.string,
   match: PropTypes.shape({params: PropTypes.shape({token: PropTypes.string})}).isRequired,
   restartPassword: PropTypes.func.isRequired,
-  restartPasswordMessage: PropTypes.string.isRequired
+  restartPasswordMessage: PropTypes.string
+}
+RestartPassword.defaultProps = {
+  restartPasswordMessage: null,
+  errorRestartPassword: null,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestartPassword);

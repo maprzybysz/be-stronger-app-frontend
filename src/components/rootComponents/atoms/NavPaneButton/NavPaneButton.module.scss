@@ -5,7 +5,7 @@
   text-transform: uppercase;
   text-decoration: none;
   font-size: 32px;
-  font-weight: medium;
+  font-weight: $medium;
   color: $cyan-light;
   transition: 0.5s;
   margin-top: 5px;
@@ -19,7 +19,6 @@
     font-size: 36px;
     & .icon {
       transition: 0.5s;
-
       margin-right: 15px;
     }
   }
@@ -28,4 +27,19 @@
   @extend .link;
   opacity: 0.5;
 }
-
+@media (min-width: 414px) {
+  .link{
+    font-size: 36px;
+    &:hover{
+      font-size: 40px;
+    }
+  }
+}
+@media (min-width: 720px) {
+  .link{
+    font-size: 54px;
+    &:hover{
+      font-size: 64px;
+    }
+  }
+}

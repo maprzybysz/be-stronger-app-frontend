@@ -34,7 +34,14 @@ const mapStateToProps = ({findExercises}) => ({
 })
 SearchTrainingModal.propTypes = {
   closeModalFn: PropTypes.func.isRequired,
-  findExercises: PropTypes.func.isRequired,
+  findExercises: PropTypes.arrayOf(PropTypes.shape({
+    description: PropTypes.string,
+    exerciseCategory: PropTypes.string,
+    id: PropTypes.number,
+    imgUrl: PropTypes.string,
+    mediaUrl: PropTypes.string,
+    name: PropTypes.string
+  })).isRequired,
   searchExercises: PropTypes.func.isRequired
 }
 

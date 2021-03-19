@@ -16,7 +16,11 @@ const SeriesList = ({series, exerciseId, addSeries})=>(
 SeriesList.propTypes = {
   addSeries: PropTypes.func.isRequired,
   exerciseId: PropTypes.number.isRequired,
-  series: PropTypes.arrayOf().isRequired
+  series: PropTypes.arrayOf(PropTypes.shape({
+    weight: PropTypes.number,
+    repeatNumber: PropTypes.number,
+    key: PropTypes.string
+  })).isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({

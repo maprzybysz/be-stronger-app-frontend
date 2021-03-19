@@ -89,3 +89,41 @@
   cursor: pointer;
   text-transform: uppercase;
 }
+@media (min-width: 360px) {
+  .form{
+    margin-top: 5%;
+  }
+  .title{
+    font-size: 22px;
+  }
+}
+@media (min-width: 375px) {
+  .form{
+    margin-top: 10%;
+  }
+}
+@media (min-width: 720px) {
+  .cancelButton{
+    width: 100px;
+    height: 50px;
+    font-size: 24px;
+  }
+  .title{
+    font-size: 32px;
+  }
+  .error {
+    font-size: 18px;
+  }
+  .input {
+    height: 40px;
+    font-size: 24px;
+  }
+  .detailsButton{
+    font-size: 22px;
+  }
+  .addButton{
+    width: 300px;
+    height: 50px;
+    font-size: 24px;
+  }
+}

@@ -1,8 +1,5 @@
 import {setUserToken} from 'service/cookieService';
 import {v4 as uuidv4} from  'uuid';
-import history from 'history/history';
-
-
 
 const initialState = {
   date: new Date(),
@@ -45,9 +42,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         date: new Date(new Date(state.date).setDate(state.date.getDate() + 1)),
       };
-    case 'AUTHENTICATE_SUCCES': {
+    case 'AUTHENTICATE_SUCCESS': {
       setUserToken(action.payload.data.token)
-      history.push('/');
       return {
         ...state,
         messageRegistration: null,
@@ -220,7 +216,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case 'NEXT_EXERCISE': {
       const temp = [...state.exercises, {exerciseName: action.name,
-        series:[]}]
+        series:[], tempKey: uuidv4()}]
       return {
         ...state,
         presentExercise: action.name,
@@ -229,7 +225,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case 'ADD_SERIES':{
       const temp = state.exercises.map((item, index)=>action.id===index ? {...item,
-      series:[...item.series, {weight: 'empty', repeatNumber: 'empty', key: uuidv4()}]} : item);
+      series:[...item.series, {weight: 0, repeatNumber: 0, key: uuidv4()}]} : item);
       return {
         ...state,
         exercises: temp

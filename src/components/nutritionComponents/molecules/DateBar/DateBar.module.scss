@@ -10,8 +10,11 @@
 
 }
 .arrow {
- 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 10%;
+  height: 100%;
   color: white;
   font-size: 36px;
   background: none;
@@ -19,5 +22,13 @@
   cursor: pointer;
   &:hover {
     color: $red;
+  }
+}
+@media (min-width: 720px) {
+  .wrapper{
+    padding: 20px;
+  }
+  .arrow{
+    font-size: 42px;
   }
 }

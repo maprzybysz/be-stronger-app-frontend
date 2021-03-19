@@ -7,15 +7,17 @@ import { chooseExercise} from 'actions/index';
 
 
 
-const FindExercise = ({id, name, imgUrl, chooseExercise, closeModalFn})=> {
+const FindExercise = ({ name, imgUrl, chooseExercise, closeModalFn})=> {
 
   function helpFn(name){
     chooseExercise(name);
     closeModalFn();
   }
   return(
-  <li className={styles.wrapper} onClick={()=>helpFn(name)} key={id}>
-    <img src={imgUrl==null ? noImage : imgUrl} alt='exerciseIMG' className={styles.img}/>
+  <li className={styles.wrapper} onClick={()=>helpFn(name)}>
+    <div className={styles.wrapperImg}>
+      <img src={imgUrl==null ? noImage : imgUrl} alt='exerciseIMG' className={styles.img}/>
+    </div>
     <h1 className={styles.name}>{name}</h1>
   </li>
 )
@@ -24,9 +26,11 @@ const FindExercise = ({id, name, imgUrl, chooseExercise, closeModalFn})=> {
 FindExercise.propTypes = {
   chooseExercise: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  imgUrl: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string,
   name: PropTypes.string.isRequired
+}
+FindExercise.defaultProps={
+  imgUrl: ''
 }
 
 const mapDispatchToProps = (dispatch) => ({

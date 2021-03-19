@@ -8,43 +8,48 @@
 body{
   background-image: url('../../assets/img/background.png');
   font-family: 'Montserrat', sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
+
 .wrapper {
   width: 320px;
   height: 100vh;
 }
 @media (min-width: 360px) {
   .wrapper {
-    width: 360px;
+    width: 100vw;
   }
 }
 @media (min-width: 375px) {
   .wrapper {
-    width: 375px;
+    width: 100vw;
   }
+
 }
 @media (min-width: 414px) {
   .wrapper {
-    width: 414px;
+    width: 100vw;
+  }
+}
+@media (min-width: 720px) {
+  .wrapper {
+    width: 100vw;
   }
 }
 @media (min-width: 768px) {
   .wrapper {
-    width: 768px;
+    width: 100vw;
   }
 }
 @media (min-width: 1024px) {
   .wrapper {
     width: 1024px;
+    margin: 0 auto;
   }
 }
-@media (min-width: 1280px) {
-  .wrapper {
-    width: 1280px;
-  }
-}
-@media (min-width: 1440px) {
-  .wrapper {
-    width: 1440px;
-  }
-}
+
+

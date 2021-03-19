@@ -45,10 +45,15 @@
   text-align: center;
   padding: 5px;
 }
-.loginForm{
+.form{
   width: 100%;
   text-align: center;
   padding: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
 }
 .input{
   width: 60%;
@@ -65,7 +70,7 @@
   color: red;
   text-align: center;
 }
-.loginButton{
+.button{
   padding: 5px;
   margin: 5px;
   background-color: white;
@@ -73,9 +78,55 @@
   border-radius: 5px;
   width: 60%;
   cursor: pointer;
+  font-weight: 600;
 }
 .message{
-  margin-top: 40px;
+  display: block;
+  position: fixed;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
-
+}
+@media (min-width: 360px) {
+  .input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+@media (min-width: 720px) {
+  .wrapper{
+    width: 60%;
+    height: 40%;
+  }
+  .closePaneLink {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .h1{
+    font-size: 26px;
+  }
+  .description{
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    padding: 5px;
+  }
+  .input{
+    height: 40px;
+    font-size: 24px;
+  }
+  .error{
+    font-size: 18px;
+  }
+  .button{
+    width: 60%;
+    height: 40px;
+    font-size: 24px;
+  }
+  .message{
+    font-size: 26px;
+  }
 }

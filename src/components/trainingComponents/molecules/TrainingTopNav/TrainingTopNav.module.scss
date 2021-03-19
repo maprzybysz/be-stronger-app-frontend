@@ -15,3 +15,16 @@
 .linkActive {
   color: red;
 }
+@media (min-width: 360px) {
+  .link{
+    font-size: 22px;
+  }
+}
+@media (min-width: 720px) {
+  .wrapper{
+    padding: 0 40px;
+  }
+  .link{
+    font-size: 32px;
+  }
+}

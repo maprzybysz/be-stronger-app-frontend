@@ -41,3 +41,23 @@
     color: white;
     margin-left: 3px;
 }
+@media (min-width: 720px) {
+    .meal{
+        font-size: 24px;
+    }
+    .totals{
+        font-size: 22px;
+    }
+    .totalGrammage{
+        width: 70px;
+        height: 24px;
+        font-size: 22px;
+    }
+    .button {
+        font-size: 42px;
+    }
+    .gram{
+        font-size: 24px;
+    }
+
+}

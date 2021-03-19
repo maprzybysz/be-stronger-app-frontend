@@ -1,6 +1,5 @@
 .wrapper {
   width: calc(80% / 3);
-  
   color: white;
   display: inline-block;
   margin: 0 5px 0 5px;
@@ -14,4 +13,22 @@
   text-align: center;
   margin: 0 5px 0 5px;
   font-size: 10px;
+}
+@media (min-width: 360px) {
+  .topDate {
+    font-size: 17px;
+  }
+  .bottomDate {
+    text-align: center;
+    margin: 0 5px 0 5px;
+    font-size: 11px;
+  }
+}
+@media (min-width: 720px) {
+  .topDate {
+    font-size: 22px;
+  }
+  .bottomDate {
+    font-size: 14px;
+  }
 }

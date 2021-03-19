@@ -19,7 +19,14 @@ const ExerciseHistoryList = ({exercise})=>{
   )}
 
 ExerciseHistoryList.propTypes = {
-  exercise: PropTypes.objectOf().isRequired
+  exercise: PropTypes.shape({
+    exerciseName: PropTypes.string,
+    series: PropTypes.arrayOf(PropTypes.shape({
+      weight: PropTypes.number,
+      repeatNumber: PropTypes.number,
+      key: PropTypes.string
+    }))
+  }).isRequired
 }
 
 export default ExerciseHistoryList;

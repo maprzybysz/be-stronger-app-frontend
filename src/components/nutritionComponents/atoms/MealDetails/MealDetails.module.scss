@@ -44,5 +44,28 @@
     justify-content: center;
     color: white;
     font-size: 10px;
-
+}
+@media (min-width: 360px) {
+    .contentItem{
+        font-size: 22px;
+    }
+}
+@media (min-width: 414px) {
+    .top{
+        font-size: 20px;
+    }
+}
+@media (min-width: 720px) {
+    .top{
+        font-size: 32px;
+    }
+    .grammage{
+        font-size: 24px;
+    }
+    .contentItem{
+        font-size: 32px;
+    }
+    .about{
+        font-size: 20px;
+    }
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, forwardRef} from 'react';
 import {connect} from 'react-redux';
 import DatePicker from "react-datepicker";
 import PropTypes from 'prop-types';
@@ -23,6 +23,15 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
   const[date, setDate] = useState(new Date());
   const[weight, setWeight] = useState(userWeight);
 
+  const ExampleCustomInput = forwardRef(
+    // eslint-disable-next-line react/prop-types
+    ({ value, onClick }, ref) => (
+      // eslint-disable-next-line react/button-has-type
+      <button onClick={onClick} ref={ref} className={styles.input}>
+        {value}
+      </button>
+    ),
+  );
 
   function helpFn(){
     addWeight(weight, date);
@@ -45,20 +54,19 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
       <div className={styles.weightChart}><WeightChart userWeights={userWeights}/></div>
       <div className={styles.addWeight}>
         <div className={styles.weightInput}>
-          <DatePicker className={styles.input} selected={date} onChange={date => setDate(date)} locale={pl}/>
+          <DatePicker className={styles.input} selected={date} onChange={date => setDate(date)} locale={pl} maxDate={new Date()}
+                      customInput={<ExampleCustomInput/>}/>
           <input className={styles.input} value={weight} placeholder='Nowa waga' onChange={e => onHandleInputChange(e)}/>
         </div>
         <button type='button' className={styles.button} onClick={()=>helpFn()}><FontAwesomeIcon icon={faWeight}/></button>
 
       </div>
-
-
     </div> : null}
 
     </>
     )
 
-};
+}
 
 UserWeight.propTypes = {
   addWeight: PropTypes.func.isRequired,

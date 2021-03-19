@@ -6,7 +6,6 @@
   justify-content: space-around;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-
 }
 .link {
   font-size: 18px;
@@ -14,4 +13,17 @@
 }
 .linkActive {
   color: red;
+}
+@media (min-width: 360px) {
+ .link{
+   font-size: 22px;
+ }
+}
+@media (min-width: 720px) {
+  .wrapper{
+   padding: 0 40px;
+  }
+  .link{
+    font-size: 32px;
+  }
 }

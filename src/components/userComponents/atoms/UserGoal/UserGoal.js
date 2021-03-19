@@ -25,12 +25,12 @@ const UserGoal = ({userGoal, updateUserGoal})=> {
 
   return(
     <div className={styles.wrapper} onClick={visible ? ()=>setVisible(!visible) : null}>
-      <div className={styles.activity}>Cel: {visible ?
+      <div className={styles.goal}>Cel: {visible ?
       (
-        <div className={styles.activity}>{goal}</div>
+        <div className={styles.goal}>{goal}</div>
       ):
       (
-        <select value={goal} onChange={handleChange} className={styles.activity}>
+        <select value={goal} onChange={handleChange} className={styles.goal}>
           <option value="REDUKCJA" onClick={()=>setVisible(!visible)}>REDUKCJA</option>
           <option value="UTRZYMANIE" onClick={()=>setVisible(!visible)}>UTRZYMANIE</option>
           <option value="MASA" onClick={()=>setVisible(!visible)}>MASA</option>

@@ -7,14 +7,21 @@ import FindExercise from 'components/trainingComponents/atoms/FindExercisesList/
 const FindExercisesList = ({findExercises, closeModalFn})=> (
   <ul className={styles.wrapper}>
     {findExercises.map((item)=>
-      <FindExercise name={item.name} imgUrl={item.imgUrl} closeModalFn={closeModalFn} key={item.id}/>
+      <FindExercise name={item.name} imgUrl={item.imgUrl} closeModalFn={closeModalFn} key={item.id} />
     )}
   </ul>
 )
 
 FindExercisesList.propTypes = {
   closeModalFn: PropTypes.func.isRequired,
-  findExercises: PropTypes.arrayOf().isRequired
+  findExercises: PropTypes.arrayOf(PropTypes.shape({
+    description: PropTypes.string,
+    exerciseCategory: PropTypes.string,
+    id: PropTypes.number,
+    imgUrl: PropTypes.string,
+    mediaUrl: PropTypes.string,
+    name: PropTypes.string
+  })).isRequired
 }
 
 export default FindExercisesList;

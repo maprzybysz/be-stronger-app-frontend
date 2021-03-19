@@ -28,13 +28,13 @@ const UserHeight = ({userHeight, updateUserHeight}) => {
 
   return(
     <div className={styles.wrapper} onClick={visible ? ()=>setVisible(!visible) : null} >
-      <div className={styles.activity} >Wzrost: {visible ?
+      <div className={styles.height} >Wzrost: {visible ?
         (
-          <div className={styles.activity}>{height===undefined ? userHeight : height}</div>
+          <div className={styles.height}>{height===undefined ? userHeight : height}cm</div>
         ):
         (
-          <div className={styles.activity}>
-            <input className={styles.input} value={height} onChange={e => onHandleInputChange(e)}/>
+          <div className={styles.height}>
+            <input className={styles.input} value={height} onChange={e => onHandleInputChange(e)}/>cm
             <p onClick={()=>handleChange()} className={styles.add}>zmiana</p>
           </div>
           )

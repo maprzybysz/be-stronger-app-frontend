@@ -21,7 +21,11 @@ Exercise.propTypes = {
   deleteExercise: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  series: PropTypes.arrayOf().isRequired
+  series: PropTypes.arrayOf(PropTypes.shape({
+    weight: PropTypes.number,
+    repeatNumber: PropTypes.number,
+    key: PropTypes.string
+  })).isRequired
 }
 const mapDispatchToProps = (dispatch) => ({
   deleteExercise: (exerciseId) => dispatch(deleteExercise(exerciseId)),

@@ -13,7 +13,7 @@ import {
 
 const BlogTopNav = () => (
   <div className={styles.wrapper}>
-    <Link exact to="/" className={styles.link} activeClassName={styles.linkActive}>
+    <Link  to="/" className={styles.link} >
       <FontAwesomeIcon icon={faArrowLeft} />
     </Link>
     <NavLink exact to="/userdetails" className={styles.link} activeClassName={styles.linkActive}>

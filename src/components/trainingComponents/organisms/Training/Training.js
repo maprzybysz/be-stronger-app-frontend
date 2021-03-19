@@ -16,7 +16,16 @@ const Training = ({exercises})=>{
 }
 
 Training.propTypes = {
-  exercises: PropTypes.arrayOf().isRequired
+  exercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      exerciseName: PropTypes.string,
+      series: PropTypes.arrayOf(PropTypes.shape({
+        weight: PropTypes.number,
+        repeatNumber: PropTypes.number,
+        key: PropTypes.string
+      }))
+    })
+  ).isRequired
 }
 
 const mapStateToProps = ({exercises}) => ({

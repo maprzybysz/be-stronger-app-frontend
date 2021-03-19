@@ -8,3 +8,13 @@
   font-size: 12px;
   color: white;
 }
+@media (min-width: 360px) {
+  .noItems {
+    font-size: 13px;
+  }
+}
+@media (min-width: 720px) {
+  .noItems {
+    font-size: 18px;
+  }
+}

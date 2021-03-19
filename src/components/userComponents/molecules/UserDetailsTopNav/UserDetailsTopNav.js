@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import styles from 'components/nutritionComponents/molecules/NutritionTopNav/NutritionTopNav.module.scss';
+import styles from 'components/userComponents/molecules/UserDetailsTopNav/UserDetailsTopNav.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,

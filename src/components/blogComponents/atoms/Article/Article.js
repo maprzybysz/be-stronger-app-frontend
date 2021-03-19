@@ -24,7 +24,14 @@ const Article = ({match, getArticleById, article}) => {
 }
 
 Article.propTypes = {
-  article: PropTypes.objectOf().isRequired,
+  article: PropTypes.shape({
+    author: PropTypes.string,
+    content: PropTypes.string,
+    createDate: PropTypes.string,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    url: PropTypes.string
+  }).isRequired,
   getArticleById: PropTypes.func.isRequired,
   match: PropTypes.shape().isRequired
 }

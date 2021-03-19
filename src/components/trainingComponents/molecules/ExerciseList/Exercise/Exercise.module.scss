@@ -22,3 +22,12 @@
   display: flex;
   align-items: center;
 }
+@media (min-width: 720px) {
+  .name{
+    font-size: 36px;
+  }
+  .button{
+    font-size: 32px;
+  }
+
+}

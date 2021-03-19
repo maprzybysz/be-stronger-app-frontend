@@ -52,7 +52,9 @@ export const authenticate = (username, password) => (dispatch) => {
       password,
     })
     .then((payload) => {
-      dispatch({ type: 'AUTHENTICATE_SUCCES', payload });
+      dispatch({ type: 'AUTHENTICATE_SUCCESS', payload });
+    }).then(()=>{
+      history.push('/');
     })
     .catch((error) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE', error });

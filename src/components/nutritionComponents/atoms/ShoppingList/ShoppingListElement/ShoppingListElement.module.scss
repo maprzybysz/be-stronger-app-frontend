@@ -1,8 +1,17 @@
 .listItem {
   color: white;
   margin: 5px;
+  font-size: 20px;
 }
 .checkButton {
   margin-left: 10px;
   cursor: pointer;
+}
+@media (min-width: 720px){
+  .listItem {
+    font-size: 32px;
+  }
+  .checkButton {
+    font-size: 32px;
+  }
 }

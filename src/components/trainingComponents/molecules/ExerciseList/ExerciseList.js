@@ -4,15 +4,23 @@ import Exercise from 'components/trainingComponents/molecules/ExerciseList/Exerc
 
 
 const ExerciseList = ({exercises})=>{
-
   return(
   <div>
-    {exercises.map((item, index)=>(<Exercise name={item.exerciseName} series={item.series} id={index} />))}
+    {exercises.map((item, index)=>(<Exercise name={item.exerciseName} series={item.series} id={index} key={item.tempKey} />))}
   </div>
 )}
 
 ExerciseList.propTypes = {
-  exercises: PropTypes.arrayOf().isRequired
+  exercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      exerciseName: PropTypes.string,
+      series: PropTypes.arrayOf(PropTypes.shape({
+        weight: PropTypes.number,
+        repeatNumber: PropTypes.number,
+        key: PropTypes.string
+      }))
+    })
+  ).isRequired,
 }
 
 export default ExerciseList;

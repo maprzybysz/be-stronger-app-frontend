@@ -1,14 +1,34 @@
 .wrapper{
   display: flex;
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
+  &:hover{
+    width: 100%;
+  }
+}
+.wrapperImg{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .img{
-  width: 30%;
+  width: 100%;
+  border-radius: 2px;
+
 }
+
 .name{
-  width: 70%;
+  width: 60%;
   color: white;
   font-size: 16px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+@media (min-width: 720px) {
+  .name{
+    font-size: 24px;
+  }
 }

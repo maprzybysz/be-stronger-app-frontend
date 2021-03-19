@@ -16,14 +16,28 @@ const TrainingHistoryItem = ({training, deleteTraining })=>{
    <h2 className={styles.time}>{training.endTime}</h2>
    <h3 className={styles.exercises}>Ćwiczenia</h3>
    <ul>
-     {training.exercises.map((exercise)=><ExerciseHistoryList exercise={exercise}/>)}
+     {training.exercises.map((exercise)=><ExerciseHistoryList exercise={exercise} key={exercise.id}/>)}
    </ul>
  </li>
 
 )}
 TrainingHistoryItem.propTypes = {
   deleteTraining: PropTypes.func.isRequired,
-  training: PropTypes.arrayOf().isRequired
+  training: PropTypes.shape({
+    endTime: PropTypes.string,
+    exercises: PropTypes.arrayOf(
+      PropTypes.shape({
+        exerciseName: PropTypes.string,
+        series: PropTypes.arrayOf(PropTypes.shape({
+          weight: PropTypes.number,
+          repeatNumber: PropTypes.number,
+          key: PropTypes.string
+        }))
+      })
+    ),
+    id: PropTypes.number,
+    trainingName: PropTypes.string
+  }).isRequired
 }
 const mapDispatchToProps = (dispatch) => ({
    deleteTraining: (id) => dispatch(deleteTraining(id))

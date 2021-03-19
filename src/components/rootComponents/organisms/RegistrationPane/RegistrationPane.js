@@ -44,6 +44,7 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
     width: 20px;
     height: 20px;
     margin-left: 5px;
+    
 `;
 
   const ExampleCustomInput = forwardRef(
@@ -85,11 +86,11 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
           </Link>
             {messageRegistration !==null ? <p className={styles.label}>{messageRegistration}</p> :
               <>
-              <Field type="text" placeholder="login" name="username" className={styles.input} />
+              <Field type="text" placeholder="login" name="username" className={errors.username && touched.username ? styles.inputWhenError: styles.input} />
             {errors.username && touched.username ? (
               <div className={styles.error}>{errors.username}</div>
               ) : null}
-              <Field type="password" placeholder="hasło" name="password" className={styles.input} />
+              <Field type="password" placeholder="hasło" name="password" className={errors.password && touched.password ? styles.inputWhenError: styles.input} />
             {errors.password && touched.password ? (
               <div className={styles.error}>{errors.password}</div>
               ) : null}
@@ -97,12 +98,12 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
               type="password"
               placeholder="powtórz hasło"
               name="confirmPassword"
-              className={styles.input}/>
+              className={errors.confirmPassword && touched.confirmPassword ? styles.inputWhenError: styles.input}/>
 
             {errors.confirmPassword && touched.confirmPassword ? (
               <div className={styles.error}>{errors.confirmPassword}</div>
               ) : null}
-              <Field type="email" placeholder="e-mail" name="email" className={styles.input} />
+              <Field type="email" placeholder="e-mail" name="email" className={errors.email && touched.email ? styles.inputWhenError: styles.input} />
             {errors.email && touched.email ? (
               <div className={styles.error}>{errors.email}</div>
               ) : null}
@@ -150,27 +151,24 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
               <div className={styles.error}>{errors.height}</div>
               ) : null}
               <div className={styles.fieldWrapper}>
-              <label>
-              Kobieta
-              <Field type="radio" name="sex" value="Kobieta" className={styles.label}/>
-              </label>
-              <label>
-              Mężczyzna
-              <Field type="radio" name="sex" value="Mężczyzna" className={styles.label}/>
-              </label>
+                <Field type="radio" name="sex" value="Kobieta" className={styles.label} id='woman'/>
+                <label htmlFor='woman' className={styles.label}>Kobieta</label>
+                <Field type="radio" name="sex" value="Mężczyzna" className={styles.label} id='man'/>
+                <label className={styles.label}>Mężczyzna</label>
               </div>
-                <label className={styles.rules}>
-              <Field type="checkbox" name="rulesAccepted" className={styles.checkbox} />
-              Akceptuję
-              <Link to="/sign-up/rules" className={styles.link}>
-              regulamin
-              </Link>
-              </label>
+                <div className={styles.rules}>
+                  <Field type="checkbox" name="rulesAccepted" className={styles.checkbox} id='rulesAccepted'/>
+                  <label htmlFor='rulesAccepted' className={styles.labelRules}>
+                    Akceptuję <Link to="/sign-up/rules" className={styles.link}>
+                    regulamin</Link></label>
+                </div>
+
+
             {errors.rulesAccepted && touched.rulesAccepted ? (
               <div className={styles.error}>{errors.rulesAccepted}</div>
               ) : null}
               {errorRegistration !==null ? <p className={styles.error}>{translateMessageError(errorRegistration)}</p> : null}
-              <button type="submit" className={styles.registrationButton}>
+              <button type="submit" className={styles.registrationButton} disabled={isLoading && errorRegistration===null}>
                 {isLoading && errorRegistration===null ? <div className={styles.loading}>Proszę czekać...<ClipLoader css={override} /></div>  : 'Rejestracja'}
               </button>
               </>}
@@ -182,9 +180,13 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
 )};
 
 RegistrationPane.propTypes = {
-  errorRegistration: PropTypes.string.isRequired,
-  messageRegistration: PropTypes.string.isRequired,
+  errorRegistration: PropTypes.string,
+  messageRegistration: PropTypes.string,
   registration: PropTypes.func.isRequired,
+}
+RegistrationPane.defaultProps = {
+  errorRegistration: null,
+  messageRegistration: null
 }
 
 const mapDispatchToProps = (dispatch) => ({

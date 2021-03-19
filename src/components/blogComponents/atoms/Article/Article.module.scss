@@ -17,3 +17,13 @@
   color: white;
   text-align: left;
 }
+@media (min-width: 720px) {
+  .title{
+    font-size: 48px;
+  }
+  .content{
+    padding: 15px;
+    font-size: 22px;
+  }
+
+}

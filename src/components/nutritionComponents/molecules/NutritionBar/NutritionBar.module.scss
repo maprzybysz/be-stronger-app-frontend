@@ -5,5 +5,10 @@
   display: block;
   color: white;
   font-size: 15px;
-  background-color: rgba(#3b6d8c, 0.1);
+  background-color: rgba(#3b6d8c, 0.05);
+}
+@media (min-width: 360px) {
+  .wrapper{
+
+  }
 }
