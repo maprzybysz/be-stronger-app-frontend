@@ -30,5 +30,6 @@ export const dateToString = (date) => {
     month = month.slice(1,month.length);
   }
   const day = date.getDate().toString().length === 1 ? `0${date.getDate()}` : `${date.getDate()}`;
+
   return `${year}-${month}-${day}`;
 };

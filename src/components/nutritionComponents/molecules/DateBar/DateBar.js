@@ -7,8 +7,8 @@ import Day from 'components/nutritionComponents/atoms/Day/Day';
 import styles from 'components/nutritionComponents/molecules/DateBar/DateBar.module.scss';
 
 function DateBar({ previousDay, nextDay, date, updateMeals, getUserTMR}) {
-  const previousDate = new Date(new Date(date).setDate(date.getDate() - 1));
-  const nextDate = new Date(new Date(date).setDate(date.getDate() + 1));
+  const previousDate = new Date(new Date(date).setDate(date.getDate() - 1))
+  const nextDate = new Date(new Date(date).setDate(date.getDate() + 1))
 
  
   useEffect(() => {
