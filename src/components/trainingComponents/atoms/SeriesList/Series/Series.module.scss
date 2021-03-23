@@ -48,7 +48,27 @@
 
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
+  .series{
+    font-size: 32px;
+  }
+  .input {
+    width: 60px;
+    height: 30px;
+    font-size: 28px;
+  }
+  .inputGroup{
+    width: calc(100% / 3);
+    text-align: center;
+    font-size: 32px;
+  }
+  .button{
+    width: 40px;
+    font-size: 34px;
+    margin: 5px;
+  }
+}
+@media (min-width: 1024px) {
   .series{
     font-size: 32px;
   }

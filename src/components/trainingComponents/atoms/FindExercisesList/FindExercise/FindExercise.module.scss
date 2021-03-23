@@ -17,7 +17,6 @@
   border-radius: 2px;
 
 }
-
 .name{
   width: 60%;
   color: white;
@@ -27,7 +26,7 @@
   justify-content: space-around;
   text-align: center;
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .name{
     font-size: 24px;
   }

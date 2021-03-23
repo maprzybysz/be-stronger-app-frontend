@@ -41,7 +41,7 @@
     color: white;
     margin-left: 3px;
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait) {
     .meal{
         font-size: 24px;
     }
@@ -60,4 +60,23 @@
         font-size: 24px;
     }
 
+}
+@media (min-width: 1024px){
+    .meal{
+        font-size: 24px;
+    }
+    .totals{
+        font-size: 22px;
+    }
+    .totalGrammage{
+        width: 70px;
+        height: 24px;
+        font-size: 22px;
+    }
+    .totalsWrapper{
+        font-size: 24px;
+    }
+    .button{
+        font-size: 42px;
+    }
 }

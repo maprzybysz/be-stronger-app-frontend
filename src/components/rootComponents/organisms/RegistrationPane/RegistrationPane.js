@@ -84,8 +84,9 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
           <Link to="/" className={styles.closePaneLink}>
             <FontAwesomeIcon icon={faTimes}/>
           </Link>
-            {messageRegistration !==null ? <p className={styles.label}>{messageRegistration}</p> :
+          {messageRegistration !==null ? <p className={styles.label}>{messageRegistration}</p> :
               <>
+                <div className={styles.helpWrapper}>
               <Field type="text" placeholder="login" name="username" className={errors.username && touched.username ? styles.inputWhenError: styles.input} />
             {errors.username && touched.username ? (
               <div className={styles.error}>{errors.username}</div>
@@ -171,6 +172,7 @@ const RegistrationPane = ({ registration, messageRegistration, errorRegistration
               <button type="submit" className={styles.registrationButton} disabled={isLoading && errorRegistration===null}>
                 {isLoading && errorRegistration===null ? <div className={styles.loading}>Proszę czekać...<ClipLoader css={override} /></div>  : 'Rejestracja'}
               </button>
+                </div>
               </>}
               </Form>
 

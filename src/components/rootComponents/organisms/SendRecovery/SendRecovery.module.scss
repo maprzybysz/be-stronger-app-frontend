@@ -1,18 +1,6 @@
 .wrapper{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  height: 50%;
-  background-color: #6393a6;
-  transform: translate(-50%, -50%);
-  position: fixed;
-  margin: 20px auto 0 auto;
-  border: 1px solid white;
-  border-radius: 15px 0 15px 15px;
-  overflow: visible;
-  background-color: rgba($color: #000000, $alpha: 0.9);
-
+  width: 100%;
+  height: 75%;
 }
 .closePaneLink {
   width: 25px;
@@ -25,7 +13,6 @@
   right: 0;
   transform: translate(50%, -50%);
   border-radius: 50px;
-  background: none;
   background-color: red;
   color: white;
   font-size: 18px;
@@ -46,14 +33,17 @@
   padding: 5px;
 }
 .form{
-  width: 100%;
-  text-align: center;
-  padding: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 80%;
+  height: 50%;
+  text-align: center;
+  padding: 10px;
   transform: translate(-50%, -50%);
   overflow: visible;
+  border: 1px solid white;
+  border-radius: 15px 15px 15px 15px;
 }
 .input{
   width: 60%;
@@ -89,13 +79,13 @@
   transform: translate(-50%, -50%);
   color: white;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .input {
     margin-top: 5px;
     margin-bottom: 5px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .wrapper{
     width: 60%;
     height: 40%;
@@ -129,4 +119,51 @@
   .message{
     font-size: 26px;
   }
+}
+@media (min-width: 414px) and (orientation: landscape){
+  .form{
+    top: 60%;
+    height: 50%;
+    overflow: visible;
+  }
+  .h1{
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(10%, -75%);
+    padding: 5px;
+  }
+}
+@media (min-width: 1024px){
+  .form{
+    width: calc(1024px * 0.6);
+    padding-top: 100px;
+    height: 50%;
+  }
+  .closePaneLink {
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+  }
+  .h1{
+    font-size: 32px;
+  }
+  .description{
+    font-size: 32px;
+  }
+  .input{
+    height: 50px;
+    font-size: 28px;
+  }
+  .error{
+    font-size: 22px;
+  }
+  .button{
+    height: 50px;
+    font-size: 26px;
+  }
+  .message{
+    font-size: 26px;
+  }
+
 }

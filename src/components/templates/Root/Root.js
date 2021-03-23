@@ -5,7 +5,7 @@ import {getUsername} from 'service/cookieService'
 import store from 'store';
 import BlogTemplate from 'components/templates/BlogTemplate/BlogTemplate';
 import TrainingTemplate from 'components/templates/TrainingTemplate/TrainingTemplate';
-import styles from 'views/Root/Root.module.scss';
+import styles from 'components/templates/Root/Root.module.scss';
 import ShoppingPane from 'components/templates/ShoppingTemplate/ShoppingTemplate';
 import Header from 'components/rootComponents/atoms/Header/Header';
 import Footer from 'components/rootComponents/atoms/Footer/Footer';

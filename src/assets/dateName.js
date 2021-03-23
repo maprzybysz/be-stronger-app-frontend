@@ -13,13 +13,13 @@ export const monthName = [
   'Gru',
 ];
 export const dayName = [
+  'Niedziela',
   'Poniedziałek',
   'Wtorek',
   'Środa',
   'Czwartek',
   'Piątek',
-  'Sobota',
-  'Niedziela',
+  'Sobota'
 ];
 
 export const dateToString = (date) => {
@@ -29,6 +29,7 @@ export const dateToString = (date) => {
   if(month==='010'){
     month = month.slice(1,month.length);
   }
+
   const day = date.getDate().toString().length === 1 ? `0${date.getDate()}` : `${date.getDate()}`;
 
   return `${year}-${month}-${day}`;

@@ -29,10 +29,7 @@ const RestartPassword = ({restartPassword, match, restartPasswordMessage, errorR
 
   return(
   <div className={styles.wrapper}>
-    <Link to="/" className={styles.closePaneLink}>
-      <FontAwesomeIcon icon={faTimes}/>
-    </Link>
-    <h1 className={styles.h1}>Restartowanie hasła</h1>
+
     <Formik
       initialValues={{ password: '', confirmPassword: ''}}
       validationSchema={LoginSchema}
@@ -42,6 +39,10 @@ const RestartPassword = ({restartPassword, match, restartPasswordMessage, errorR
     >
       {({ errors, touched }) => (
         <Form className={styles.restartForm}>
+          <Link to="/" className={styles.closePaneLink}>
+            <FontAwesomeIcon icon={faTimes}/>
+          </Link>
+          <h1 className={styles.h1}>Restartowanie hasła</h1>
           {restartPasswordMessage!==null ? <p className={styles.message}>{restartPasswordMessage}</p>: <>
           <p className={styles.description}>Wprowadź nowe hasło</p>
           <Field type="password" placeholder="hasło" name="password" className={styles.input} />

@@ -287,6 +287,9 @@ export const deleteShoppingListElement = (id) => (dispatch) =>{
     });
 }
 export const addWeight = (weight, dateAdded) => (dispatch) => {
+  const payload = {
+    weight, dateAdded
+  }
   return axios
     .post(`${serverURL}/user/addWeight/${getUsername()}`, {
       weight,
@@ -297,7 +300,7 @@ export const addWeight = (weight, dateAdded) => (dispatch) => {
       },
     })
     .then(() => {
-      dispatch({ type: 'ADD_WEIGHT_SUCCESS', weight });
+      dispatch({ type: 'ADD_WEIGHT_SUCCESS', payload });
     })
     .catch((error) => {
       errorVerify(error, dispatch);

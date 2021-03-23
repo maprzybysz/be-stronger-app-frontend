@@ -9,3 +9,15 @@
     display: none;
   }
 }
+@media (min-width: 568px) and (orientation: landscape){
+  .wrapper{
+    width: 92%;
+    height: 70%;
+  }
+}
+@media (min-width: 1024px){
+  .wrapper{
+    width: 100%;
+    height: 75%;
+  }
+}

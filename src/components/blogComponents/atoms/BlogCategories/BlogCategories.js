@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from 'components/blogComponents/atoms/BlogCategories/BlogCategories.module.scss';
 import { categories} from 'assets/globalVariables';
 import BlogCategory from 'components/blogComponents/atoms/BlogCategories/BlogCategory/BlogCategory';
 import trainingIMG from 'assets/img/trainingIMG.jpg';
@@ -13,7 +14,7 @@ const img = [trainingIMG, healthIMG, dietIMG, supplementIMG, runIMG, slimmingIMG
 
 const BlogCategories = ()=> (
 
-  <ul>
+  <ul className={styles.wrapper}>
     {categories.map((item, index) => <BlogCategory key={item} category={item} background={img[index]} url={item}/>)}
   </ul>
 )

@@ -3,13 +3,19 @@
     color: $cyan;
     font-size: 18px;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px)  and (orientation: portrait){
     .itemList{
         font-size: 22px;
     }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
     .itemList{
         font-size: 32px;
     }
+}
+@media (min-width: 1024px) {
+    .itemList{
+        font-size: 32px;
+    }
+
 }

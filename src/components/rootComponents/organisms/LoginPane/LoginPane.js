@@ -6,8 +6,6 @@ import * as Yup from 'yup';
 import styles from 'components/rootComponents/organisms/LoginPane/LoginPane.module.scss';
 import { connect } from 'react-redux';
 import { authenticate } from 'actions';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { translateMessageError } from '../../../../assets/globalError';
 
 const LoginSchema = Yup.object().shape({
@@ -27,9 +25,6 @@ const LoginPane = ({ authenticate, errorLogin }) =>(
       {({ errors, touched }) => (
         <Form className={styles.loginForm}>
           <h1 className={styles.loginTitle}>Logowanie</h1>
-          <Link to="/" className={styles.closePaneLink}>
-            <FontAwesomeIcon icon={faTimes}/>
-          </Link>
           <Field type="text" placeholder="login" name="username" className={styles.input} />
           {errors.username && touched.username ? (
             <div className={styles.error}>{errors.username}</div>

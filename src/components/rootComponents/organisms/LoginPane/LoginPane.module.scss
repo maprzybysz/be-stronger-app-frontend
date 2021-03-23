@@ -17,7 +17,7 @@
   position: fixed;
   margin: 0 auto 0 auto;
   border: 1px solid white;
-  border-radius: 15px 0 15px 15px;
+  border-radius: 15px 15px 15px 15px;
   overflow: visible;
   background-color: rgba($color: #000000, $alpha: 0.9);
 }
@@ -84,7 +84,7 @@
     color: #6393a6;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .loginForm {
     width: 60%;
     height: 50%;
@@ -117,4 +117,32 @@
     height: 40px;
     font-size: 24px;
   }
+}
+@media (min-width: 414px) and (orientation: landscape){
+  .loginTitle{
+    display: none;
+  }
+  .loginForm{
+    height: 65%;
+    width: 60%;
+    border-left: 1px solid white;
+  }
+
+}
+@media (min-width: 1024px){
+  .loginForm{
+    width: calc(1024px * 0.6);
+  }
+  .input{
+    height: 40px;
+    font-size: 24px;
+  }
+  .loginButton{
+    height: 40px;
+    font-size: 24px;
+  }
+  .link{
+    font-size: 24px;
+  }
+
 }

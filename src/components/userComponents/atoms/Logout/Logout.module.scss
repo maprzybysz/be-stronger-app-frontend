@@ -32,22 +32,33 @@
   font-weight: 600;
   text-transform: uppercase;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .wrapper{
     font-size: 18px;
     min-height: 12.5%;
   }
 
 }
-@media (min-width: 375px) {
+@media (min-width: 375px) and (orientation: portrait){
   .wrapper{
     font-size: 20px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px)and (orientation: portrait) {
   .button{
     width: 200px;
     height: 50px;
     font-size: 32px;
+  }
+}
+@media (min-width: 1024px) {
+  .wrapper {
+    height: 12.5%;
+    font-size: 22px;
+  }
+  .button{
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
   }
 }

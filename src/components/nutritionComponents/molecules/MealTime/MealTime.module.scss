@@ -46,7 +46,7 @@
 .mealsWrapper {
   margin-bottom: 5px;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .name{
     font-size: 32px;
   }
@@ -54,7 +54,7 @@
     font-size: 14px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .name{
     font-size: 42px;
   }
@@ -65,5 +65,29 @@
     width: 50px;
     height: 50px;
     font-size: 34px;
+  }
+}
+@media (min-width: 568px) and (orientation: landscape){
+  .wrapper{
+    height: 75%;
+    width: 8%;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+    border-bottom: none;
+
+  }
+}
+@media (min-width: 1024px){
+  .name{
+    font-size: 36px;
+  }
+  .value {
+    font-size: 18px;
+  }
+  .button{
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
   }
 }

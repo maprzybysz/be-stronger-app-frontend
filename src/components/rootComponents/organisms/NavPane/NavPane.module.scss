@@ -4,9 +4,21 @@
   padding-top: 50px;
   text-align: center;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .wrapper{
     padding-top: 70px;
+  }
+}
+@media (min-width: 568px) and (orientation: landscape){
+  .wrapper{
+    height: 75%;
+    width: 100%;
+    padding-top: 30px;
+  }
+}
+@media (min-width: 1024px){
+  .wrapper{
+    padding-top: 100px;
   }
 }
 

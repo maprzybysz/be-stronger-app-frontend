@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 70%;
-  top: 50%;
+  height: 72%;
+  top: 49%;
   left: 50%;
   transform: translate(-50%, -40%);
   position: fixed;
@@ -40,7 +40,7 @@
   margin: 2px auto;
 }
 .input:first-of-type {
-  margin-top: -10px;
+
 }
 .error {
   color: red;
@@ -66,6 +66,7 @@
   border: none;
   cursor: pointer;
   text-decoration: none;
+
 }
 .registrationButton {
   width: 150px;
@@ -111,6 +112,7 @@
 }
 
 .detailsWrapper{
+  margin: 0 auto;
   width: 80%;
   display: flex;
   justify-content: space-around;
@@ -169,7 +171,7 @@
   transform: translate(-50%, -50%) !important;
 }
 
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .input {
     height: 30px;
   }
@@ -177,7 +179,7 @@
     font-size: 11px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .registrationForm {
     width: 60%;
     height: 70%;
@@ -246,6 +248,101 @@
   }
   .datePickerInput{
    height: 40px;
+    width: 140px;
+    font-size: 24px;
+  }
+  .select{
+    font-size: 24px;
+  }
+  .popper {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+@media (min-width: 414px) and (orientation: landscape){
+.registrationForm{
+  padding: 10px;
+  height: 65%;
+  overflow: visible;
+}
+  .input:first-of-type {
+    margin-top: 10px;
+  }
+  .helpWrapper{
+    overflow-y: scroll;
+  }
+  .rules{
+    margin-bottom: 10px;
+  }
+  .error:last-of-type {
+    margin-bottom: 10px;
+  }
+  .popper {
+    top: 40% !important;
+  }
+
+}
+@media (min-width: 1024px) {
+  .registrationForm {
+    width: calc(1024px * 0.9);
+  }
+  .input{
+    height: 40px;
+    width: 400px;
+    font-size: 24px;
+  }
+  .error {
+    font-size: 22px;
+  }
+  .closePaneLink {
+    width: 50px;
+    height: 50px;
+    font-size: 36px;
+  }
+  .registrationButton {
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .rules {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .labelRules{
+    font-size: 24px;
+  }
+  .fieldWrapper{
+    font-size: 22px;
+  }
+  .detailsWrapper{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+
+  }
+  .inputDetails{
+    height: 40px;
+    font-size: 24px;
+  }
+  .option{
+    font-size: 18px;
+  }
+  .label{
+    font-size: 24px;
+    padding: 2px;
+  }
+  .loading{
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .datePickerInput{
+    height: 40px;
     width: 140px;
     font-size: 24px;
   }

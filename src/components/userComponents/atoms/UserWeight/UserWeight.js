@@ -17,7 +17,7 @@ const UserWeight = ({addWeight, getUserWeights, userWeights, userWeight, getUser
 
   useEffect(()=>{
     getUserWeights();
-    }, [])
+    }, [userWeights.length])
 
   const[visible, setVisible] = useState(false);
   const[date, setDate] = useState(new Date());

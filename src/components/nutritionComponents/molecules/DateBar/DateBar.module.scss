@@ -24,9 +24,25 @@
     color: $red;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .wrapper{
     padding: 20px;
+  }
+  .arrow{
+    font-size: 42px;
+  }
+}
+@media (min-width: 568px) and (orientation: landscape){
+  .wrapper{
+    height: 15%;
+  }
+  .arrow{
+    font-size: 26px;
+  }
+}
+@media (min-width: 1024px){
+  .wrapper{
+    height: 10%;
   }
   .arrow{
     font-size: 42px;

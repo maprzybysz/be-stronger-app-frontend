@@ -66,7 +66,7 @@
   cursor: pointer;
 
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .wrapper{
     font-size: 18px;
     min-height: 12.5%;
@@ -75,7 +75,7 @@
     font-size: 14px;
   }
 }
-@media (min-width: 375px) {
+@media (min-width: 375px) and (orientation: portrait){
   .arrow{
     font-size: 32px;
   }
@@ -87,7 +87,7 @@
     font-size: 20px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .addWeight{
     margin: 0 auto;
     width: 60%;
@@ -98,5 +98,48 @@
   }
   .button{
     font-size: 60px;
+  }
+}
+@media (min-width: 568px) and (orientation: landscape) {
+  .weightChart{
+    height: 60%;
+    padding-top: 5px;
+  }
+  .addWeight{
+    height: 30%;
+    padding: 1px;
+  }
+  .weightInput{
+    padding: 1px;
+  }
+  .input{
+    font-size: 12px;
+  }
+}
+@media (min-width: 1024px){
+  .wrapper{
+    height: 12.5%;
+    font-size: 22px;
+  }
+  .addWeight{
+    margin: 0 auto;
+    width: 60%;
+  }
+  .input{
+    width: 175px;
+    font-size: 24px;
+  }
+  .button{
+    font-size: 60px;
+  }
+  .weightChart {
+    padding-top: 20px;
+    height: 70%;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+  .arrow{
+    font-size: 42px;
   }
 }

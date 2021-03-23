@@ -34,7 +34,7 @@
     animation: spin 5s linear 2s infinite alternate;
   }
 }
-@media (min-width: 720px){
+@media (min-width: 720px) and (orientation: portrait){
   .listItem {
     font-size: 32px;
   }
@@ -46,3 +46,16 @@
     font-size: 24px;
   }
 }
+@media (min-width: 1024px){
+  .listItem {
+    font-size: 32px;
+  }
+  .button {
+    padding-left: 10px;
+    font-size: 32px;
+  }
+  .input{
+    font-size: 32px;
+  }
+}
+

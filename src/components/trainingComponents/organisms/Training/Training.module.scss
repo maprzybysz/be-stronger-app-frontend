@@ -5,28 +5,64 @@
   overflow: scroll;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .info{
   text-align: center;
   font-size: 16px;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .info{
     font-size: 20px;
   }
 }
-@media (min-height: 736px) {
+@media (min-height: 736px) and (orientation: portrait){
   .wrapper{
     max-height: 75%;
   }
 }
-@media (min-height: 812px) {
+@media (min-height: 812px) and (orientation: portrait){
   .wrapper{
     max-height: 77%;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .info{
     font-size: 32px;
+  }
+}
+
+@media (min-width: 414px) and (orientation: landscape){
+  .wrapper{
+    max-height: 59%;
+  }
+}
+@media (min-width: 736px) and (orientation: landscape){
+  .wrapper{
+    max-height: 66%;
+  }
+}
+@media (min-width: 1024px) {
+  .info{
+    font-size: 42px;
+  }
+}
+@media (min-height: 720px) and (orientation: landscape){
+  .wrapper{
+    max-height: 71%;
+  }
+}
+@media (min-height: 768px) and (orientation: landscape){
+  .wrapper{
+    max-height: 72%;
+  }
+}
+@media (min-height: 1080px) and (orientation: landscape){
+  .wrapper{
+    max-height: 80%;
   }
 }

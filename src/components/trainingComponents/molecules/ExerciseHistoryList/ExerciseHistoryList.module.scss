@@ -2,12 +2,17 @@
   color: gray;
   font-size: 14px;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .exercise{
     font-size: 16px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
+  .exercise{
+    font-size: 24px;
+  }
+}
+@media (min-width: 1024px){
   .exercise{
     font-size: 24px;
   }

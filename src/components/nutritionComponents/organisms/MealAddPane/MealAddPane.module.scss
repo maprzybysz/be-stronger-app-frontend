@@ -37,13 +37,13 @@
       border-top: 1px solid rgba(255, 255, 255, 0.25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
     .input{
         height: 25px;
         font-size: 14px;
     }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
     .title{
 
         font-size: 42px;
@@ -53,3 +53,41 @@
         font-size: 24px;
     }
 }
+@media (min-width: 568px) and (orientation: landscape) {
+    .wrapper {
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        height: 75%;
+        width: 92%;
+    }
+    .listWrapper {
+        padding: 0 10px 0 10px;
+        min-height: 68%;
+        height: 69.5%;
+    }
+    .input{
+        height: 15px;
+    }
+    .title{
+        font-size: 24px;
+    }
+}
+@media (min-width: 667px) and (orientation: landscape){
+    .input{
+        height: 20px;
+    }
+}
+@media (min-width: 1024px){
+    .wrapper{
+        width: 100%;
+        height: 67.5%;
+    }
+    .input{
+        height: 30px;
+        font-size: 24px;
+    }
+    .title{
+        font-size: 36px;
+    }
+
+}
+

@@ -27,3 +27,27 @@
 .item:nth-of-type(5), .item:nth-of-type(6){
   border-bottom: none;
 }
+@media (min-width: 1024px) {
+.item {
+  width: calc(95% / 3);
+  height: calc(1024px / 3);
+  border: 1px solid white;
+  font-size: 24px;
+}
+  .item:nth-of-type(2n){
+    border: 1px solid white;
+  }
+  .item:nth-of-type(2n+1){
+    border: 1px solid white;
+  }
+  .item:nth-of-type(1n){
+    border: 1px solid white;
+  }
+  .item:nth-of-type(1), .item:nth-of-type(2){
+    border: 1px solid white;
+  }
+  .item:nth-of-type(5), .item:nth-of-type(6){
+    border: 1px solid white;
+  }
+
+}

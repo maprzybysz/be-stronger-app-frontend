@@ -14,7 +14,7 @@
   margin: 0 5px 0 5px;
   font-size: 10px;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait) {
   .topDate {
     font-size: 17px;
   }
@@ -24,11 +24,19 @@
     font-size: 11px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .topDate {
     font-size: 22px;
   }
   .bottomDate {
     font-size: 14px;
+  }
+}
+@media (min-width: 1024px){
+  .topDate{
+    font-size: 24px;
+  }
+  .bottomDate{
+    font-size: 16px;
   }
 }

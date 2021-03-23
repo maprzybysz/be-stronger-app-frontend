@@ -29,7 +29,7 @@ const WorkoutModal = ({ closeModal, deleteUnsavedTraining, saveTraining, exercis
         item.series.forEach((exercise) => {
 
           // eslint-disable-next-line no-unused-expressions
-          exercise.weight === 'empty' || exercise.repeatNumber === 'empty' ? emptySeries = true : emptySeries;
+          exercise.weight === -1 || exercise.repeatNumber === -1 ? emptySeries = true : emptySeries;
         });
       });
       if (emptyExercise) {
@@ -76,6 +76,7 @@ const WorkoutModal = ({ closeModal, deleteUnsavedTraining, saveTraining, exercis
       <button type='button' className={styles.finishButton} onClick={() => finishFn()}>Zakończ trening</button>
       {error == null ? null : <WarningModal closeFn={()=>setError(null)} message={error}/>}
     </div>
+
   );
 };
 

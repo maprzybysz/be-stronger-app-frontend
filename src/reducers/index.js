@@ -78,7 +78,7 @@ const rootReducer = (state = initialState, action) => {
     case 'REGISTRATION_SUCCES': {
       return {
         ...state,
-        messageRegistration: 'Rejestracja pomyślna. Na Twój mail został wysłany link aktywacyjny',
+        messageRegistration: 'Rejestracja pomyślna. Na Twój mail został wysłany link aktywacyjny. Sprawdź spam.',
         errorRegistration: null,
         errorLogin: null,
         recoveryMessage: null,
@@ -171,6 +171,12 @@ const rootReducer = (state = initialState, action) => {
         userWeights: action.payload.data
       }
     }
+    case 'ADD_WEIGHT_SUCCESS':{
+      return {
+        ...state,
+        userWeights: [...state.userWeights, action.payload]
+      }
+    }
     case 'UPDATE_HEIGHT_SUCCESS': {
       return {
         ...state,
@@ -225,7 +231,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case 'ADD_SERIES':{
       const temp = state.exercises.map((item, index)=>action.id===index ? {...item,
-      series:[...item.series, {weight: 0, repeatNumber: 0, key: uuidv4()}]} : item);
+      series:[...item.series, {weight: -1, repeatNumber: -1, key: uuidv4()}]} : item);
       return {
         ...state,
         exercises: temp
@@ -282,7 +288,7 @@ const rootReducer = (state = initialState, action) => {
     case 'SEND_RECOVERY_SUCCESS':{
       return {
         ...state,
-        recoveryMessage: 'Link został wysłany na twój adres',
+        recoveryMessage: 'Link do zmiany hasła został wysłany na twój adres. Sprawdź spam.',
         messageRegistration: null,
         errorRegistration: null,
         errorLogin: null,
@@ -335,7 +341,7 @@ const rootReducer = (state = initialState, action) => {
     case 'SEND_DELETE_TOKEN_SUCCESS':{
       return {
         ...state,
-        deleteMessage: 'Na twój adres mail został wysłany link do usunięcia konta'
+        deleteMessage: 'Na twój adres mail został wysłany link do usunięcia konta. Sprawdź spam.'
       }
     }
     default:

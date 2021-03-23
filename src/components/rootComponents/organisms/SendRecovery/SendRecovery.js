@@ -28,10 +28,6 @@ const SendRecovery = ({sendRecoveryToken, recoveryMessage,errorRecovery})=>{
   const [isLoading, setIsLoading] = useState(false);
   return(
   <div className={styles.wrapper}>
-    <Link to="/" className={styles.closePaneLink}>
-      <FontAwesomeIcon icon={faTimes}/>
-    </Link>
-    <h1 className={styles.h1}>Zapomniałeś hasła?</h1>
     <Formik
       initialValues={{ username: '',}}
       validationSchema={schema}
@@ -42,6 +38,10 @@ const SendRecovery = ({sendRecoveryToken, recoveryMessage,errorRecovery})=>{
     >
       {({ errors, touched }) => (
         <Form className={styles.form}>
+          <Link to="/" className={styles.closePaneLink}>
+            <FontAwesomeIcon icon={faTimes}/>
+          </Link>
+          <h1 className={styles.h1}>Zapomniałeś hasła?</h1>
           {recoveryMessage!==null ? <p className={styles.message}>{recoveryMessage}</p>: <>
             <p className={styles.description}>Wprowadź login podany przy rejestracji. Wyślemy Ci link umożliwiający zmianę hasła.</p>
           <Field type="text" placeholder="login" name="username" className={styles.input} />

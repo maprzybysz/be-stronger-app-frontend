@@ -59,7 +59,7 @@
   margin-left: 4px;
   cursor: pointer;
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .nameButton{
     font-size: 18px;
   }
@@ -68,7 +68,7 @@
     height: 30px;
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .trainingName{
     font-size: 42px;
   }
@@ -83,5 +83,44 @@
   }
   .nameButton{
     font-size: 24px;
+  }
+}
+@media (min-width: 414px) and (orientation: landscape){
+  .wrapper{
+    height: 75%;
+    width: 92%;
+    border-left: 1px solid white;
+  }
+  .trainingName{
+    font-size: 28px;
+    margin: 10px 0 0 10px;
+  }
+  .cancelButton{
+    width: 100px;
+    height: 20px;
+    font-size: 14px;
+  }
+  .addButton{
+    height: 20px;
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px){
+  .wrapper{
+   width: 1024px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+  }
+  .cancelButton{
+    width: 150px;
+    height: 30px;
+    font-size: 19px;
+  }
+  .trainingName{
+    font-size: 42px;
+  }
+  .addButton{
+    height: 40px;
+    font-size: 22px;
   }
 }

@@ -6,15 +6,15 @@
   overflow: hidden;
 }
 body{
-  background-image: url('../../assets/img/background.png');
+  background-image: url('../../../assets/img/background.png');
   font-family: 'Montserrat', sans-serif;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
-}
 
+}
 .wrapper {
   width: 320px;
   height: 100vh;
@@ -45,11 +45,26 @@ body{
     width: 100vw;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 568px) and (orientation: landscape){
+ .wrapper{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+ };
+}
+@media (min-width: 812px) and (orientation: landscape){
+  .wrapper{
+    margin: 0 auto;
+    width: 95vw;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+
+  }
+}
+@media (min-width: 1024px){
   .wrapper {
+    display: block;
     width: 1024px;
     margin: 0 auto;
   }
 }
-
-

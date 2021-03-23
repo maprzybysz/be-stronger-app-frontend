@@ -27,7 +27,7 @@
   @extend .link;
   opacity: 0.5;
 }
-@media (min-width: 414px) {
+@media (min-width: 414px) and (orientation: portrait){
   .link{
     font-size: 36px;
     &:hover{
@@ -35,11 +35,27 @@
     }
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 720px) and (orientation: portrait){
   .link{
     font-size: 54px;
     &:hover{
       font-size: 64px;
+    }
+  }
+}
+@media (min-width: 568px) and (orientation: landscape){
+  .link{
+    font-size: 28px;
+    &:hover{
+      font-size: 32px;
+    }
+  }
+}
+@media (min-width: 1024px){
+  .link{
+    font-size: 42px;
+    &:hover{
+      font-size: 52px;
     }
   }
 }

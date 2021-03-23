@@ -28,17 +28,26 @@
   font-weight: 500;
   position: relative
 }
-@media (min-width: 360px) {
+@media (min-width: 360px) and (orientation: portrait){
   .wrapper{
     font-size: 18px;
     min-height: 12.5%;
   }
 }
-@media (min-width: 375px) {
+@media (min-width: 375px) and (orientation: portrait){
   .arrow{
     font-size: 32px;
   }
   .wrapper{
     font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .wrapper{
+    font-size: 22px;
+    min-height: 12.5%;
+  }
+  .arrow{
+    font-size: 42px;
   }
 }

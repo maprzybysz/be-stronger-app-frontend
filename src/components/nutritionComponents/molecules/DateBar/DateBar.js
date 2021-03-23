@@ -10,7 +10,7 @@ function DateBar({ previousDay, nextDay, date, updateMeals, getUserTMR}) {
   const previousDate = new Date(new Date(date).setDate(date.getDate() - 1))
   const nextDate = new Date(new Date(date).setDate(date.getDate() + 1))
 
- 
+
   useEffect(() => {
     updateMeals(dateToString(date));
     getUserTMR(dateToString(date));
