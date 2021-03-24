@@ -144,6 +144,12 @@ const rootReducer = (state = initialState, action) => {
         findMeals: action.payload.data
       }
     }
+    case 'INITIAL_MEALS_SUCCESS':{
+      return {
+        ...state,
+        findMeals: action.payload.data
+      }
+    }
     case 'GET_SHOPPING_LIST_SUCCESS':{
       return {
         ...state,

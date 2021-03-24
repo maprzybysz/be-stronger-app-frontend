@@ -191,7 +191,22 @@ export const addEatenMeal = (
       dispatch({ type: 'SAVE_EATENMEAL_FAILURE', error });
     });
 };
-
+export const getTopMeals = () => (dispatch) => {
+  const url = `${serverURL}/meal/getTopMeal`;
+  return axios
+    .get(url, {
+      headers: {
+        'Authorization': `Bearer ${getUserToken()}`,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: 'INITIAL_MEALS_SUCCESS', payload });
+    })
+    .catch((error) => {
+      errorVerify(error, dispatch);
+      dispatch({ type: 'INITIAL_MEALS_FAILURE', error });
+    });
+};
 export const searchMeals = (mealName) => (dispatch) => {
   const url = `${serverURL}/meal/searchMeals/${mealName}`;
   return axios

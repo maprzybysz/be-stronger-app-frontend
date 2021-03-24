@@ -130,11 +130,13 @@
 @media (min-width: 414px) and (orientation: landscape){
   .wrapper{
     overflow-x: hidden;
+    width: 92%;
   }
+
 
 }
 @media (min-width: 1024px){
   .wrapper{
-    width: calc(100% * 0.8);
+    width: 1024px;
   }
 }

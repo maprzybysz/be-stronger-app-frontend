@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
-import {searchMeals} from 'actions';
+import {searchMeals, getTopMeals} from 'actions';
 import PropTypes from 'prop-types';
 import MealBookList from 'components/nutritionComponents/atoms/MealBookList/MealBookList';
 import styles from 'components/templates/MealsBook/MealsBook.module.scss';
 import CreateMealButton from 'components/nutritionComponents/atoms/CreateMealButton/CreateMealButton';
 import CreateMealModal from 'components/nutritionComponents/organisms/CreateMealModal/CreateMealModal';
 
-const MealsBook = ({findMeals, searchMeals}) => {
+const MealsBook = ({findMeals, searchMeals, getTopMeals}) => {
 
   const [mealName, setMealName] = useState('');
   const [createModalVisible, setCreateModalVisible] = useState(false);
 
   useEffect(()=>{
-    if(mealName.length>=3){
+    if(findMeals.length===0){
+      getTopMeals();
+    }else if(mealName.length>=3){
       searchMeals(mealName);
     }
-  }, [mealName])
+    }, [mealName])
   return (
     <>
     <div className={styles.wrapper}>
@@ -49,6 +51,7 @@ const mapStateToProps = ({findMeals}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 searchMeals: (mealName) => dispatch(searchMeals(mealName)),
+  getTopMeals: () => dispatch(getTopMeals()),
 })
 
 export default connect(mapStateToProps ,mapDispatchToProps)(MealsBook);

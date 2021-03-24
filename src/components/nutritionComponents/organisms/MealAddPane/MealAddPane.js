@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import styles from 'components/nutritionComponents/organisms/MealAddPane/MealAddPane.module.scss';
 import {connect} from 'react-redux'
-import {searchMeals} from 'actions'
+import {searchMeals, getTopMeals} from 'actions'
 import { dateToString } from 'assets/dateName';
 import PropTypes from 'prop-types';
 import FindMealList from 'components/nutritionComponents/atoms/FindMealList/FindMealList';
 import CreateMealButton from 'components/nutritionComponents/atoms/CreateMealButton/CreateMealButton';
 import CreateMealModal from 'components/nutritionComponents/organisms/CreateMealModal/CreateMealModal';
 
-const MealAddPane = ({date, match, findMeals, searchMeals}) => {
+const MealAddPane = ({date, match, findMeals, searchMeals, getTopMeals}) => {
 
   const [mealName, setMealName] = useState('');
   const [mealTime, setMealTime] = useState('');
@@ -18,7 +18,9 @@ const MealAddPane = ({date, match, findMeals, searchMeals}) => {
   useEffect(() => {
     setMealTime(match.params.mealtime.toUpperCase());
     setMealDate(dateToString(date));
-    if (mealName.length >= 3) {
+    if(findMeals.length===0){
+      getTopMeals();
+    }else if(mealName.length>=3){
       searchMeals(mealName);
     }
   }, [mealName])
@@ -35,8 +37,9 @@ const MealAddPane = ({date, match, findMeals, searchMeals}) => {
           <div className={styles.listWrapper}><FindMealList meals={findMeals} mealTime={mealTime} mealDate={mealDate} />
           </div>
           <CreateMealButton openModalFn={() => setCreateModalVisible(true)} />
-        </div>
-      {createModalVisible ? <CreateMealModal closeModalFn={()=>setCreateModalVisible(false)}/> : null }
+        {createModalVisible ? <CreateMealModal closeModalFn={()=>setCreateModalVisible(false)}/> : null }
+      </div>
+
     </>
   );
 }
@@ -55,6 +58,7 @@ MealAddPane.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
 searchMeals: (mealName) => dispatch(searchMeals(mealName)),
+  getTopMeals: () => dispatch(getTopMeals()),
 })
 const mapStateToProps = ({date, findMeals }) => ({
    date, findMeals

@@ -26,8 +26,6 @@ const CreateMealModal = ({closeModalFn, addMeal}) =>{
 
   return(
   <div className={styles.wrapper}>
-    <button type='button' className={styles.cancelButton} onClick={closeModalFn}>Anuluj</button>
-    <h1 className={styles.title}>Nowy produkt</h1>
     <Formik
       initialValues={{ name: '', goodness: '', protein: '', carbohydrates: '', fat: '', description: '', imgUrl: '' }}
       validationSchema={MealSchema}
@@ -38,6 +36,8 @@ const CreateMealModal = ({closeModalFn, addMeal}) =>{
     >
       {({ errors, touched }) => (
         <Form className={styles.form}>
+          <button type='button' className={styles.cancelButton} onClick={closeModalFn}>Anuluj</button>
+          <h1 className={styles.title}>Nowy produkt</h1>
           <Field type="text" placeholder="Nazwa posiłku/produktu" name="name" className={styles.input} />
           {errors.name && touched.name ? (
             <div className={styles.error}>{errors.name}</div>
